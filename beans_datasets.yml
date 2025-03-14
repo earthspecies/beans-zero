@@ -1,0 +1,1202 @@
+- name: esc50
+  type: classification
+  train_data: data/esc50/meta/esc50.train.csv
+  valid_data: data/esc50/meta/esc50.valid.csv
+  test_data: data/esc50/meta/esc50.test.csv
+  num_labels: 50
+  labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+  unknown_label: null
+  # human_labels: ["Sound of dog", "Sound of rooster", "Sound of pig", "Sound of cow", "Sound of frog", "Sound of cat", "Sound of hen", "Sound of insects", "Sound of sheep", "Sound of crow", "Sound of rain", "Sound of sea waves", "Sound of crackling fire", "Sound of crickets", "Sound of chirping birds", "Sound of water drops", "Sound of wind", "Sound of pouring water", "Sound of toilet flush", "Sound of thunderstorm", "Sound of crying baby", "Sound of sneezing", "Sound of clapping", "Sound of breathing", "Sound of coughing", "Sound of footsteps", "Sound of laughing", "Sound of brushing teeth", "Sound of snoring", "Sound of drinking sipping", "Sound of door wood knock", "Sound of mouse click", "Sound of keyboard typing", "Sound of door wood creaks", "Sound of can opening", "Sound of washing machine", "Sound of vacuum cleaner", "Sound of clock alarm", "Sound of clock tick", "Sound of glass breaking", "Sound of helicopter", "Sound of chainsaw", "Sound of siren", "Sound of car horn", "Sound of engine", "Sound of train", "Sound of church bells", "Sound of airplane", "Sound of fireworks", "Sound of hand saw"]
+  sample_rate: 44100
+  max_duration: 5
+  llm_data: data/esc50-all/test.jsonl
+  human_labels: ["dog", "rooster", "pig", "cow", "frog", "cat", "hen", "insects", "sheep", "crow", "rain", "sea_waves", "crackling_fire", "crickets", "chirping_birds", "water_drops", "wind", "pouring_water", "toilet_flush", "thunderstorm", "crying_baby", "sneezing", "clapping", "breathing", "coughing", "footsteps", "laughing", "brushing_teeth", "snoring", "drinking_sipping", "door_wood_knock", "mouse_click", "keyboard_typing", "door_wood_creaks", "can_opening", "washing_machine", "vacuum_cleaner", "clock_alarm", "clock_tick", "glass_breaking", "helicopter", "chainsaw", "siren", "car_horn", "engine", "train", "church_bells", "airplane", "fireworks", "hand_saw"]
+
+- name: esc50-2shot
+  type: classification
+  train_data: data/esc50/meta/esc50.train.csv
+  valid_data: data/esc50/meta/esc50.valid.csv
+  test_data: data/esc50/meta/esc50.test.csv
+  num_labels: 50
+  labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+  unknown_label: null
+  # human_labels: ["Sound of dog", "Sound of rooster", "Sound of pig", "Sound of cow", "Sound of frog", "Sound of cat", "Sound of hen", "Sound of insects", "Sound of sheep", "Sound of crow", "Sound of rain", "Sound of sea waves", "Sound of crackling fire", "Sound of crickets", "Sound of chirping birds", "Sound of water drops", "Sound of wind", "Sound of pouring water", "Sound of toilet flush", "Sound of thunderstorm", "Sound of crying baby", "Sound of sneezing", "Sound of clapping", "Sound of breathing", "Sound of coughing", "Sound of footsteps", "Sound of laughing", "Sound of brushing teeth", "Sound of snoring", "Sound of drinking sipping", "Sound of door wood knock", "Sound of mouse click", "Sound of keyboard typing", "Sound of door wood creaks", "Sound of can opening", "Sound of washing machine", "Sound of vacuum cleaner", "Sound of clock alarm", "Sound of clock tick", "Sound of glass breaking", "Sound of helicopter", "Sound of chainsaw", "Sound of siren", "Sound of car horn", "Sound of engine", "Sound of train", "Sound of church bells", "Sound of airplane", "Sound of fireworks", "Sound of hand saw"]
+  sample_rate: 44100
+  max_duration: 5
+  llm_data: data/multi-audio-prompts/v1/v1/beans-esc50-classification/test_shots2.jsonl
+  human_labels: ["dog", "rooster", "pig", "cow", "frog", "cat", "hen", "insects", "sheep", "crow", "rain", "sea_waves", "crackling_fire", "crickets", "chirping_birds", "water_drops", "wind", "pouring_water", "toilet_flush", "thunderstorm", "crying_baby", "sneezing", "clapping", "breathing", "coughing", "footsteps", "laughing", "brushing_teeth", "snoring", "drinking_sipping", "door_wood_knock", "mouse_click", "keyboard_typing", "door_wood_creaks", "can_opening", "washing_machine", "vacuum_cleaner", "clock_alarm", "clock_tick", "glass_breaking", "helicopter", "chainsaw", "siren", "car_horn", "engine", "train", "church_bells", "airplane", "fireworks", "hand_saw"]
+
+- name: esc50-3shot
+  type: classification
+  train_data: data/esc50/meta/esc50.train.csv
+  valid_data: data/esc50/meta/esc50.valid.csv
+  test_data: data/esc50/meta/esc50.test.csv
+  num_labels: 50
+  labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+  unknown_label: null
+  # human_labels: ["Sound of dog", "Sound of rooster", "Sound of pig", "Sound of cow", "Sound of frog", "Sound of cat", "Sound of hen", "Sound of insects", "Sound of sheep", "Sound of crow", "Sound of rain", "Sound of sea waves", "Sound of crackling fire", "Sound of crickets", "Sound of chirping birds", "Sound of water drops", "Sound of wind", "Sound of pouring water", "Sound of toilet flush", "Sound of thunderstorm", "Sound of crying baby", "Sound of sneezing", "Sound of clapping", "Sound of breathing", "Sound of coughing", "Sound of footsteps", "Sound of laughing", "Sound of brushing teeth", "Sound of snoring", "Sound of drinking sipping", "Sound of door wood knock", "Sound of mouse click", "Sound of keyboard typing", "Sound of door wood creaks", "Sound of can opening", "Sound of washing machine", "Sound of vacuum cleaner", "Sound of clock alarm", "Sound of clock tick", "Sound of glass breaking", "Sound of helicopter", "Sound of chainsaw", "Sound of siren", "Sound of car horn", "Sound of engine", "Sound of train", "Sound of church bells", "Sound of airplane", "Sound of fireworks", "Sound of hand saw"]
+  sample_rate: 44100
+  max_duration: 5
+  llm_data: data/multi-audio-prompts/v1/v1/beans-esc50-classification/test_shots3.jsonl
+  human_labels: ["dog", "rooster", "pig", "cow", "frog", "cat", "hen", "insects", "sheep", "crow", "rain", "sea_waves", "crackling_fire", "crickets", "chirping_birds", "water_drops", "wind", "pouring_water", "toilet_flush", "thunderstorm", "crying_baby", "sneezing", "clapping", "breathing", "coughing", "footsteps", "laughing", "brushing_teeth", "snoring", "drinking_sipping", "door_wood_knock", "mouse_click", "keyboard_typing", "door_wood_creaks", "can_opening", "washing_machine", "vacuum_cleaner", "clock_alarm", "clock_tick", "glass_breaking", "helicopter", "chainsaw", "siren", "car_horn", "engine", "train", "church_bells", "airplane", "fireworks", "hand_saw"]
+
+
+# - name: esc50-animal
+#   type: classification
+#   train_data: data/esc50/meta/esc50.train.csv
+#   valid_data: data/esc50/meta/esc50.valid.csv
+#   test_data: data/esc50/meta/esc50.test.csv
+#   num_labels: 50
+#   labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+#   unknown_label: null
+#   human_labels: ["Sound of dog", "Sound of rooster", "Sound of pig", "Sound of cow", "Sound of frog", "Sound of cat", "Sound of hen", "Sound of insects", "Sound of sheep", "Sound of crow", "Sound of rain", "Sound of sea waves", "Sound of crackling fire", "Sound of crickets", "Sound of chirping birds", "Sound of water drops", "Sound of wind", "Sound of pouring water", "Sound of toilet flush", "Sound of thunderstorm", "Sound of crying baby", "Sound of sneezing", "Sound of clapping", "Sound of breathing", "Sound of coughing", "Sound of footsteps", "Sound of laughing", "Sound of brushing teeth", "Sound of snoring", "Sound of drinking sipping", "Sound of door wood knock", "Sound of mouse click", "Sound of keyboard typing", "Sound of door wood creaks", "Sound of can opening", "Sound of washing machine", "Sound of vacuum cleaner", "Sound of clock alarm", "Sound of clock tick", "Sound of glass breaking", "Sound of helicopter", "Sound of chainsaw", "Sound of siren", "Sound of car horn", "Sound of engine", "Sound of train", "Sound of church bells", "Sound of airplane", "Sound of fireworks", "Sound of hand saw"]
+#   sample_rate: 44100
+#   max_duration: 5
+#   llm_data: data/esc50-animal/test.jsonl
+
+# - name: esc50-environment
+#   type: classification
+#   train_data: data/esc50/meta/esc50.train.csv
+#   valid_data: data/esc50/meta/esc50.valid.csv
+#   test_data: data/esc50/meta/esc50.test.csv
+#   num_labels: 50
+#   labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+#   unknown_label: null
+#   human_labels: ["Sound of dog", "Sound of rooster", "Sound of pig", "Sound of cow", "Sound of frog", "Sound of cat", "Sound of hen", "Sound of insects", "Sound of sheep", "Sound of crow", "Sound of rain", "Sound of sea waves", "Sound of crackling fire", "Sound of crickets", "Sound of chirping birds", "Sound of water drops", "Sound of wind", "Sound of pouring water", "Sound of toilet flush", "Sound of thunderstorm", "Sound of crying baby", "Sound of sneezing", "Sound of clapping", "Sound of breathing", "Sound of coughing", "Sound of footsteps", "Sound of laughing", "Sound of brushing teeth", "Sound of snoring", "Sound of drinking sipping", "Sound of door wood knock", "Sound of mouse click", "Sound of keyboard typing", "Sound of door wood creaks", "Sound of can opening", "Sound of washing machine", "Sound of vacuum cleaner", "Sound of clock alarm", "Sound of clock tick", "Sound of glass breaking", "Sound of helicopter", "Sound of chainsaw", "Sound of siren", "Sound of car horn", "Sound of engine", "Sound of train", "Sound of church bells", "Sound of airplane", "Sound of fireworks", "Sound of hand saw"]
+#   sample_rate: 44100
+#   max_duration: 5
+#   llm_data: data/esc50-environment/test.jsonl
+
+# - name: esc50-human
+#   type: classification
+#   train_data: data/esc50/meta/esc50.train.csv
+#   valid_data: data/esc50/meta/esc50.valid.csv
+#   test_data: data/esc50/meta/esc50.test.csv
+#   num_labels: 50
+#   labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49]
+#   unknown_label: null
+#   human_labels: ["Sound of dog", "Sound of rooster", "Sound of pig", "Sound of cow", "Sound of frog", "Sound of cat", "Sound of hen", "Sound of insects", "Sound of sheep", "Sound of crow", "Sound of rain", "Sound of sea waves", "Sound of crackling fire", "Sound of crickets", "Sound of chirping birds", "Sound of water drops", "Sound of wind", "Sound of pouring water", "Sound of toilet flush", "Sound of thunderstorm", "Sound of crying baby", "Sound of sneezing", "Sound of clapping", "Sound of breathing", "Sound of coughing", "Sound of footsteps", "Sound of laughing", "Sound of brushing teeth", "Sound of snoring", "Sound of drinking sipping", "Sound of door wood knock", "Sound of mouse click", "Sound of keyboard typing", "Sound of door wood creaks", "Sound of can opening", "Sound of washing machine", "Sound of vacuum cleaner", "Sound of clock alarm", "Sound of clock tick", "Sound of glass breaking", "Sound of helicopter", "Sound of chainsaw", "Sound of siren", "Sound of car horn", "Sound of engine", "Sound of train", "Sound of church bells", "Sound of airplane", "Sound of fireworks", "Sound of hand saw"]
+#   sample_rate: 44100
+#   max_duration: 5
+#   llm_data: data/esc50-human/test.jsonl
+
+- name: xeno-lifestage
+  type: classification
+  llm_data: data/animalspeak-lifestage/v1.32/test_filtered.jsonl
+  num_labels: 2
+  labels: ["adult", "juvenile", "nestling"]
+  human_labels: ["adult", "juvenile", "nestling"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: xeno-lifestage-unseen
+  type: classification
+  llm_data: data/animalspeak-unseen-lifestage/v1.32/test_filtered.jsonl
+  num_labels: 2
+  labels: ["adult", "juvenile", "nestling"] 
+  human_labels: ["adult", "juvenile", "nestling"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: carrion-crows-flying
+  type: classification
+  llm_data: data/spanish-carrion-crows/flying/test_balanced.jsonl
+  num_labels: 2
+  labels: ["flying", "not flying"]
+  human_labels: ["flying", "not flying"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: carrion-crow-indv
+  type: classification
+  llm_data: audio_16k/carrion_crow_individuals/dataset.jsonl
+  num_labels: 2
+  labels: ["1", "2"]
+  human_labels: ["1", "2"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: carrion-crows-flying-fewshot
+  type: classification
+  llm_data: data/spanish-carrion-crows/flying/test_fewshot.jsonl
+  num_labels: 2
+  labels: ["flying", "not flying"]
+  human_labels: ["flying", "not flying"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: animalspeak-call-type-classification
+  type: classification
+  llm_data: data/animalspeak-call-type/v1.32/test_classification_subset.jsonl
+  num_labels: 2
+  labels: ["call", "song"]
+  human_labels: ["call", "song"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: animalspeak-call-type-classification-multi
+  type: classification
+  llm_data: data/animalspeak-call-type/v1.32/test_multi_subset.jsonl
+  num_labels: 2
+  labels: ["call", "song"]
+  human_labels: ["call", "song", "flight call", "begging call", "alarm call", "drumming"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: animalspeak-call-type-alarm-unseen
+  type: classification
+  llm_data: data/animalspeak-unseen-call-type/v1.32/test_alarm_balanced.jsonl
+  num_labels: 2
+  labels: ["call", "alarm call"]
+  human_labels: ["call", "alarm call"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: animalspeak-call-type-unseen
+  type: classification
+  llm_data: data/animalspeak-unseen-call-type/v1.32/test_song_call_balanced.jsonl
+  num_labels: 2
+  labels: ["call", "song"]
+  human_labels: ["call", "song"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: animalspeak-call-type-unseen-multi
+  type: classification
+  llm_data: data/animalspeak-unseen-call-type/v1.32/test_multi.jsonl
+  num_labels: 2
+  labels: ["call", "song", "flight call", "begging call", "alarm call", "drumming"]
+  human_labels: ["call", "song", "flight call", "begging call", "alarm call", "drumming"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: animalspeak-call-type-alarm
+  type: classification
+  llm_data: data/animalspeak-call-type/v1.32/test_alarm_balanced.jsonl
+  num_labels: 2
+  labels: ["call", "alarm call"]
+  human_labels: ["call", "alarm call"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: animalspeak-lifestage-unseen
+  type: classification
+  llm_data: data/animalspeak-unseen-call-type/v1.32/test_alarm_balanced.jsonl
+  num_labels: 2
+  labels: ["call", "alarm call"]
+  human_labels: ["call", "alarm call"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: orcasound-bestos
+  type: classification
+  llm_data: data/orcasound_bestos/test_subset.jsonl
+  num_labels: 3
+  labels: ["call", "song"]
+  human_labels: ["call", "whistle", "click"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: zf-call-type-classification-1
+  type: classification
+  llm_data: data/zebra_finch_elie/zebra_finch_call_types_1.jsonl
+  num_labels: 3
+  labels: ["nest", "contact", "distress", "alarm"]
+  human_labels: ["nest", "contact", "distress", "alarm"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: zf-call-type-classification-2
+  type: classification
+  llm_data: data/zebra_finch_elie/zebra_finch_call_types_2.jsonl
+  num_labels: 3
+  labels: ["nest", "song", "begging"]
+  human_labels: ["nest", "song", "begging"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: zf-lifestage
+  type: classification
+  llm_data: data/zebra_finch_elie/zebra_finch_age.jsonl
+  num_labels: 2
+  labels: ["adult", "chick"]
+  human_labels: ["adult", "chick"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: zf-nbirds
+  type: classification
+  llm_data: data/zebra_finch_elie/zebra_finch_nbirds_alt.jsonl
+  num_labels: 2
+  labels: ["One", "More"]
+  # labels: ["1", "2", "3", "4"]
+  # human_labels: ["1", "2", "3", "4"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: zf-nbirds-1
+  type: classification
+  llm_data: data/zebra_finch_elie/zebra_finch_nbirds1.0_alt.jsonl
+  num_labels: 4
+  labels: ["1", "2", "3", "4"]
+  human_labels: ["1", "2", "3", "4"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: zf-nbirds-1-more
+  type: classification
+  llm_data: data/zebra_finch_elie/zebra_finch_nbirds1.0_more_balanced.jsonl
+  num_labels: 4
+  labels: ["One", "More"]
+  human_labels: ["One", "More"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: zf-nbirds-reasoning
+  type: classification
+  llm_data: data/zebra_finch_elie/zebra_finch_nbirds_reasoning.jsonl
+  num_labels: 4
+  labels: ["1", "2", "3", "4"]
+  human_labels: ["1", "2", "3", "4"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: zf-nbirds-fewshot
+  type: classification
+  llm_data: data/zebra_finch_elie/zebra_finch_nbirds_fewshot.jsonl
+  num_labels: 4
+  labels: ["1", "2", "3", "4"]
+  human_labels: ["1", "2", "3", "4"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: birdvox-pitch
+  type: pitch
+  llm_data: data/BirdVox-70k/BirdVox-70k/BirdVox-70k_positive2.jsonl
+  num_labels: 2
+  labels: ["call", "song"]
+  human_labels: ["call", "song"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: animalspeak-call-type-classification
+  type: classification
+  llm_data: data/animalspeak-call-type/v1.32/test_classification_subset.jsonl
+  num_labels: 2
+  labels: ["call", "song"]
+  human_labels: ["call", "song"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: thyolo-whydah-classification
+  type: classification
+  llm_data: data/thyolo/thyolo_whydah_classification.jsonl
+  num_labels: 2
+  labels: ["Viua macroura", "Chamaetylas choloensis"]
+  human_labels: ["Viua macroura", "Chamaetylas choloensis"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: thyolo-detection
+  type: detection
+  llm_data: data/thyolo/thyolo_detection.jsonl
+  num_labels: 2
+  labels: ["yes", "no"]
+  human_labels: ["yes", "no"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: whydah-detection
+  type: detection
+  llm_data: data/whydah/whydah_detection.jsonl
+  num_labels: 2
+  labels: ["yes", "no"]
+  human_labels: ["yes", "no"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 10
+
+- name: animalspeak-caption-common
+  llm_data: data/animalspeak-caption-common/test.jsonl
+  type: captioning
+  sample_rate: 16000
+  max_duration: 10
+
+- name: animalspeak-caption-sci
+  llm_data: data/animalspeak-caption-sci/test.jsonl
+  type: captioning
+  sample_rate: 16000
+  max_duration: 10
+
+- name: clotho-captioning
+  llm_data: data/clotho-captioning/test.jsonl
+  type: captioning
+  sample_rate: 16000
+  max_duration: 10
+
+# - name: unseen-species-common
+#   type: classification
+#   llm_data: data/unseen-species-species-common-classification/test.jsonl
+#   num_labels: 2
+#   # labels: ["adult", "juvenile", "nestling"]
+#   # human_labels: ["adult", "juvenile", "nestling"]
+#   unknown_label: null
+#   sample_rate: 16000
+#   max_duration: 10
+
+# - name: unseen-species-sci
+#   type: classification
+#   llm_data: data/unseen-species-species-sci-classification/test.jsonl
+#   num_labels: 2
+#   # labels: ["adult", "juvenile", "nestling"]
+#   # human_labels: ["adult", "juvenile", "nestling"]
+#   unknown_label: null
+#   sample_rate: 16000
+#   max_duration: 10
+
+# - name: unseen-species-taxonomic
+#   type: classification
+#   llm_data: data/unseen-species-taxonomic-classification/test.jsonl
+#   num_labels: 2
+#   # labels: ["adult", "juvenile", "nestling"]
+#   # human_labels: ["adult", "juvenile", "nestling"]
+#   unknown_label: null
+#   sample_rate: 16000
+#   max_duration: 10
+
+- name: speech-commands
+  type: classification
+  train_data: data/speech_commands/train.csv
+  valid_data: data/speech_commands/valid.csv
+  test_data: data/speech_commands/test.csv
+  num_labels: 35
+  labels: ["backward", "bed", "bird", "cat", "dog", "down", "eight", "five", "follow", "forward", "four", "go", "happy", "house", "learn", "left", "marvin", "nine", "no", "off", "on", "one", "right", "seven", "sheila", "six", "stop", "three", "tree", "two", "up", "visual", "wow", "yes", "zero"]
+  human_labels: ["The spoken word 'backward'", "The spoken word 'bed'", "The spoken word 'bird'", "The spoken word 'cat'", "The spoken word 'dog'", "The spoken word 'down'", "The spoken word 'eight'", "The spoken word 'five'", "The spoken word 'follow'", "The spoken word 'forward'", "The spoken word 'four'", "The spoken word 'go'", "The spoken word 'happy'", "The spoken word 'house'", "The spoken word 'learn'", "The spoken word 'left'", "The spoken word 'marvin'", "The spoken word 'nine'", "The spoken word 'no'", "The spoken word 'off'", "The spoken word 'on'", "The spoken word 'one'", "The spoken word 'right'", "The spoken word 'seven'", "The spoken word 'sheila'", "The spoken word 'six'", "The spoken word 'stop'", "The spoken word 'three'", "The spoken word 'tree'", "The spoken word 'two'", "The spoken word 'up'", "The spoken word 'visual'", "The spoken word 'wow'", "The spoken word 'yes'", "The spoken word 'zero'"]
+  unknown_label: null
+  sample_rate: 16000
+  max_duration: 1
+  llm_data: data/speech-commands-classification/test.csv
+
+- name: watkins
+  type: classification
+  train_data: data/watkins/annotations.train.csv
+  valid_data: data/watkins/annotations.valid.csv
+  test_data: data/watkins/annotations.test.csv
+  llm_data: data/watkins-classification/test.jsonl
+  num_labels: 31
+  labels: ["Clymene_Dolphin", "Bottlenose_Dolphin", "Spinner_Dolphin", "Beluga,_White_Whale", "Bearded_Seal", "Minke_Whale", "Humpback_Whale", "Southern_Right_Whale", "White-sided_Dolphin", "Narwhal", "White-beaked_Dolphin", "Northern_Right_Whale", "Frasers_Dolphin", "Grampus,_Rissos_Dolphin", "Harp_Seal", "Atlantic_Spotted_Dolphin", "Fin,_Finback_Whale", "Ross_Seal", "Rough-Toothed_Dolphin", "Killer_Whale", "Pantropical_Spotted_Dolphin", "Short-Finned_Pacific_Pilot_Whale", "Bowhead_Whale", "False_Killer_Whale", "Melon_Headed_Whale", "Long-Finned_Pilot_Whale", "Striped_Dolphin", "Leopard_Seal", "Walrus", "Sperm_Whale", "Common_Dolphin"]
+  human_labels: ["Clymene Dolphin", "Bottlenose Dolphin", "Spinner Dolphin", "Beluga, White Whale", "Bearded Seal", "Minke Whale", "Humpback Whale", "Southern Right Whale", "White-sided Dolphin", "Narwhal", "White-beaked Dolphin", "Northern Right Whale", "Frasers Dolphin", "Grampus, Rissos Dolphin", "Harp Seal", "Atlantic Spotted Dolphin", "Fin, Finback Whale", "Ross Seal", "Rough-Toothed Dolphin", "Killer Whale", "Pantropical Spotted Dolphin", "Short-Finned Pacific Pilot Whale", "Bowhead Whale", "False Killer Whale", "Melon Headed Whale", "Long-Finned Pilot Whale", "Striped Dolphin", "Leopard Seal", "Walrus", "Sperm Whale", "Common Dolphin"]
+  unknown_label: null
+  sample_rate: 44100
+  max_duration: 3
+
+- name: watkins-fewshot
+  type: classification
+  train_data: data/watkins/annotations.train.csv
+  valid_data: data/watkins/annotations.valid.csv
+  test_data: data/watkins/annotations.test.csv
+  llm_data: data/watkins-classification/test.jsonl
+  num_labels: 31
+  labels: ["Clymene_Dolphin", "Bottlenose_Dolphin", "Spinner_Dolphin", "Beluga,_White_Whale", "Bearded_Seal", "Minke_Whale", "Humpback_Whale", "Southern_Right_Whale", "White-sided_Dolphin", "Narwhal", "White-beaked_Dolphin", "Northern_Right_Whale", "Frasers_Dolphin", "Grampus,_Rissos_Dolphin", "Harp_Seal", "Atlantic_Spotted_Dolphin", "Fin,_Finback_Whale", "Ross_Seal", "Rough-Toothed_Dolphin", "Killer_Whale", "Pantropical_Spotted_Dolphin", "Short-Finned_Pacific_Pilot_Whale", "Bowhead_Whale", "False_Killer_Whale", "Melon_Headed_Whale", "Long-Finned_Pilot_Whale", "Striped_Dolphin", "Leopard_Seal", "Walrus", "Sperm_Whale", "Common_Dolphin"]
+  human_labels: ["Clymene Dolphin", "Bottlenose Dolphin", "Spinner Dolphin", "Beluga, White Whale", "Bearded Seal", "Minke Whale", "Humpback Whale", "Southern Right Whale", "White-sided Dolphin", "Narwhal", "White-beaked Dolphin", "Northern Right Whale", "Frasers Dolphin", "Grampus, Rissos Dolphin", "Harp Seal", "Atlantic Spotted Dolphin", "Fin, Finback Whale", "Ross Seal", "Rough-Toothed Dolphin", "Killer Whale", "Pantropical Spotted Dolphin", "Short-Finned Pacific Pilot Whale", "Bowhead Whale", "False Killer Whale", "Melon Headed Whale", "Long-Finned Pilot Whale", "Striped Dolphin", "Leopard Seal", "Walrus", "Sperm Whale", "Common Dolphin"]
+  unknown_label: null
+  sample_rate: 44100
+  max_duration: 3
+
+- name: bats
+  type: classification
+  train_data: data/egyptian_fruit_bats/annotations.train.csv
+  valid_data: data/egyptian_fruit_bats/annotations.valid.csv
+  test_data: data/egyptian_fruit_bats/annotations.test.csv
+  num_labels: 10
+  labels: [111, 210, 211, 215, 216, 220, 226, 228, 230, 231]
+  unknown_label: null
+  human_labels: ["bat 1", "bat 2", "bat 3", "bat 4", "bat 5", "bat 6", "bat 7", "bat 8", "bat 9", "bat 10"]
+  sample_rate: 250000
+  max_duration: 5
+
+- name: bat-behavior
+  type: classification
+  train_data: data/egyptian_fruit_bats/bat_behaviors.csv
+  valid_data: data/egyptian_fruit_bats/bat_behaviors.csv
+  test_data: data/egyptian_fruit_bats/bat_behaviors.csv
+  num_labels: 2
+  llm_data: data/bat-behavior/balanced_bat_behavior_test.jsonl
+  # labels: [111, 210, 211, 215, 216, 220, 226, 228, 230, 231]
+  unknown_label: null
+  labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  # human_labels: ["separated adult bat", "bat bitten", "bat feeding", "bat fighting", "bat grooming another bat",
+  #                "isolated young bat", "kissing bats",
+  #                "bat landing on other bat",
+  #                "female bat protesting while a male bat tries to mate",
+  #                "threatening bat calls",
+  #                "general bat calls", 
+  #                "bat calls in sleeping chamber"]
+  human_labels: ["feeding", "fighting"]
+  sample_rate: 250000
+  max_duration: 10
+
+- name: bat-behavior-fewshot
+  type: classification
+  train_data: data/egyptian_fruit_bats/bat_behaviors.csv
+  valid_data: data/egyptian_fruit_bats/bat_behaviors.csv
+  test_data: data/egyptian_fruit_bats/bat_behaviors.csv
+  num_labels: 2
+  llm_data: data/bat-behavior/icl_balanced_bat_behavior_test_processed_04.jsonl
+  # labels: [111, 210, 211, 215, 216, 220, 226, 228, 230, 231]
+  unknown_label: null
+  labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  # human_labels: ["separated adult bat", "bat bitten", "bat feeding", "bat fighting", "bat grooming another bat",
+  #                "isolated young bat", "kissing bats",
+  #                "bat landing on other bat",
+  #                "female bat protesting while a male bat tries to mate",
+  #                "threatening bat calls",
+  #                "general bat calls", 
+  #                "bat calls in sleeping chamber"]
+  human_labels: ["feeding", "fighting"]
+  sample_rate: 250000
+  max_duration: 10
+
+- name: cbi
+  type: classification
+  train_data: data/cbi/annotations.train.csv
+  valid_data: data/cbi/annotations.valid.csv
+  test_data: data/cbi/annotations.test.csv
+  llm_data: data/cbi-classification/test.jsonl
+  num_labels: 264
+  unknown_label: null
+  labels: ["aldfly", "ameavo", "amebit", "amecro", "amegfi", "amekes", "amepip", "amered", "amerob", "amewig", "amewoo", "amtspa", "annhum", "astfly", "baisan", "baleag", "balori", "banswa", "barswa", "bawwar", "belkin1", "belspa2", "bewwre", "bkbcuc", "bkbmag1", "bkbwar", "bkcchi", "bkchum", "bkhgro", "bkpwar", "bktspa", "blkpho", "blugrb1", "blujay", "bnhcow", "boboli", "bongul", "brdowl", "brebla", "brespa", "brncre", "brnthr", "brthum", "brwhaw", "btbwar", "btnwar", "btywar", "buffle", "buggna", "buhvir", "bulori", "bushti", "buwtea", "buwwar", "cacwre", "calgul", "calqua", "camwar", "cangoo", "canwar", "canwre", "carwre", "casfin", "caster1", "casvir", "cedwax", "chispa", "chiswi", "chswar", "chukar", "clanut", "cliswa", "comgol", "comgra", "comloo", "commer", "comnig", "comrav", "comred", "comter", "comyel", "coohaw", "coshum", "cowscj1", "daejun", "doccor", "dowwoo", "dusfly", "eargre", "easblu", "easkin", "easmea", "easpho", "eastow", "eawpew", "eucdov", "eursta", "evegro", "fiespa", "fiscro", "foxspa", "gadwal", "gcrfin", "gnttow", "gnwtea", "gockin", "gocspa", "goleag", "grbher3", "grcfly", "greegr", "greroa", "greyel", "grhowl", "grnher", "grtgra", "grycat", "gryfly", "haiwoo", "hamfly", "hergul", "herthr", "hoomer", "hoowar", "horgre", "horlar", "houfin", "houspa", "houwre", "indbun", "juntit1", "killde", "labwoo", "larspa", "lazbun", "leabit", "leafly", "leasan", "lecthr", "lesgol", "lesnig", "lesyel", "lewwoo", "linspa", "lobcur", "lobdow", "logshr", "lotduc", "louwat", "macwar", "magwar", "mallar3", "marwre", "merlin", "moublu", "mouchi", "moudov", "norcar", "norfli", "norhar2", "normoc", "norpar", "norpin", "norsho", "norwat", "nrwswa", "nutwoo", "olsfly", "orcwar", "osprey", "ovenbi1", "palwar", "pasfly", "pecsan", "perfal", "phaino", "pibgre", "pilwoo", "pingro", "pinjay", "pinsis", "pinwar", "plsvir", "prawar", "purfin", "pygnut", "rebmer", "rebnut", "rebsap", "rebwoo", "redcro", "redhea", "reevir1", "renpha", "reshaw", "rethaw", "rewbla", "ribgul", "rinduc", "robgro", "rocpig", "rocwre", "rthhum", "ruckin", "rudduc", "rufgro", "rufhum", "rusbla", "sagspa1", "sagthr", "savspa", "saypho", "scatan", "scoori", "semplo", "semsan", "sheowl", "shshaw", "snobun", "snogoo", "solsan", "sonspa", "sora", "sposan", "spotow", "stejay", "swahaw", "swaspa", "swathr", "treswa", "truswa", "tuftit", "tunswa", "veery", "vesspa", "vigswa", "warvir", "wesblu", "wesgre", "weskin", "wesmea", "wessan", "westan", "wewpew", "whbnut", "whcspa", "whfibi", "whtspa", "whtswi", "wilfly", "wilsni1", "wiltur", "winwre3", "wlswar", "wooduc", "wooscj2", "woothr", "y00475", "yebfly", "yebsap", "yehbla", "yelwar", "yerwar", "yetvir"]
+  human_labels: ["Alder Flycatcher", "American Avocet", "American Bittern", "American Crow", "American Goldfinch", "American Kestrel", "Buff-bellied Pipit", "American Redstart", "American Robin", "American Wigeon", "American Woodcock", "American Tree Sparrow", "Anna's Hummingbird", "Ash-throated Flycatcher", "Baird's Sandpiper", "Bald Eagle", "Baltimore Oriole", "Sand Martin", "Barn Swallow", "Black-and-white Warbler", "Belted Kingfisher", "Bell's Sparrow", "Bewick's Wren", "Black-billed Cuckoo", "Black-billed Magpie", "Blackburnian Warbler", "Black-capped Chickadee", "Black-chinned Hummingbird", "Black-headed Grosbeak", "Blackpoll Warbler", "Black-throated Sparrow", "Black Phoebe", "Blue Grosbeak", "Blue Jay", "Brown-headed Cowbird", "Bobolink", "Bonaparte's Gull", "Barred Owl", "Brewer's Blackbird", "Brewer's Sparrow", "Brown Creeper", "Brown Thrasher", "Broad-tailed Hummingbird", "Broad-winged Hawk", "Black-throated Blue Warbler", "Black-throated Green Warbler", "Black-throated Grey Warbler", "Bufflehead", "Blue-grey Gnatcatcher", "Blue-headed Vireo", "Bullock's Oriole", "American Bushtit", "Blue-winged Teal", "Blue-winged Warbler", "Cactus Wren", "California Gull", "California Quail", "Cape May Warbler", "Canada Goose", "Canada Warbler", "Canyon Wren", "Carolina Wren", "Cassin's Finch", "Caspian Tern", "Cassin's Vireo", "Cedar Waxwing", "Chipping Sparrow", "Chimney Swift", "Chestnut-sided Warbler", "Chukar Partridge", "Clark's Nutcracker", "American Cliff Swallow", "Common Goldeneye", "Common Grackle", "Common Loon", "Common Merganser", "Common Nighthawk", "Northern Raven", "Common Redpoll", "Common Tern", "Common Yellowthroat", "Cooper's Hawk", "Costa's Hummingbird", "California Scrub Jay", "Dark-eyed Junco", "Double-crested Cormorant", "Downy Woodpecker", "American Dusky Flycatcher", "Black-necked Grebe", "Eastern Bluebird", "Eastern Kingbird", "Eastern Meadowlark", "Eastern Phoebe", "Eastern Towhee", "Eastern Wood Pewee", "Eurasian Collared Dove", "Common Starling", "Evening Grosbeak", "Field Sparrow", "Fish Crow", "Red Fox Sparrow", "Gadwall", "Grey-crowned Rosy Finch", "Green-tailed Towhee", "Eurasian Teal", "Golden-crowned Kinglet", "Golden-crowned Sparrow", "Golden Eagle", "Great Blue Heron", "Great Crested Flycatcher", "Great Egret", "Greater Roadrunner", "Greater Yellowlegs", "Great Horned Owl", "Green Heron", "Great-tailed Grackle", "Grey Catbird", "American Grey Flycatcher", "Hairy Woodpecker", "Hammond's Flycatcher", "European Herring Gull", "Hermit Thrush", "Hooded Merganser", "Hooded Warbler", "Horned Grebe", "Horned Lark", "House Finch", "House Sparrow", "House Wren", "Indigo Bunting", "Juniper Titmouse", "Killdeer", "Ladder-backed Woodpecker", "Lark Sparrow", "Lazuli Bunting", "Least Bittern", "Least Flycatcher", "Least Sandpiper", "LeConte's Thrasher", "Lesser Goldfinch", "Lesser Nighthawk", "Lesser Yellowlegs", "Lewis's Woodpecker", "Lincoln's Sparrow", "Long-billed Curlew", "Long-billed Dowitcher", "Loggerhead Shrike", "Long-tailed Duck", "Louisiana Waterthrush", "MacGillivray's Warbler", "Magnolia Warbler", "Mallard", "Marsh Wren", "Merlin", "Mountain Bluebird", "Mountain Chickadee", "Mourning Dove", "Northern Cardinal", "Northern Flicker", "Northern Harrier", "Northern Mockingbird", "Northern Parula", "Northern Pintail", "Northern Shoveler", "Northern Waterthrush", "Northern Rough-winged Swallow", "Nuttall's Woodpecker", "Olive-sided Flycatcher", "Orange-crowned Warbler", "Western Osprey", "Ovenbird", "Palm Warbler", "Pacific-slope Flycatcher", "Pectoral Sandpiper", "Peregrine Falcon", "Phainopepla", "Pied-billed Grebe", "Pileated Woodpecker", "Pine Grosbeak", "Pinyon Jay", "Pine Siskin", "Pine Warbler", "Plumbeous Vireo", "Prairie Warbler", "Purple Finch", "Pygmy Nuthatch", "Red-breasted Merganser", "Red-breasted Nuthatch", "Red-breasted Sapsucker", "Red-bellied Woodpecker", "Red Crossbill", "Redhead", "Red-eyed Vireo", "Red-necked Phalarope", "Red-shouldered Hawk", "Red-tailed Hawk", "Red-winged Blackbird", "Ring-billed Gull", "Ring-necked Duck", "Rose-breasted Grosbeak", "Rock Dove", "Rock Wren", "Ruby-throated Hummingbird", "Ruby-crowned Kinglet", "Ruddy Duck", "Ruffed Grouse", "Rufous Hummingbird", "Rusty Blackbird", "Sagebrush Sparrow", "Sage Thrasher", "Savannah Sparrow", "Say's Phoebe", "Scarlet Tanager", "Scott's Oriole", "Semipalmated Plover", "Semipalmated Sandpiper", "Short-eared Owl", "Sharp-shinned Hawk", "Snow Bunting", "Snow Goose", "Solitary Sandpiper", "Song Sparrow", "Sora", "Spotted Sandpiper", "Spotted Towhee", "Steller's Jay", "Swainson's Hawk", "Swamp Sparrow", "Swainson's Thrush", "Tree Swallow", "Trumpeter Swan", "Tufted Titmouse", "Tundra Swan", "Veery", "Vesper Sparrow", "Violet-green Swallow", "Warbling Vireo", "Western Bluebird", "Western Grebe", "Western Kingbird", "Western Meadowlark", "Western Sandpiper", "Western Tanager", "Western Wood Pewee", "White-breasted Nuthatch", "White-crowned Sparrow", "White-faced Ibis", "White-throated Sparrow", "White-throated Swift", "Willow Flycatcher", "Wilson's Snipe", "Wild Turkey", "Winter Wren", "Wilson's Warbler", "Wood Duck", "Woodhouse's Scrub Jay", "Wood Thrush", "American Coot", "Yellow-bellied Flycatcher", "Yellow-bellied Sapsucker", "Yellow-headed Blackbird", "Mangrove Warbler", "Myrtle Warbler", "Yellow-throated Vireo"]
+  sample_rate: 16000
+  max_duration: 10
+
+- name: cbi-no-context
+  type: classification
+  train_data: data/cbi/annotations.train.csv
+  valid_data: data/cbi/annotations.valid.csv
+  test_data: data/cbi/annotations.test.csv
+  llm_data: data/cbi-classification/test_common_no_context_v1.jsonl
+  num_labels: 264
+  unknown_label: null
+  labels: ["aldfly", "ameavo", "amebit", "amecro", "amegfi", "amekes", "amepip", "amered", "amerob", "amewig", "amewoo", "amtspa", "annhum", "astfly", "baisan", "baleag", "balori", "banswa", "barswa", "bawwar", "belkin1", "belspa2", "bewwre", "bkbcuc", "bkbmag1", "bkbwar", "bkcchi", "bkchum", "bkhgro", "bkpwar", "bktspa", "blkpho", "blugrb1", "blujay", "bnhcow", "boboli", "bongul", "brdowl", "brebla", "brespa", "brncre", "brnthr", "brthum", "brwhaw", "btbwar", "btnwar", "btywar", "buffle", "buggna", "buhvir", "bulori", "bushti", "buwtea", "buwwar", "cacwre", "calgul", "calqua", "camwar", "cangoo", "canwar", "canwre", "carwre", "casfin", "caster1", "casvir", "cedwax", "chispa", "chiswi", "chswar", "chukar", "clanut", "cliswa", "comgol", "comgra", "comloo", "commer", "comnig", "comrav", "comred", "comter", "comyel", "coohaw", "coshum", "cowscj1", "daejun", "doccor", "dowwoo", "dusfly", "eargre", "easblu", "easkin", "easmea", "easpho", "eastow", "eawpew", "eucdov", "eursta", "evegro", "fiespa", "fiscro", "foxspa", "gadwal", "gcrfin", "gnttow", "gnwtea", "gockin", "gocspa", "goleag", "grbher3", "grcfly", "greegr", "greroa", "greyel", "grhowl", "grnher", "grtgra", "grycat", "gryfly", "haiwoo", "hamfly", "hergul", "herthr", "hoomer", "hoowar", "horgre", "horlar", "houfin", "houspa", "houwre", "indbun", "juntit1", "killde", "labwoo", "larspa", "lazbun", "leabit", "leafly", "leasan", "lecthr", "lesgol", "lesnig", "lesyel", "lewwoo", "linspa", "lobcur", "lobdow", "logshr", "lotduc", "louwat", "macwar", "magwar", "mallar3", "marwre", "merlin", "moublu", "mouchi", "moudov", "norcar", "norfli", "norhar2", "normoc", "norpar", "norpin", "norsho", "norwat", "nrwswa", "nutwoo", "olsfly", "orcwar", "osprey", "ovenbi1", "palwar", "pasfly", "pecsan", "perfal", "phaino", "pibgre", "pilwoo", "pingro", "pinjay", "pinsis", "pinwar", "plsvir", "prawar", "purfin", "pygnut", "rebmer", "rebnut", "rebsap", "rebwoo", "redcro", "redhea", "reevir1", "renpha", "reshaw", "rethaw", "rewbla", "ribgul", "rinduc", "robgro", "rocpig", "rocwre", "rthhum", "ruckin", "rudduc", "rufgro", "rufhum", "rusbla", "sagspa1", "sagthr", "savspa", "saypho", "scatan", "scoori", "semplo", "semsan", "sheowl", "shshaw", "snobun", "snogoo", "solsan", "sonspa", "sora", "sposan", "spotow", "stejay", "swahaw", "swaspa", "swathr", "treswa", "truswa", "tuftit", "tunswa", "veery", "vesspa", "vigswa", "warvir", "wesblu", "wesgre", "weskin", "wesmea", "wessan", "westan", "wewpew", "whbnut", "whcspa", "whfibi", "whtspa", "whtswi", "wilfly", "wilsni1", "wiltur", "winwre3", "wlswar", "wooduc", "wooscj2", "woothr", "y00475", "yebfly", "yebsap", "yehbla", "yelwar", "yerwar", "yetvir"]
+  human_labels: ["Alder Flycatcher", "American Avocet", "American Bittern", "American Crow", "American Goldfinch", "American Kestrel", "Buff-bellied Pipit", "American Redstart", "American Robin", "American Wigeon", "American Woodcock", "American Tree Sparrow", "Anna's Hummingbird", "Ash-throated Flycatcher", "Baird's Sandpiper", "Bald Eagle", "Baltimore Oriole", "Sand Martin", "Barn Swallow", "Black-and-white Warbler", "Belted Kingfisher", "Bell's Sparrow", "Bewick's Wren", "Black-billed Cuckoo", "Black-billed Magpie", "Blackburnian Warbler", "Black-capped Chickadee", "Black-chinned Hummingbird", "Black-headed Grosbeak", "Blackpoll Warbler", "Black-throated Sparrow", "Black Phoebe", "Blue Grosbeak", "Blue Jay", "Brown-headed Cowbird", "Bobolink", "Bonaparte's Gull", "Barred Owl", "Brewer's Blackbird", "Brewer's Sparrow", "Brown Creeper", "Brown Thrasher", "Broad-tailed Hummingbird", "Broad-winged Hawk", "Black-throated Blue Warbler", "Black-throated Green Warbler", "Black-throated Grey Warbler", "Bufflehead", "Blue-grey Gnatcatcher", "Blue-headed Vireo", "Bullock's Oriole", "American Bushtit", "Blue-winged Teal", "Blue-winged Warbler", "Cactus Wren", "California Gull", "California Quail", "Cape May Warbler", "Canada Goose", "Canada Warbler", "Canyon Wren", "Carolina Wren", "Cassin's Finch", "Caspian Tern", "Cassin's Vireo", "Cedar Waxwing", "Chipping Sparrow", "Chimney Swift", "Chestnut-sided Warbler", "Chukar Partridge", "Clark's Nutcracker", "American Cliff Swallow", "Common Goldeneye", "Common Grackle", "Common Loon", "Common Merganser", "Common Nighthawk", "Northern Raven", "Common Redpoll", "Common Tern", "Common Yellowthroat", "Cooper's Hawk", "Costa's Hummingbird", "California Scrub Jay", "Dark-eyed Junco", "Double-crested Cormorant", "Downy Woodpecker", "American Dusky Flycatcher", "Black-necked Grebe", "Eastern Bluebird", "Eastern Kingbird", "Eastern Meadowlark", "Eastern Phoebe", "Eastern Towhee", "Eastern Wood Pewee", "Eurasian Collared Dove", "Common Starling", "Evening Grosbeak", "Field Sparrow", "Fish Crow", "Red Fox Sparrow", "Gadwall", "Grey-crowned Rosy Finch", "Green-tailed Towhee", "Eurasian Teal", "Golden-crowned Kinglet", "Golden-crowned Sparrow", "Golden Eagle", "Great Blue Heron", "Great Crested Flycatcher", "Great Egret", "Greater Roadrunner", "Greater Yellowlegs", "Great Horned Owl", "Green Heron", "Great-tailed Grackle", "Grey Catbird", "American Grey Flycatcher", "Hairy Woodpecker", "Hammond's Flycatcher", "European Herring Gull", "Hermit Thrush", "Hooded Merganser", "Hooded Warbler", "Horned Grebe", "Horned Lark", "House Finch", "House Sparrow", "House Wren", "Indigo Bunting", "Juniper Titmouse", "Killdeer", "Ladder-backed Woodpecker", "Lark Sparrow", "Lazuli Bunting", "Least Bittern", "Least Flycatcher", "Least Sandpiper", "LeConte's Thrasher", "Lesser Goldfinch", "Lesser Nighthawk", "Lesser Yellowlegs", "Lewis's Woodpecker", "Lincoln's Sparrow", "Long-billed Curlew", "Long-billed Dowitcher", "Loggerhead Shrike", "Long-tailed Duck", "Louisiana Waterthrush", "MacGillivray's Warbler", "Magnolia Warbler", "Mallard", "Marsh Wren", "Merlin", "Mountain Bluebird", "Mountain Chickadee", "Mourning Dove", "Northern Cardinal", "Northern Flicker", "Northern Harrier", "Northern Mockingbird", "Northern Parula", "Northern Pintail", "Northern Shoveler", "Northern Waterthrush", "Northern Rough-winged Swallow", "Nuttall's Woodpecker", "Olive-sided Flycatcher", "Orange-crowned Warbler", "Western Osprey", "Ovenbird", "Palm Warbler", "Pacific-slope Flycatcher", "Pectoral Sandpiper", "Peregrine Falcon", "Phainopepla", "Pied-billed Grebe", "Pileated Woodpecker", "Pine Grosbeak", "Pinyon Jay", "Pine Siskin", "Pine Warbler", "Plumbeous Vireo", "Prairie Warbler", "Purple Finch", "Pygmy Nuthatch", "Red-breasted Merganser", "Red-breasted Nuthatch", "Red-breasted Sapsucker", "Red-bellied Woodpecker", "Red Crossbill", "Redhead", "Red-eyed Vireo", "Red-necked Phalarope", "Red-shouldered Hawk", "Red-tailed Hawk", "Red-winged Blackbird", "Ring-billed Gull", "Ring-necked Duck", "Rose-breasted Grosbeak", "Rock Dove", "Rock Wren", "Ruby-throated Hummingbird", "Ruby-crowned Kinglet", "Ruddy Duck", "Ruffed Grouse", "Rufous Hummingbird", "Rusty Blackbird", "Sagebrush Sparrow", "Sage Thrasher", "Savannah Sparrow", "Say's Phoebe", "Scarlet Tanager", "Scott's Oriole", "Semipalmated Plover", "Semipalmated Sandpiper", "Short-eared Owl", "Sharp-shinned Hawk", "Snow Bunting", "Snow Goose", "Solitary Sandpiper", "Song Sparrow", "Sora", "Spotted Sandpiper", "Spotted Towhee", "Steller's Jay", "Swainson's Hawk", "Swamp Sparrow", "Swainson's Thrush", "Tree Swallow", "Trumpeter Swan", "Tufted Titmouse", "Tundra Swan", "Veery", "Vesper Sparrow", "Violet-green Swallow", "Warbling Vireo", "Western Bluebird", "Western Grebe", "Western Kingbird", "Western Meadowlark", "Western Sandpiper", "Western Tanager", "Western Wood Pewee", "White-breasted Nuthatch", "White-crowned Sparrow", "White-faced Ibis", "White-throated Sparrow", "White-throated Swift", "Willow Flycatcher", "Wilson's Snipe", "Wild Turkey", "Winter Wren", "Wilson's Warbler", "Wood Duck", "Woodhouse's Scrub Jay", "Wood Thrush", "American Coot", "Yellow-bellied Flycatcher", "Yellow-bellied Sapsucker", "Yellow-headed Blackbird", "Mangrove Warbler", "Myrtle Warbler", "Yellow-throated Vireo"]
+  sample_rate: 16000
+  max_duration: 10
+
+- name: cbi-context
+  type: classification
+  train_data: data/cbi/annotations.train.csv
+  valid_data: data/cbi/annotations.valid.csv
+  test_data: data/cbi/annotations.test.csv
+  llm_data: data/cbi-classification/test_common_without_notes_v1.jsonl
+  num_labels: 264
+  unknown_label: null
+  labels: ["aldfly", "ameavo", "amebit", "amecro", "amegfi", "amekes", "amepip", "amered", "amerob", "amewig", "amewoo", "amtspa", "annhum", "astfly", "baisan", "baleag", "balori", "banswa", "barswa", "bawwar", "belkin1", "belspa2", "bewwre", "bkbcuc", "bkbmag1", "bkbwar", "bkcchi", "bkchum", "bkhgro", "bkpwar", "bktspa", "blkpho", "blugrb1", "blujay", "bnhcow", "boboli", "bongul", "brdowl", "brebla", "brespa", "brncre", "brnthr", "brthum", "brwhaw", "btbwar", "btnwar", "btywar", "buffle", "buggna", "buhvir", "bulori", "bushti", "buwtea", "buwwar", "cacwre", "calgul", "calqua", "camwar", "cangoo", "canwar", "canwre", "carwre", "casfin", "caster1", "casvir", "cedwax", "chispa", "chiswi", "chswar", "chukar", "clanut", "cliswa", "comgol", "comgra", "comloo", "commer", "comnig", "comrav", "comred", "comter", "comyel", "coohaw", "coshum", "cowscj1", "daejun", "doccor", "dowwoo", "dusfly", "eargre", "easblu", "easkin", "easmea", "easpho", "eastow", "eawpew", "eucdov", "eursta", "evegro", "fiespa", "fiscro", "foxspa", "gadwal", "gcrfin", "gnttow", "gnwtea", "gockin", "gocspa", "goleag", "grbher3", "grcfly", "greegr", "greroa", "greyel", "grhowl", "grnher", "grtgra", "grycat", "gryfly", "haiwoo", "hamfly", "hergul", "herthr", "hoomer", "hoowar", "horgre", "horlar", "houfin", "houspa", "houwre", "indbun", "juntit1", "killde", "labwoo", "larspa", "lazbun", "leabit", "leafly", "leasan", "lecthr", "lesgol", "lesnig", "lesyel", "lewwoo", "linspa", "lobcur", "lobdow", "logshr", "lotduc", "louwat", "macwar", "magwar", "mallar3", "marwre", "merlin", "moublu", "mouchi", "moudov", "norcar", "norfli", "norhar2", "normoc", "norpar", "norpin", "norsho", "norwat", "nrwswa", "nutwoo", "olsfly", "orcwar", "osprey", "ovenbi1", "palwar", "pasfly", "pecsan", "perfal", "phaino", "pibgre", "pilwoo", "pingro", "pinjay", "pinsis", "pinwar", "plsvir", "prawar", "purfin", "pygnut", "rebmer", "rebnut", "rebsap", "rebwoo", "redcro", "redhea", "reevir1", "renpha", "reshaw", "rethaw", "rewbla", "ribgul", "rinduc", "robgro", "rocpig", "rocwre", "rthhum", "ruckin", "rudduc", "rufgro", "rufhum", "rusbla", "sagspa1", "sagthr", "savspa", "saypho", "scatan", "scoori", "semplo", "semsan", "sheowl", "shshaw", "snobun", "snogoo", "solsan", "sonspa", "sora", "sposan", "spotow", "stejay", "swahaw", "swaspa", "swathr", "treswa", "truswa", "tuftit", "tunswa", "veery", "vesspa", "vigswa", "warvir", "wesblu", "wesgre", "weskin", "wesmea", "wessan", "westan", "wewpew", "whbnut", "whcspa", "whfibi", "whtspa", "whtswi", "wilfly", "wilsni1", "wiltur", "winwre3", "wlswar", "wooduc", "wooscj2", "woothr", "y00475", "yebfly", "yebsap", "yehbla", "yelwar", "yerwar", "yetvir"]
+  human_labels: ["Alder Flycatcher", "American Avocet", "American Bittern", "American Crow", "American Goldfinch", "American Kestrel", "Buff-bellied Pipit", "American Redstart", "American Robin", "American Wigeon", "American Woodcock", "American Tree Sparrow", "Anna's Hummingbird", "Ash-throated Flycatcher", "Baird's Sandpiper", "Bald Eagle", "Baltimore Oriole", "Sand Martin", "Barn Swallow", "Black-and-white Warbler", "Belted Kingfisher", "Bell's Sparrow", "Bewick's Wren", "Black-billed Cuckoo", "Black-billed Magpie", "Blackburnian Warbler", "Black-capped Chickadee", "Black-chinned Hummingbird", "Black-headed Grosbeak", "Blackpoll Warbler", "Black-throated Sparrow", "Black Phoebe", "Blue Grosbeak", "Blue Jay", "Brown-headed Cowbird", "Bobolink", "Bonaparte's Gull", "Barred Owl", "Brewer's Blackbird", "Brewer's Sparrow", "Brown Creeper", "Brown Thrasher", "Broad-tailed Hummingbird", "Broad-winged Hawk", "Black-throated Blue Warbler", "Black-throated Green Warbler", "Black-throated Grey Warbler", "Bufflehead", "Blue-grey Gnatcatcher", "Blue-headed Vireo", "Bullock's Oriole", "American Bushtit", "Blue-winged Teal", "Blue-winged Warbler", "Cactus Wren", "California Gull", "California Quail", "Cape May Warbler", "Canada Goose", "Canada Warbler", "Canyon Wren", "Carolina Wren", "Cassin's Finch", "Caspian Tern", "Cassin's Vireo", "Cedar Waxwing", "Chipping Sparrow", "Chimney Swift", "Chestnut-sided Warbler", "Chukar Partridge", "Clark's Nutcracker", "American Cliff Swallow", "Common Goldeneye", "Common Grackle", "Common Loon", "Common Merganser", "Common Nighthawk", "Northern Raven", "Common Redpoll", "Common Tern", "Common Yellowthroat", "Cooper's Hawk", "Costa's Hummingbird", "California Scrub Jay", "Dark-eyed Junco", "Double-crested Cormorant", "Downy Woodpecker", "American Dusky Flycatcher", "Black-necked Grebe", "Eastern Bluebird", "Eastern Kingbird", "Eastern Meadowlark", "Eastern Phoebe", "Eastern Towhee", "Eastern Wood Pewee", "Eurasian Collared Dove", "Common Starling", "Evening Grosbeak", "Field Sparrow", "Fish Crow", "Red Fox Sparrow", "Gadwall", "Grey-crowned Rosy Finch", "Green-tailed Towhee", "Eurasian Teal", "Golden-crowned Kinglet", "Golden-crowned Sparrow", "Golden Eagle", "Great Blue Heron", "Great Crested Flycatcher", "Great Egret", "Greater Roadrunner", "Greater Yellowlegs", "Great Horned Owl", "Green Heron", "Great-tailed Grackle", "Grey Catbird", "American Grey Flycatcher", "Hairy Woodpecker", "Hammond's Flycatcher", "European Herring Gull", "Hermit Thrush", "Hooded Merganser", "Hooded Warbler", "Horned Grebe", "Horned Lark", "House Finch", "House Sparrow", "House Wren", "Indigo Bunting", "Juniper Titmouse", "Killdeer", "Ladder-backed Woodpecker", "Lark Sparrow", "Lazuli Bunting", "Least Bittern", "Least Flycatcher", "Least Sandpiper", "LeConte's Thrasher", "Lesser Goldfinch", "Lesser Nighthawk", "Lesser Yellowlegs", "Lewis's Woodpecker", "Lincoln's Sparrow", "Long-billed Curlew", "Long-billed Dowitcher", "Loggerhead Shrike", "Long-tailed Duck", "Louisiana Waterthrush", "MacGillivray's Warbler", "Magnolia Warbler", "Mallard", "Marsh Wren", "Merlin", "Mountain Bluebird", "Mountain Chickadee", "Mourning Dove", "Northern Cardinal", "Northern Flicker", "Northern Harrier", "Northern Mockingbird", "Northern Parula", "Northern Pintail", "Northern Shoveler", "Northern Waterthrush", "Northern Rough-winged Swallow", "Nuttall's Woodpecker", "Olive-sided Flycatcher", "Orange-crowned Warbler", "Western Osprey", "Ovenbird", "Palm Warbler", "Pacific-slope Flycatcher", "Pectoral Sandpiper", "Peregrine Falcon", "Phainopepla", "Pied-billed Grebe", "Pileated Woodpecker", "Pine Grosbeak", "Pinyon Jay", "Pine Siskin", "Pine Warbler", "Plumbeous Vireo", "Prairie Warbler", "Purple Finch", "Pygmy Nuthatch", "Red-breasted Merganser", "Red-breasted Nuthatch", "Red-breasted Sapsucker", "Red-bellied Woodpecker", "Red Crossbill", "Redhead", "Red-eyed Vireo", "Red-necked Phalarope", "Red-shouldered Hawk", "Red-tailed Hawk", "Red-winged Blackbird", "Ring-billed Gull", "Ring-necked Duck", "Rose-breasted Grosbeak", "Rock Dove", "Rock Wren", "Ruby-throated Hummingbird", "Ruby-crowned Kinglet", "Ruddy Duck", "Ruffed Grouse", "Rufous Hummingbird", "Rusty Blackbird", "Sagebrush Sparrow", "Sage Thrasher", "Savannah Sparrow", "Say's Phoebe", "Scarlet Tanager", "Scott's Oriole", "Semipalmated Plover", "Semipalmated Sandpiper", "Short-eared Owl", "Sharp-shinned Hawk", "Snow Bunting", "Snow Goose", "Solitary Sandpiper", "Song Sparrow", "Sora", "Spotted Sandpiper", "Spotted Towhee", "Steller's Jay", "Swainson's Hawk", "Swamp Sparrow", "Swainson's Thrush", "Tree Swallow", "Trumpeter Swan", "Tufted Titmouse", "Tundra Swan", "Veery", "Vesper Sparrow", "Violet-green Swallow", "Warbling Vireo", "Western Bluebird", "Western Grebe", "Western Kingbird", "Western Meadowlark", "Western Sandpiper", "Western Tanager", "Western Wood Pewee", "White-breasted Nuthatch", "White-crowned Sparrow", "White-faced Ibis", "White-throated Sparrow", "White-throated Swift", "Willow Flycatcher", "Wilson's Snipe", "Wild Turkey", "Winter Wren", "Wilson's Warbler", "Wood Duck", "Woodhouse's Scrub Jay", "Wood Thrush", "American Coot", "Yellow-bellied Flycatcher", "Yellow-bellied Sapsucker", "Yellow-headed Blackbird", "Mangrove Warbler", "Myrtle Warbler", "Yellow-throated Vireo"]
+  sample_rate: 16000
+  max_duration: 10
+
+- name: cbi-notes
+  type: classification
+  train_data: data/cbi/annotations.train.csv
+  valid_data: data/cbi/annotations.valid.csv
+  test_data: data/cbi/annotations.test.csv
+  llm_data: data/cbi-classification/test_common_with_notes_v1.jsonl
+  num_labels: 264
+  unknown_label: null
+  labels: ["aldfly", "ameavo", "amebit", "amecro", "amegfi", "amekes", "amepip", "amered", "amerob", "amewig", "amewoo", "amtspa", "annhum", "astfly", "baisan", "baleag", "balori", "banswa", "barswa", "bawwar", "belkin1", "belspa2", "bewwre", "bkbcuc", "bkbmag1", "bkbwar", "bkcchi", "bkchum", "bkhgro", "bkpwar", "bktspa", "blkpho", "blugrb1", "blujay", "bnhcow", "boboli", "bongul", "brdowl", "brebla", "brespa", "brncre", "brnthr", "brthum", "brwhaw", "btbwar", "btnwar", "btywar", "buffle", "buggna", "buhvir", "bulori", "bushti", "buwtea", "buwwar", "cacwre", "calgul", "calqua", "camwar", "cangoo", "canwar", "canwre", "carwre", "casfin", "caster1", "casvir", "cedwax", "chispa", "chiswi", "chswar", "chukar", "clanut", "cliswa", "comgol", "comgra", "comloo", "commer", "comnig", "comrav", "comred", "comter", "comyel", "coohaw", "coshum", "cowscj1", "daejun", "doccor", "dowwoo", "dusfly", "eargre", "easblu", "easkin", "easmea", "easpho", "eastow", "eawpew", "eucdov", "eursta", "evegro", "fiespa", "fiscro", "foxspa", "gadwal", "gcrfin", "gnttow", "gnwtea", "gockin", "gocspa", "goleag", "grbher3", "grcfly", "greegr", "greroa", "greyel", "grhowl", "grnher", "grtgra", "grycat", "gryfly", "haiwoo", "hamfly", "hergul", "herthr", "hoomer", "hoowar", "horgre", "horlar", "houfin", "houspa", "houwre", "indbun", "juntit1", "killde", "labwoo", "larspa", "lazbun", "leabit", "leafly", "leasan", "lecthr", "lesgol", "lesnig", "lesyel", "lewwoo", "linspa", "lobcur", "lobdow", "logshr", "lotduc", "louwat", "macwar", "magwar", "mallar3", "marwre", "merlin", "moublu", "mouchi", "moudov", "norcar", "norfli", "norhar2", "normoc", "norpar", "norpin", "norsho", "norwat", "nrwswa", "nutwoo", "olsfly", "orcwar", "osprey", "ovenbi1", "palwar", "pasfly", "pecsan", "perfal", "phaino", "pibgre", "pilwoo", "pingro", "pinjay", "pinsis", "pinwar", "plsvir", "prawar", "purfin", "pygnut", "rebmer", "rebnut", "rebsap", "rebwoo", "redcro", "redhea", "reevir1", "renpha", "reshaw", "rethaw", "rewbla", "ribgul", "rinduc", "robgro", "rocpig", "rocwre", "rthhum", "ruckin", "rudduc", "rufgro", "rufhum", "rusbla", "sagspa1", "sagthr", "savspa", "saypho", "scatan", "scoori", "semplo", "semsan", "sheowl", "shshaw", "snobun", "snogoo", "solsan", "sonspa", "sora", "sposan", "spotow", "stejay", "swahaw", "swaspa", "swathr", "treswa", "truswa", "tuftit", "tunswa", "veery", "vesspa", "vigswa", "warvir", "wesblu", "wesgre", "weskin", "wesmea", "wessan", "westan", "wewpew", "whbnut", "whcspa", "whfibi", "whtspa", "whtswi", "wilfly", "wilsni1", "wiltur", "winwre3", "wlswar", "wooduc", "wooscj2", "woothr", "y00475", "yebfly", "yebsap", "yehbla", "yelwar", "yerwar", "yetvir"]
+  human_labels: ["Alder Flycatcher", "American Avocet", "American Bittern", "American Crow", "American Goldfinch", "American Kestrel", "Buff-bellied Pipit", "American Redstart", "American Robin", "American Wigeon", "American Woodcock", "American Tree Sparrow", "Anna's Hummingbird", "Ash-throated Flycatcher", "Baird's Sandpiper", "Bald Eagle", "Baltimore Oriole", "Sand Martin", "Barn Swallow", "Black-and-white Warbler", "Belted Kingfisher", "Bell's Sparrow", "Bewick's Wren", "Black-billed Cuckoo", "Black-billed Magpie", "Blackburnian Warbler", "Black-capped Chickadee", "Black-chinned Hummingbird", "Black-headed Grosbeak", "Blackpoll Warbler", "Black-throated Sparrow", "Black Phoebe", "Blue Grosbeak", "Blue Jay", "Brown-headed Cowbird", "Bobolink", "Bonaparte's Gull", "Barred Owl", "Brewer's Blackbird", "Brewer's Sparrow", "Brown Creeper", "Brown Thrasher", "Broad-tailed Hummingbird", "Broad-winged Hawk", "Black-throated Blue Warbler", "Black-throated Green Warbler", "Black-throated Grey Warbler", "Bufflehead", "Blue-grey Gnatcatcher", "Blue-headed Vireo", "Bullock's Oriole", "American Bushtit", "Blue-winged Teal", "Blue-winged Warbler", "Cactus Wren", "California Gull", "California Quail", "Cape May Warbler", "Canada Goose", "Canada Warbler", "Canyon Wren", "Carolina Wren", "Cassin's Finch", "Caspian Tern", "Cassin's Vireo", "Cedar Waxwing", "Chipping Sparrow", "Chimney Swift", "Chestnut-sided Warbler", "Chukar Partridge", "Clark's Nutcracker", "American Cliff Swallow", "Common Goldeneye", "Common Grackle", "Common Loon", "Common Merganser", "Common Nighthawk", "Northern Raven", "Common Redpoll", "Common Tern", "Common Yellowthroat", "Cooper's Hawk", "Costa's Hummingbird", "California Scrub Jay", "Dark-eyed Junco", "Double-crested Cormorant", "Downy Woodpecker", "American Dusky Flycatcher", "Black-necked Grebe", "Eastern Bluebird", "Eastern Kingbird", "Eastern Meadowlark", "Eastern Phoebe", "Eastern Towhee", "Eastern Wood Pewee", "Eurasian Collared Dove", "Common Starling", "Evening Grosbeak", "Field Sparrow", "Fish Crow", "Red Fox Sparrow", "Gadwall", "Grey-crowned Rosy Finch", "Green-tailed Towhee", "Eurasian Teal", "Golden-crowned Kinglet", "Golden-crowned Sparrow", "Golden Eagle", "Great Blue Heron", "Great Crested Flycatcher", "Great Egret", "Greater Roadrunner", "Greater Yellowlegs", "Great Horned Owl", "Green Heron", "Great-tailed Grackle", "Grey Catbird", "American Grey Flycatcher", "Hairy Woodpecker", "Hammond's Flycatcher", "European Herring Gull", "Hermit Thrush", "Hooded Merganser", "Hooded Warbler", "Horned Grebe", "Horned Lark", "House Finch", "House Sparrow", "House Wren", "Indigo Bunting", "Juniper Titmouse", "Killdeer", "Ladder-backed Woodpecker", "Lark Sparrow", "Lazuli Bunting", "Least Bittern", "Least Flycatcher", "Least Sandpiper", "LeConte's Thrasher", "Lesser Goldfinch", "Lesser Nighthawk", "Lesser Yellowlegs", "Lewis's Woodpecker", "Lincoln's Sparrow", "Long-billed Curlew", "Long-billed Dowitcher", "Loggerhead Shrike", "Long-tailed Duck", "Louisiana Waterthrush", "MacGillivray's Warbler", "Magnolia Warbler", "Mallard", "Marsh Wren", "Merlin", "Mountain Bluebird", "Mountain Chickadee", "Mourning Dove", "Northern Cardinal", "Northern Flicker", "Northern Harrier", "Northern Mockingbird", "Northern Parula", "Northern Pintail", "Northern Shoveler", "Northern Waterthrush", "Northern Rough-winged Swallow", "Nuttall's Woodpecker", "Olive-sided Flycatcher", "Orange-crowned Warbler", "Western Osprey", "Ovenbird", "Palm Warbler", "Pacific-slope Flycatcher", "Pectoral Sandpiper", "Peregrine Falcon", "Phainopepla", "Pied-billed Grebe", "Pileated Woodpecker", "Pine Grosbeak", "Pinyon Jay", "Pine Siskin", "Pine Warbler", "Plumbeous Vireo", "Prairie Warbler", "Purple Finch", "Pygmy Nuthatch", "Red-breasted Merganser", "Red-breasted Nuthatch", "Red-breasted Sapsucker", "Red-bellied Woodpecker", "Red Crossbill", "Redhead", "Red-eyed Vireo", "Red-necked Phalarope", "Red-shouldered Hawk", "Red-tailed Hawk", "Red-winged Blackbird", "Ring-billed Gull", "Ring-necked Duck", "Rose-breasted Grosbeak", "Rock Dove", "Rock Wren", "Ruby-throated Hummingbird", "Ruby-crowned Kinglet", "Ruddy Duck", "Ruffed Grouse", "Rufous Hummingbird", "Rusty Blackbird", "Sagebrush Sparrow", "Sage Thrasher", "Savannah Sparrow", "Say's Phoebe", "Scarlet Tanager", "Scott's Oriole", "Semipalmated Plover", "Semipalmated Sandpiper", "Short-eared Owl", "Sharp-shinned Hawk", "Snow Bunting", "Snow Goose", "Solitary Sandpiper", "Song Sparrow", "Sora", "Spotted Sandpiper", "Spotted Towhee", "Steller's Jay", "Swainson's Hawk", "Swamp Sparrow", "Swainson's Thrush", "Tree Swallow", "Trumpeter Swan", "Tufted Titmouse", "Tundra Swan", "Veery", "Vesper Sparrow", "Violet-green Swallow", "Warbling Vireo", "Western Bluebird", "Western Grebe", "Western Kingbird", "Western Meadowlark", "Western Sandpiper", "Western Tanager", "Western Wood Pewee", "White-breasted Nuthatch", "White-crowned Sparrow", "White-faced Ibis", "White-throated Sparrow", "White-throated Swift", "Willow Flycatcher", "Wilson's Snipe", "Wild Turkey", "Winter Wren", "Wilson's Warbler", "Wood Duck", "Woodhouse's Scrub Jay", "Wood Thrush", "American Coot", "Yellow-bellied Flycatcher", "Yellow-bellied Sapsucker", "Yellow-headed Blackbird", "Mangrove Warbler", "Myrtle Warbler", "Yellow-throated Vireo"]
+  sample_rate: 16000
+  max_duration: 10
+
+- name: cbi-3shot
+  type: classification
+  train_data: data/cbi/annotations.train.csv
+  valid_data: data/cbi/annotations.valid.csv
+  test_data: data/cbi/annotations.test.csv
+  llm_data: data/multi-audio-prompts/v1/v1/beans-cbi-classification/test_shots3.jsonl
+  num_labels: 264
+  unknown_label: null
+  labels: ["aldfly", "ameavo", "amebit", "amecro", "amegfi", "amekes", "amepip", "amered", "amerob", "amewig", "amewoo", "amtspa", "annhum", "astfly", "baisan", "baleag", "balori", "banswa", "barswa", "bawwar", "belkin1", "belspa2", "bewwre", "bkbcuc", "bkbmag1", "bkbwar", "bkcchi", "bkchum", "bkhgro", "bkpwar", "bktspa", "blkpho", "blugrb1", "blujay", "bnhcow", "boboli", "bongul", "brdowl", "brebla", "brespa", "brncre", "brnthr", "brthum", "brwhaw", "btbwar", "btnwar", "btywar", "buffle", "buggna", "buhvir", "bulori", "bushti", "buwtea", "buwwar", "cacwre", "calgul", "calqua", "camwar", "cangoo", "canwar", "canwre", "carwre", "casfin", "caster1", "casvir", "cedwax", "chispa", "chiswi", "chswar", "chukar", "clanut", "cliswa", "comgol", "comgra", "comloo", "commer", "comnig", "comrav", "comred", "comter", "comyel", "coohaw", "coshum", "cowscj1", "daejun", "doccor", "dowwoo", "dusfly", "eargre", "easblu", "easkin", "easmea", "easpho", "eastow", "eawpew", "eucdov", "eursta", "evegro", "fiespa", "fiscro", "foxspa", "gadwal", "gcrfin", "gnttow", "gnwtea", "gockin", "gocspa", "goleag", "grbher3", "grcfly", "greegr", "greroa", "greyel", "grhowl", "grnher", "grtgra", "grycat", "gryfly", "haiwoo", "hamfly", "hergul", "herthr", "hoomer", "hoowar", "horgre", "horlar", "houfin", "houspa", "houwre", "indbun", "juntit1", "killde", "labwoo", "larspa", "lazbun", "leabit", "leafly", "leasan", "lecthr", "lesgol", "lesnig", "lesyel", "lewwoo", "linspa", "lobcur", "lobdow", "logshr", "lotduc", "louwat", "macwar", "magwar", "mallar3", "marwre", "merlin", "moublu", "mouchi", "moudov", "norcar", "norfli", "norhar2", "normoc", "norpar", "norpin", "norsho", "norwat", "nrwswa", "nutwoo", "olsfly", "orcwar", "osprey", "ovenbi1", "palwar", "pasfly", "pecsan", "perfal", "phaino", "pibgre", "pilwoo", "pingro", "pinjay", "pinsis", "pinwar", "plsvir", "prawar", "purfin", "pygnut", "rebmer", "rebnut", "rebsap", "rebwoo", "redcro", "redhea", "reevir1", "renpha", "reshaw", "rethaw", "rewbla", "ribgul", "rinduc", "robgro", "rocpig", "rocwre", "rthhum", "ruckin", "rudduc", "rufgro", "rufhum", "rusbla", "sagspa1", "sagthr", "savspa", "saypho", "scatan", "scoori", "semplo", "semsan", "sheowl", "shshaw", "snobun", "snogoo", "solsan", "sonspa", "sora", "sposan", "spotow", "stejay", "swahaw", "swaspa", "swathr", "treswa", "truswa", "tuftit", "tunswa", "veery", "vesspa", "vigswa", "warvir", "wesblu", "wesgre", "weskin", "wesmea", "wessan", "westan", "wewpew", "whbnut", "whcspa", "whfibi", "whtspa", "whtswi", "wilfly", "wilsni1", "wiltur", "winwre3", "wlswar", "wooduc", "wooscj2", "woothr", "y00475", "yebfly", "yebsap", "yehbla", "yelwar", "yerwar", "yetvir"]
+  human_labels: ["Alder Flycatcher", "American Avocet", "American Bittern", "American Crow", "American Goldfinch", "American Kestrel", "Buff-bellied Pipit", "American Redstart", "American Robin", "American Wigeon", "American Woodcock", "American Tree Sparrow", "Anna's Hummingbird", "Ash-throated Flycatcher", "Baird's Sandpiper", "Bald Eagle", "Baltimore Oriole", "Sand Martin", "Barn Swallow", "Black-and-white Warbler", "Belted Kingfisher", "Bell's Sparrow", "Bewick's Wren", "Black-billed Cuckoo", "Black-billed Magpie", "Blackburnian Warbler", "Black-capped Chickadee", "Black-chinned Hummingbird", "Black-headed Grosbeak", "Blackpoll Warbler", "Black-throated Sparrow", "Black Phoebe", "Blue Grosbeak", "Blue Jay", "Brown-headed Cowbird", "Bobolink", "Bonaparte's Gull", "Barred Owl", "Brewer's Blackbird", "Brewer's Sparrow", "Brown Creeper", "Brown Thrasher", "Broad-tailed Hummingbird", "Broad-winged Hawk", "Black-throated Blue Warbler", "Black-throated Green Warbler", "Black-throated Grey Warbler", "Bufflehead", "Blue-grey Gnatcatcher", "Blue-headed Vireo", "Bullock's Oriole", "American Bushtit", "Blue-winged Teal", "Blue-winged Warbler", "Cactus Wren", "California Gull", "California Quail", "Cape May Warbler", "Canada Goose", "Canada Warbler", "Canyon Wren", "Carolina Wren", "Cassin's Finch", "Caspian Tern", "Cassin's Vireo", "Cedar Waxwing", "Chipping Sparrow", "Chimney Swift", "Chestnut-sided Warbler", "Chukar Partridge", "Clark's Nutcracker", "American Cliff Swallow", "Common Goldeneye", "Common Grackle", "Common Loon", "Common Merganser", "Common Nighthawk", "Northern Raven", "Common Redpoll", "Common Tern", "Common Yellowthroat", "Cooper's Hawk", "Costa's Hummingbird", "California Scrub Jay", "Dark-eyed Junco", "Double-crested Cormorant", "Downy Woodpecker", "American Dusky Flycatcher", "Black-necked Grebe", "Eastern Bluebird", "Eastern Kingbird", "Eastern Meadowlark", "Eastern Phoebe", "Eastern Towhee", "Eastern Wood Pewee", "Eurasian Collared Dove", "Common Starling", "Evening Grosbeak", "Field Sparrow", "Fish Crow", "Red Fox Sparrow", "Gadwall", "Grey-crowned Rosy Finch", "Green-tailed Towhee", "Eurasian Teal", "Golden-crowned Kinglet", "Golden-crowned Sparrow", "Golden Eagle", "Great Blue Heron", "Great Crested Flycatcher", "Great Egret", "Greater Roadrunner", "Greater Yellowlegs", "Great Horned Owl", "Green Heron", "Great-tailed Grackle", "Grey Catbird", "American Grey Flycatcher", "Hairy Woodpecker", "Hammond's Flycatcher", "European Herring Gull", "Hermit Thrush", "Hooded Merganser", "Hooded Warbler", "Horned Grebe", "Horned Lark", "House Finch", "House Sparrow", "House Wren", "Indigo Bunting", "Juniper Titmouse", "Killdeer", "Ladder-backed Woodpecker", "Lark Sparrow", "Lazuli Bunting", "Least Bittern", "Least Flycatcher", "Least Sandpiper", "LeConte's Thrasher", "Lesser Goldfinch", "Lesser Nighthawk", "Lesser Yellowlegs", "Lewis's Woodpecker", "Lincoln's Sparrow", "Long-billed Curlew", "Long-billed Dowitcher", "Loggerhead Shrike", "Long-tailed Duck", "Louisiana Waterthrush", "MacGillivray's Warbler", "Magnolia Warbler", "Mallard", "Marsh Wren", "Merlin", "Mountain Bluebird", "Mountain Chickadee", "Mourning Dove", "Northern Cardinal", "Northern Flicker", "Northern Harrier", "Northern Mockingbird", "Northern Parula", "Northern Pintail", "Northern Shoveler", "Northern Waterthrush", "Northern Rough-winged Swallow", "Nuttall's Woodpecker", "Olive-sided Flycatcher", "Orange-crowned Warbler", "Western Osprey", "Ovenbird", "Palm Warbler", "Pacific-slope Flycatcher", "Pectoral Sandpiper", "Peregrine Falcon", "Phainopepla", "Pied-billed Grebe", "Pileated Woodpecker", "Pine Grosbeak", "Pinyon Jay", "Pine Siskin", "Pine Warbler", "Plumbeous Vireo", "Prairie Warbler", "Purple Finch", "Pygmy Nuthatch", "Red-breasted Merganser", "Red-breasted Nuthatch", "Red-breasted Sapsucker", "Red-bellied Woodpecker", "Red Crossbill", "Redhead", "Red-eyed Vireo", "Red-necked Phalarope", "Red-shouldered Hawk", "Red-tailed Hawk", "Red-winged Blackbird", "Ring-billed Gull", "Ring-necked Duck", "Rose-breasted Grosbeak", "Rock Dove", "Rock Wren", "Ruby-throated Hummingbird", "Ruby-crowned Kinglet", "Ruddy Duck", "Ruffed Grouse", "Rufous Hummingbird", "Rusty Blackbird", "Sagebrush Sparrow", "Sage Thrasher", "Savannah Sparrow", "Say's Phoebe", "Scarlet Tanager", "Scott's Oriole", "Semipalmated Plover", "Semipalmated Sandpiper", "Short-eared Owl", "Sharp-shinned Hawk", "Snow Bunting", "Snow Goose", "Solitary Sandpiper", "Song Sparrow", "Sora", "Spotted Sandpiper", "Spotted Towhee", "Steller's Jay", "Swainson's Hawk", "Swamp Sparrow", "Swainson's Thrush", "Tree Swallow", "Trumpeter Swan", "Tufted Titmouse", "Tundra Swan", "Veery", "Vesper Sparrow", "Violet-green Swallow", "Warbling Vireo", "Western Bluebird", "Western Grebe", "Western Kingbird", "Western Meadowlark", "Western Sandpiper", "Western Tanager", "Western Wood Pewee", "White-breasted Nuthatch", "White-crowned Sparrow", "White-faced Ibis", "White-throated Sparrow", "White-throated Swift", "Willow Flycatcher", "Wilson's Snipe", "Wild Turkey", "Winter Wren", "Wilson's Warbler", "Wood Duck", "Woodhouse's Scrub Jay", "Wood Thrush", "American Coot", "Yellow-bellied Flycatcher", "Yellow-bellied Sapsucker", "Yellow-headed Blackbird", "Mangrove Warbler", "Myrtle Warbler", "Yellow-throated Vireo"]
+  sample_rate: 16000
+  max_duration: 10
+
+- name: dogs
+  type: classification
+  train_data: data/dogs/annotations.train.csv
+  valid_data: data/dogs/annotations.valid.csv
+  test_data: data/dogs/annotations.test.csv
+  num_labels: 10
+  labels: ["Farley", "Freid", "Keri", "Louie", "Luke", "Mac", "Roodie", "Rudy", "Siggy", "Zoe"]
+  unknown_label: null
+  sample_rate: 44100
+  max_duration: 10
+
+- name: humbugdb
+  type: classification
+  train_data: data/HumBugDB/data/metadata/train.csv
+  valid_data: data/HumBugDB/data/metadata/valid.csv
+  test_data: data/HumBugDB/data/metadata/test.csv
+  num_labels: 14
+  labels: ["non-mosquito", "an arabiensis", "others", "an gambiae ss", "culex quinquefasciatus", "culex pipiens complex", "an funestus ss", "an squamosus", "ma uniformis", "an dirus", "ae aegypti", "an harrisoni", "an maculatus", "an funestus sl"]
+  unknown_label: null
+  sample_rate: 44100
+  max_duration: 3
+  llm_data: data/humbugdb-classification/test.jsonl
+
+- name: humbugdb-fewshot
+  type: classification
+  train_data: data/HumBugDB/data/metadata/train.csv
+  valid_data: data/HumBugDB/data/metadata/valid.csv
+  test_data: data/HumBugDB/data/metadata/test.csv
+  num_labels: 14
+  labels: ["non-mosquito", "an arabiensis", "others", "an gambiae ss", "culex quinquefasciatus", "culex pipiens complex", "an funestus ss", "an squamosus", "ma uniformis", "an dirus", "ae aegypti", "an harrisoni", "an maculatus", "an funestus sl"]
+  unknown_label: null
+  sample_rate: 44100
+  max_duration: 3
+  llm_data: data/multi-audio-prompts/v1/v1/beans-humbugdb-classification/test_shots3.jsonl
+
+- name: dcase
+  type: detection
+  train_data: data/dcase/train.jsonl
+  valid_data: data/dcase/valid.jsonl
+  test_data: data/dcase/test.jsonl
+  num_labels: 18
+  labels: ["AMRE", "BBWA", "BTBW", "CALL", "CCMK", "CHSP", "COYE", "GCTH", "GIG", "GRN", "OVEN", "Q", "RBGR", "SAVS", "SNMK", "SQT", "SWTH", "WTSP"]
+  human_labels: ["American Redstart", "Bay-breasted Warbler", "Black-throated Blue Warbler", "Jackdaw call", "Meerkat close call", "Chipping Sparrow", "Common Yellowthroat", "Gray-cheeked Thrush", "Hyena giggle", "Hyena groan and moo", "Ovenbird", "Other Animal", "Rose-breasted Grosbeak", "Savannah Sparrow", "Meerkat short note", "Hyena squitter", "Swainson's Thrush", "White-throated Sparrow"]
+  unknown_label: null
+  sample_rate: 16000
+  window_width: 2
+  window_shift: 1
+  llm_data: data/dcase-detection/test-fixed.jsonl
+
+- name: dcase-bird
+  type: detection
+  train_data: data/dcase/train.jsonl
+  valid_data: data/dcase/valid.jsonl
+  test_data: data/dcase/test.jsonl
+  num_labels: 18
+  labels: ["AMRE", "BBWA", "BTBW", "CALL", "CCMK", "CHSP", "COYE", "GCTH", "GIG", "GRN", "OVEN", "Q", "RBGR", "SAVS", "SNMK", "SQT", "SWTH", "WTSP"]
+  human_labels: ["American Redstart", "Bay-breasted Warbler", "Black-throated Blue Warbler", "Jackdaw call", "Meerkat close call", "Chipping Sparrow", "Common Yellowthroat", "Gray-cheeked Thrush", "Ovenbird", "Rose-breasted Grosbeak", "Savannah Sparrow", "Swainson's Thrush", "White-throated Sparrow"]
+  unknown_label: null
+  sample_rate: 16000
+  window_width: 2
+  window_shift: 1
+  llm_data: data/dcase-detection/test-fixed-bird.jsonl
+
+- name: dcase-bird-remap
+  type: detection
+  train_data: data/dcase/train.jsonl
+  valid_data: data/dcase/valid.jsonl
+  test_data: data/dcase/test.jsonl
+  num_labels: 18
+  labels: ["AMRE", "BBWA", "BTBW", "CALL", "CCMK", "CHSP", "COYE", "GCTH", "GIG", "GRN", "OVEN", "Q", "RBGR", "SAVS", "SNMK", "SQT", "SWTH", "WTSP"]
+  human_labels: ["American Redstart", "Bay-breasted Warbler", "Black-throated Blue Warbler", "Jackdaw call", "Meerkat close call", "Chipping Sparrow", "Common Yellowthroat", "Gray-cheeked Thrush", "Ovenbird", "Rose-breasted Grosbeak", "Savannah Sparrow", "Swainson's Thrush", "White-throated Sparrow"]
+  unknown_label: null
+  sample_rate: 16000
+  window_width: 2
+  window_shift: 1
+  llm_data: data/dcase-detection/test-remapped-bird.jsonl
+
+- name: enabirds
+  type: detection
+  train_data: data/enabirds/train.jsonl
+  valid_data: data/enabirds/valid.jsonl
+  test_data: data/enabirds/test.jsonl
+  num_labels: 34
+  labels: ["AMCR", "AMGO", "AMRE", "AMRO", "BAWW", "BCCH", "BGGN", "BHCO", "BHVI", "BLJA", "BTNW", "BWWA", "CARW", "COYE", "EATO", "HETH", "HOWA", "KEWA", "LOWA", "NOCA", "NOFL", "OVEN", "RBGR", "RBWO", "RCKI", "REVI", "SCTA", "SWTH", "TUTI", "WBNU", "WITU", "WOTH", "YBCU", "OTHR"]
+  unknown_label: "OTHR"
+  human_labels: []
+  human_labels: ["American Crow", "American Goldfinch", "American Redstart", "American Robin", "Black-and-white Warbler", "Black-capped Chickadee", "Blue-gray Gnatcatcher", "Brown-headed Cowbird", "Blue-headed Vireo", "Blue Jay", "Black-throated Green Warbler", "Black-throated Blue Warbler", "Carolina Wren", "Common Yellowthroat", "Eastern Towhee", "Hermit Thrush", "Hooded Warbler", "Kirtland's Warbler", "Louisiana Waterthrush", "Northern Cardinal", "Northern Flicker", "Ovenbird", "Rose-breasted Grosbeak", "Red-bellied Woodpecker", "Ruby-crowned Kinglet", "Red-eyed Vireo", "Scarlet Tanager", "Swainson's Thrush", "Tufted Titmouse", "White-breasted Nuthatch", "Wild Turkey", "Wood Thrush", "Yellow-billed Cuckoo", "Other Bird"]
+  sample_rate: 32000
+  window_width: 2
+  window_shift: 1
+  llm_data: data/enabirds-detection/test-fixed.jsonl
+
+- name: enabirds-sci
+  type: detection
+  train_data: data/enabirds/train.jsonl
+  valid_data: data/enabirds/valid.jsonl
+  test_data: data/enabirds/test.jsonl
+  num_labels: 34
+  labels: ["AMCR", "AMGO", "AMRE", "AMRO", "BAWW", "BCCH", "BGGN", "BHCO", "BHVI", "BLJA", "BTNW", "BWWA", "CARW", "COYE", "EATO", "HETH", "HOWA", "KEWA", "LOWA", "NOCA", "NOFL", "OVEN", "RBGR", "RBWO", "RCKI", "REVI", "SCTA", "SWTH", "TUTI", "WBNU", "WITU", "WOTH", "YBCU", "OTHR"]
+  unknown_label: "OTHR"
+  human_labels: [
+    "Corvus brachyrhynchos", "Spinus tristis", "Setophaga ruticilla", "Turdus migratorius", "Mniotilta varia",
+    "Poecile atricapillus", "Polioptila caerulea", "Molothrus ater", "Vireo solitarius", "Cyanocitta cristata",
+    "Setophaga virens", "Setophaga caerulescens", "Thryothorus ludovicianus", "Geothlypis trichas",
+    "Pipilo erythrophthalmus", "Catharus guttatus", "Setophaga citrina", "Setophaga kirtlandii",
+    "Parkesia motacilla", "Cardinalis cardinalis", "Colaptes auratus", "Seiurus aurocapilla",
+    "Pheucticus ludovicianus", "Melanerpes carolinus", "Regulus calendula", "Vireo olivaceus", "Piranga olivacea",
+    "Catharus ustulatus", "Baeolophus bicolor", "Sitta carolinensis", "Meleagris gallopavo", "Hylocichla mustelina",
+    "Coccyzus americanus", "Other bird"
+  ]
+  sample_rate: 32000
+  window_width: 2
+  window_shift: 1
+  llm_data: data/enabirds-detection/test-fixed-sci.jsonl
+
+- name: hiceas
+  type: detection
+  train_data: data/hiceas/train.jsonl
+  valid_data: data/hiceas/valid.jsonl
+  test_data: data/hiceas/test.jsonl
+  llm_data: data/hiceas-detection/test-fixed.jsonl
+  num_labels: 1
+  labels: [1]
+  human_labels: ["Minke whale"]
+  unknown_label: null
+  sample_rate: 22050
+  window_width: 10
+  window_shift: 5
+
+- name: rfcx
+  type: detection
+  train_data: data/rfcx/train.jsonl
+  valid_data: data/rfcx/valid.jsonl
+  test_data: data/rfcx/test.jsonl
+  llm_data: data/rfcx-detection/test-fixed.jsonl
+  num_labels: 24f
+  labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+  scientific_labels: ["Eleutherodactylus gryllus", "Eleutherodactylus brittoni", "leptodactylus albilabris", "Eleutherodactylus coqui", "Eleutherodactylus hedricki", "Dendroica angelae", "Melanerpes portoricensis", "Coereba flaveola", "Eleutherodactylus locustus", "Margarops fuscatus", "Loxigilla portoricensis", "Vireo altiloquus", "Eleutherodactylus portoricensis", "Megascops nudipes", "Eleutherodactylus richmondi", "Patagioenas squamosa", "Eleutherodactylus antillensis", "Turdus plumbeus", "Eleutherodactylus unicolor", "Coccyzus vieilloti", "Todus mexicanus", "Eleutherodactylus wightmanae", "Nesospingus speculiferus", "Spindalis portoricensis"]
+  human_labels: ["Cricket coqui", "Grass coqui", "White-lipped Frog", "Common coqui", "Hedrick's coqui", "Elfin woods warbler", "Puerto Rican woodpecker", "Bananaquit", "Locust coqui", "Pearly-eyed thrasher", "Puerto Rican bullfinch", "Black-whiskered vireo", "Mountain Coqui", "Puerto Rican owl", "Bronze coqui", "Scaly-naped pigeon", "Red-eyed coqui", "Red-legged thrush", "Dwarf coqui", "Puerto Rican lizard cuckoo", "Puerto Rican tody", "Melodius coqui", "Puerto Rican tanager", "Puerto Rican spindalis"]
+  unknown_label: null
+  sample_rate: 48000
+  window_width: 10
+  window_shift: 5
+
+- name: hainan-gibbons
+  type: detection
+  train_data: data/hainan_gibbons/train.jsonl
+  valid_data: data/hainan_gibbons/valid.jsonl
+  test_data: data/hainan_gibbons/test.jsonl
+  llm_data: data/hainan-gibbons-detection/test-fixed.jsonl
+  num_labels: 3
+  labels: [1, 2, 3]
+  human_labels: ["Single pulse gibbon call", "Multiple pulse gibbon call", "Gibbon duet"]
+  negative_label: ["Other sounds"]
+  unknown_label: 1
+  sample_rate: 9600
+  window_width: 4
+  window_shift: 2
+
+- name: ssw
+  type: detection
+  train_data: data/ssw/train.jsonl
+  num_labels: 42
+  labels: [
+    'rewbla', 'bkcchi', 'woothr', 'grycat', 'ovenbi1', 'norcar', 'amecro', 'blujay', 'tuftit', 'comyel',
+    'cangoo', 'eawpew', 'sonspa', 'amerob', 'amegfi', 'reevir1', 'comgra', 'easpho', 'grcfly', 'rebwoo',
+    'balori', 'veery', 'swaspa', 'dowwoo', 'eastow', 'norfli', 'whbnut', 'scatan', 'yelwar', 'yebsap',
+    'cedwax', 'chswar', 'easkin', 'brncre', 'norwat', 'haiwoo', 'amewoo', 'pilwoo', 'wooduc', 'buwwar',
+    'moudov', 'other']
+  human_labels: [
+    'Red-winged Blackbird', 'Black-capped Chickadee', 'Wood Thrush', 'Gray Catbird', 'Ovenbird', 'Northern Cardinal',
+    'American Crow', 'Blue Jay', 'Tufted Titmouse', 'Common Yellowthroat', 'Canada Goose', 'Eastern Wood-Pewee',
+    'Song Sparrow', 'American Robin', 'American Goldfinch', 'Red-eyed Vireo', 'Common Grackle', 'Eastern Phoebe',
+    'Great Crested Flycatcher', 'Red-bellied Woodpecker', 'Baltimore Oriole', 'Veery', 'Swamp Sparrow', 'Downy Woodpecker',
+    'Eastern Towhee', 'Northern Flicker', 'White-breasted Nuthatch', 'Scarlet Tanager', 'Yellow Warbler',
+    'Yellow-bellied Sapsucker', 'Cedar Waxwing', 'Chestnut-sided Warbler', 'Eastern Kingbird', 'Brown Creeper',
+    'Northern Waterthrush', 'Hairy Woodpecker', 'American Woodcock', 'Pileated Woodpecker', 'Wood Duck',
+    'Black-and-white Warbler', 'Mourning Dove', 'Other']
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+
+
+- name: ssw3
+  type: detection
+  train_data: data/ssw/train.jsonl
+  num_labels: 42
+  labels: [
+    'rewbla', 'bkcchi', 'woothr', 'grycat', 'ovenbi1', 'norcar', 'amecro', 'blujay', 'tuftit', 'comyel',
+    'cangoo', 'eawpew', 'sonspa', 'amerob', 'amegfi', 'reevir1', 'comgra', 'easpho', 'grcfly', 'rebwoo',
+    'balori', 'veery', 'swaspa', 'dowwoo', 'eastow', 'norfli', 'whbnut', 'scatan', 'yelwar', 'yebsap',
+    'cedwax', 'chswar', 'easkin', 'brncre', 'norwat', 'haiwoo', 'amewoo', 'pilwoo', 'wooduc', 'buwwar',
+    'moudov', 'other']
+  human_labels: [
+    'Red-winged Blackbird', 'Black-capped Chickadee', 'Wood Thrush', 'Gray Catbird', 'Ovenbird', 'Northern Cardinal',
+    'American Crow', 'Blue Jay', 'Tufted Titmouse', 'Common Yellowthroat', 'Canada Goose', 'Eastern Wood-Pewee',
+    'Song Sparrow', 'American Robin', 'American Goldfinch', 'Red-eyed Vireo', 'Common Grackle', 'Eastern Phoebe',
+    'Great Crested Flycatcher', 'Red-bellied Woodpecker', 'Baltimore Oriole', 'Veery', 'Swamp Sparrow', 'Downy Woodpecker',
+    'Eastern Towhee', 'Northern Flicker', 'White-breasted Nuthatch', 'Scarlet Tanager', 'Yellow Warbler',
+    'Yellow-bellied Sapsucker', 'Cedar Waxwing', 'Chestnut-sided Warbler', 'Eastern Kingbird', 'Brown Creeper',
+    'Northern Waterthrush', 'Hairy Woodpecker', 'American Woodcock', 'Pileated Woodpecker', 'Wood Duck',
+    'Black-and-white Warbler', 'Mourning Dove', 'Other']
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 3
+  window_shift: 3
+
+
+- name: sne
+  type: detection
+  train_data: data/sne/train.jsonl
+  num_labels: 37
+  labels: [
+    'mouchi', 'gockin', 'herthr', 'amerob', 'orcwar', 'dusfly', 'westan', 'yerwar',
+    'foxspa', 'macwar', 'bkhgro', 'rebnut', 'pasfly', 'stejay', 'herwar', 'mouqua',
+    'daejun', 'spotow', 'gnttow', 'purfin', 'comrav', 'wlswar', 'norfli', 'btywar',
+    'casvir', 'brncre', 'towwar', 'bnhcow', 'hutvir', 'annhum', 'towsol', 'acowoo',
+    'naswar', 'vesspa', 'olsfly', 'evegro', 'other']
+  human_labels: [
+    "Mountain Chickadee", "Golden-crowned Kinglet", "Hermit Thrush", "American Robin", "Orange-crowned Warbler", 
+    "Dusky Flycatcher", "Western Tanager", "Yellow-rumped Warbler", "Fox Sparrow", "MacGillivray's Warbler", 
+    "Black-headed Grosbeak", "Red-breasted Nuthatch", "Pacific-slope Flycatcher", "Steller's Jay", "Hermit Warbler", 
+    "Mountain Quail", "Dark-eyed Junco", "Spotted Towhee", "Green-tailed Towhee", "Purple Finch", "Common Raven", 
+    "Wilson's Warbler", "Northern Flicker", "Black-throated Gray Warbler", "Cassin's Vireo", "Brown Creeper", 
+    "Townsend's Warbler", "Brown-headed Cowbird", "Hutton's Vireo", "Anna's Hummingbird", "Townsend's Solitaire", 
+    "Acorn Woodpecker", "Nashville Warbler", "Vesper Sparrow", "Olive-sided Flycatcher", "Evening Grosbeak", 
+    "Other"]
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+
+- name: uhh
+  type: detection
+  train_data: data/uhh/train.jsonl
+  num_labels: 20
+  labels: [
+    'hawama', 'iiwi', 'ercfra', 'apapan', 'houfin', 'skylar', 'warwhe1', 'reblei',
+    'omao', 'melthr', 'akepa1', 'hawcre', 'hawpet1', 'barpet', 'jabwar', 'hawhaw',
+    'elepai', 'yefcan', 'norcar', 'other']
+  human_labels: [
+    "Hawaiian Amakihi", "ʻIʻiwi", "European Crested Flycatcher", "ʻApapane", "House Finch", "Sky Lark", "Western Warbler",
+    "Red-billed Leiothrix", "ʻŌmao", "Melodious Thrush", "Hawaiʻi ʻAkepa", "Hawaiian Creeper", "Hawaiian Petrel", 
+    "Barau's Petrel", "Jabiru Warbler", "Hawaiian Hawk", "ʻElepaio", "Yellow-fronted Canary", "Northern Cardinal", 
+    "Other"]
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+
+- name: coffee_farms
+  type: detection
+  train_data: data/uhh/train.jsonl
+  num_labels: 89
+  labels: ['Dusky-capped Flycatcher', 'Yellow-throated Euphonia', 'Gray Hawk', 'Clay-colored Thrush', 'Streaked Saltator', 'White-eared Ground-Sparrow', 'Yellow-headed Caracara', 'Tennessee Warbler', 'White-tipped Dove', 'Andean Solitaire', 'Social Flycatcher', 'Rufous-and-white Wren', 'Tropical Kingbird', 'Bronze-winged Parrot', 'Laughing Falcon', 'Green Jay', 'Russet-backed Oropendola', 'Orange-chinned Parakeet', 'Lineated Woodpecker', 'Squirrel Cuckoo', 'Acorn Woodpecker', 'Roadside Hawk', 'Yellow-crowned Euphonia', 'Red-billed Pigeon', 'Scrub Tanager', 'Little Tinamou', 'Common Potoo', 'Red-headed Barbet', 'Golden-faced Tyrannulet', 'Great-tailed Grackle', 'Yellow Warbler', 'Long-tailed Manakin', 'Yellow-backed Oriole', 'Rufous-tailed Hummingbird', 'Ringed Kingfisher', 'Gray-headed Chachalaca', 'Colombian Chachalaca', 'Black-headed Saltator', 'Flame-rumped Tanager', 'Chestnut-capped Brushfinch', 'Crimson-fronted Parakeet', 'Rufous-collared Sparrow', 'Whiskered Wren', 'Black-chested Jay', 'Blue-vented Hummingbird', 'Rufous-breasted Wren', 'Western Wood-Pewee', 'Yellow-faced Grassquit', "Hoffmann's Woodpecker", 'Slate-throated Redstart', "Cabanis's Ground-Sparrow", 'Common Pauraque', 'Rusty-margined Flycatcher', 'Keel-billed Toucan', 'Buff-throated Saltator', 'Yellow-bellied Elaenia', 'Orange-fronted Parakeet', 'Northern House Wren', 'Masked Tityra', 'Brown Jay', 'Blue-gray Tanager', "Azara's Spinetail", 'Black-capped Tanager', 'Montezuma Oropendola', 'Red-crowned Ant-Tanager', 'Boat-billed Flycatcher', 'Great Kiskadee', 'Tropical Screech-Owl', 'Steely-vented Hummingbird', 'Yellow-throated Vireo', 'Streak-headed Woodcreeper', 'Melodious Blackbird', 'Orange-billed Nightingale-Thrush', 'White-crowned Parrot', 'Andean Emerald', "Lesson's Motmot", 'Silver-beaked Tanager', 'Bananaquit', 'Olivaceous Woodcreeper', 'Melodious Warbler', 'Gray-cowled Wood-Rail', "Cabanis's Wren", 'Common Tody-Flycatcher', 'Rose-throated Becard', 'Andean Motmot', 'Rufous-capped Warbler', 'White-fronted Amazon']
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/coffee_farms/prompt_detection_common.jsonl
+
+- name: nes_classification_common
+  type: classification
+  labels: ['Dusky-capped Flycatcher', 'Yellow-throated Euphonia', 'Gray Hawk', 'Clay-colored Thrush', 'Streaked Saltator', 'White-eared Ground-Sparrow', 'Yellow-headed Caracara', 'Tennessee Warbler', 'White-tipped Dove', 'Andean Solitaire', 'Social Flycatcher', 'Rufous-and-white Wren', 'Tropical Kingbird', 'Bronze-winged Parrot', 'Laughing Falcon', 'Green Jay', 'Russet-backed Oropendola', 'Orange-chinned Parakeet', 'Lineated Woodpecker', 'Squirrel Cuckoo', 'Acorn Woodpecker', 'Roadside Hawk', 'Yellow-crowned Euphonia', 'Red-billed Pigeon', 'Scrub Tanager', 'Little Tinamou', 'Common Potoo', 'Red-headed Barbet', 'Golden-faced Tyrannulet', 'Great-tailed Grackle', 'Yellow Warbler', 'Long-tailed Manakin', 'Yellow-backed Oriole', 'Rufous-tailed Hummingbird', 'Ringed Kingfisher', 'Gray-headed Chachalaca', 'Colombian Chachalaca', 'Black-headed Saltator', 'Flame-rumped Tanager', 'Chestnut-capped Brushfinch', 'Crimson-fronted Parakeet', 'Rufous-collared Sparrow', 'Whiskered Wren', 'Black-chested Jay', 'Blue-vented Hummingbird', 'Rufous-breasted Wren', 'Western Wood-Pewee', 'Yellow-faced Grassquit', "Hoffmann's Woodpecker", 'Slate-throated Redstart', "Cabanis's Ground-Sparrow", 'Common Pauraque', 'Rusty-margined Flycatcher', 'Keel-billed Toucan', 'Buff-throated Saltator', 'Yellow-bellied Elaenia', 'Orange-fronted Parakeet', 'Northern House Wren', 'Masked Tityra', 'Brown Jay', 'Blue-gray Tanager', "Azara's Spinetail", 'Black-capped Tanager', 'Montezuma Oropendola', 'Red-crowned Ant-Tanager', 'Boat-billed Flycatcher', 'Great Kiskadee', 'Tropical Screech-Owl', 'Steely-vented Hummingbird', 'Yellow-throated Vireo', 'Streak-headed Woodcreeper', 'Melodious Blackbird', 'Orange-billed Nightingale-Thrush', 'White-crowned Parrot', 'Andean Emerald', "Lesson's Motmot", 'Silver-beaked Tanager', 'Bananaquit', 'Olivaceous Woodcreeper', 'Melodious Warbler', 'Gray-cowled Wood-Rail', "Cabanis's Wren", 'Common Tody-Flycatcher', 'Rose-throated Becard', 'Andean Motmot', 'Rufous-capped Warbler', 'White-fronted Amazon']
+  train_data: data/birdset/NES/train.jsonl
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/NES/NES_common_skip.jsonl
+
+- name: nes_classification_sci
+  type: classification
+  num_labels: 89
+  # labels: ["Acorn Woodpecker", "Andean Emerald", "Andean Motmot", "Andean Solitaire", "Azara's Spinetail", "Bananaquit", "Black-capped Tanager", "Black-chested Jay", "Black-headed Saltator", "Blue-gray Tanager", "Blue-vented Hummingbird", "Boat-billed Flycatcher", "Bronze-winged Parrot", "Brown Jay", "Buff-throated Saltator", "Cabanis's Ground-Sparrow", "Cabanis's Wren", "Chestnut-capped Brushfinch", "Clay-colored Thrush", "Colombian Chachalaca", "Common Pauraque", "Common Potoo", "Common Tody-Flycatcher", "Crimson-fronted Parakeet", "Dusky-capped Flycatcher", "Flame-rumped Tanager", "Golden-faced Tyrannulet", "Gray Hawk", "Gray-cowled Wood-Rail", "Gray-headed Chachalaca", "Great Kiskadee", "Great-tailed Grackle", "Green Jay", "Hoffmann's Woodpecker", "House Wren", "Keel-billed Toucan", "Laughing Falcon", "Lesson's Motmot", "Lineated Woodpecker", "Little Tinamou", "Long-tailed Manakin", "Masked Tityra", "Melodious Blackbird", "Melodious Warbler", "Montezuma Oropendola", "Olivaceous Woodcreeper", "Orange-billed Nightingale-Thrush", "Orange-chinned Parakeet", "Orange-fronted Parakeet", "Red-billed Pigeon", "Red-crowned Ant-Tanager", "Red-headed Barbet", "Ringed Kingfisher", "Roadside Hawk", "Rose-throated Becard", "Rufous-and-white Wren", "Rufous-breasted Wren", "Rufous-capped Warbler", "Rufous-collared Sparrow", "Rufous-naped Wren", "Rufous-tailed Hummingbird", "Russet-backed Oropendola", "Russet-crowned Warbler", "Rusty-margined Flycatcher", "Scrub Tanager", "Silver-beaked Tanager", "Slate-throated Redstart", "Social Flycatcher", "Squirrel Cuckoo", "Steely-vented Hummingbird", "Streak-headed Woodcreeper", "Streaked Saltator", "Tennessee Warbler", "Tropical Kingbird", "Tropical Screech-Owl", "Western Wood-Pewee", "Whiskered Wren", "White-crowned Parrot", "White-eared Ground-Sparrow", "White-fronted Parrot", "White-tipped Dove", "Yellow Warbler", "Yellow-backed Oriole", "Yellow-bellied Elaenia", "Yellow-crowned Euphonia", "Yellow-faced Grassquit", "Yellow-headed Caracara", "Yellow-throated Euphonia", "Yellow-throated Vireo"]
+  # human_labels: ["Acorn Woodpecker", "Andean Emerald", "Andean Motmot", "Andean Solitaire", "Azara's Spinetail", "Bananaquit", "Black-capped Tanager", "Black-chested Jay", "Black-headed Saltator", "Blue-gray Tanager", "Blue-vented Hummingbird", "Boat-billed Flycatcher", "Bronze-winged Parrot", "Brown Jay", "Buff-throated Saltator", "Cabanis's Ground-Sparrow", "Cabanis's Wren", "Chestnut-capped Brushfinch", "Clay-colored Thrush", "Colombian Chachalaca", "Common Pauraque", "Common Potoo", "Common Tody-Flycatcher", "Crimson-fronted Parakeet", "Dusky-capped Flycatcher", "Flame-rumped Tanager", "Golden-faced Tyrannulet", "Gray Hawk", "Gray-cowled Wood-Rail", "Gray-headed Chachalaca", "Great Kiskadee", "Great-tailed Grackle", "Green Jay", "Hoffmann's Woodpecker", "House Wren", "Keel-billed Toucan", "Laughing Falcon", "Lesson's Motmot", "Lineated Woodpecker", "Little Tinamou", "Long-tailed Manakin", "Masked Tityra", "Melodious Blackbird", "Melodious Warbler", "Montezuma Oropendola", "Olivaceous Woodcreeper", "Orange-billed Nightingale-Thrush", "Orange-chinned Parakeet", "Orange-fronted Parakeet", "Red-billed Pigeon", "Red-crowned Ant-Tanager", "Red-headed Barbet", "Ringed Kingfisher", "Roadside Hawk", "Rose-throated Becard", "Rufous-and-white Wren", "Rufous-breasted Wren", "Rufous-capped Warbler", "Rufous-collared Sparrow", "Rufous-naped Wren", "Rufous-tailed Hummingbird", "Russet-backed Oropendola", "Russet-crowned Warbler", "Rusty-margined Flycatcher", "Scrub Tanager", "Silver-beaked Tanager", "Slate-throated Redstart", "Social Flycatcher", "Squirrel Cuckoo", "Steely-vented Hummingbird", "Streak-headed Woodcreeper", "Streaked Saltator", "Tennessee Warbler", "Tropical Kingbird", "Tropical Screech-Owl", "Western Wood-Pewee", "Whiskered Wren", "White-crowned Parrot", "White-eared Ground-Sparrow", "White-fronted Parrot", "White-tipped Dove", "Yellow Warbler", "Yellow-backed Oriole", "Yellow-bellied Elaenia", "Yellow-crowned Euphonia", "Yellow-faced Grassquit", "Yellow-headed Caracara", "Yellow-throated Euphonia", "Yellow-throated Vireo"]
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/NES/NES_sci_skip.jsonl
+  labels: ['Pachyramphus aglaiae', 'Euphonia hirundinacea', 'Dryocopus lineatus', 'Catharus aurantiirostris', 'Piaya cayana', 'Saltator striatipectus', 'Elaenia flavogaster', 'Megaceryle torquata', 'Myadestes ralloides', 'Todirostrum cinereum', 'Melozone leucotis', 'Thraupis episcopus', 'Saucerottia hoffmanni', 'Myiarchus tuberculifer', 'Leiothlypis peregrina', 'Quiscalus mexicanus', 'Momotus aequatorialis', 'Troglodytes aedon', 'Eubucco bourcierii', 'Daptrius chimachima', 'Tyrannus melancholicus', 'Thryophilus rufalbus', 'Crypturellus soui', 'Stilpnia heinei', 'Myioborus miniatus', 'Tityra semifasciata', 'Setophaga petechia', 'Myiozetetes cayanensis', 'Basileuterus rufifrons', 'Sittasomus griseicapillus', 'Lepidocolaptes souleyetii', 'Psarocolius montezuma', 'Zonotrichia capensis', 'Cyanocorax affinis', 'Stilpnia vitriolina', 'Rupornis magnirostris', 'Cyanocorax morio', 'Coereba flaveola', 'Hippolais polyglotta', 'Psarocolius angustifrons', 'Saltator maximus', 'Melanerpes formicivorus', 'Brotogeris jugularis', 'Leptotila verreauxi', 'Ramphocelus flammigerus', 'Ramphastos sulfuratus', 'Cantorchilus modestus', 'Saucerottia saucerottei', 'Tiaris olivaceus', 'Chiroxiphia linearis', 'Pitangus sulphuratus', 'Ortalis columbiana', 'Uranomitra franciae', 'Ortalis cinereiceps', 'Amazona albifrons', 'Melanerpes hoffmannii', 'Buteo plagiatus', 'Pionus senilis', 'Aramides cajaneus', 'Pionus chalcopterus', 'Myiozetetes similis', 'Nyctibius griseus', 'Patagioenas flavirostris', 'Melozone cabanisi', 'Icterus chrysater', 'Ramphocelus carbo', 'Cyanocorax yncas', 'Saltator atriceps', 'Momotus lessonii', 'Nyctidromus albicollis', 'Pheugopedius rutilus', 'Eupsittula canicularis', 'Herpetotheres cachinnans', 'Zimmerius chrysops', 'Habia rubica', 'Amazilia tzacatl', 'Megascops choliba', 'Contopus sordidulus', 'Vireo flavifrons', 'Psittacara finschi', 'Pheugopedius mystacalis', 'Synallaxis azarae', 'Megarynchus pitangua', 'Arremon brunneinucha', 'Turdus grayi', 'Dives dives', 'Euphonia luteicapilla']
+
+- name: nes_classification_tax
+  type: classification
+  num_labels: 89
+  # labels: ["Acorn Woodpecker", "Andean Emerald", "Andean Motmot", "Andean Solitaire", "Azara's Spinetail", "Bananaquit", "Black-capped Tanager", "Black-chested Jay", "Black-headed Saltator", "Blue-gray Tanager", "Blue-vented Hummingbird", "Boat-billed Flycatcher", "Bronze-winged Parrot", "Brown Jay", "Buff-throated Saltator", "Cabanis's Ground-Sparrow", "Cabanis's Wren", "Chestnut-capped Brushfinch", "Clay-colored Thrush", "Colombian Chachalaca", "Common Pauraque", "Common Potoo", "Common Tody-Flycatcher", "Crimson-fronted Parakeet", "Dusky-capped Flycatcher", "Flame-rumped Tanager", "Golden-faced Tyrannulet", "Gray Hawk", "Gray-cowled Wood-Rail", "Gray-headed Chachalaca", "Great Kiskadee", "Great-tailed Grackle", "Green Jay", "Hoffmann's Woodpecker", "House Wren", "Keel-billed Toucan", "Laughing Falcon", "Lesson's Motmot", "Lineated Woodpecker", "Little Tinamou", "Long-tailed Manakin", "Masked Tityra", "Melodious Blackbird", "Melodious Warbler", "Montezuma Oropendola", "Olivaceous Woodcreeper", "Orange-billed Nightingale-Thrush", "Orange-chinned Parakeet", "Orange-fronted Parakeet", "Red-billed Pigeon", "Red-crowned Ant-Tanager", "Red-headed Barbet", "Ringed Kingfisher", "Roadside Hawk", "Rose-throated Becard", "Rufous-and-white Wren", "Rufous-breasted Wren", "Rufous-capped Warbler", "Rufous-collared Sparrow", "Rufous-naped Wren", "Rufous-tailed Hummingbird", "Russet-backed Oropendola", "Russet-crowned Warbler", "Rusty-margined Flycatcher", "Scrub Tanager", "Silver-beaked Tanager", "Slate-throated Redstart", "Social Flycatcher", "Squirrel Cuckoo", "Steely-vented Hummingbird", "Streak-headed Woodcreeper", "Streaked Saltator", "Tennessee Warbler", "Tropical Kingbird", "Tropical Screech-Owl", "Western Wood-Pewee", "Whiskered Wren", "White-crowned Parrot", "White-eared Ground-Sparrow", "White-fronted Parrot", "White-tipped Dove", "Yellow Warbler", "Yellow-backed Oriole", "Yellow-bellied Elaenia", "Yellow-crowned Euphonia", "Yellow-faced Grassquit", "Yellow-headed Caracara", "Yellow-throated Euphonia", "Yellow-throated Vireo"]
+  # human_labels: ["Acorn Woodpecker", "Andean Emerald", "Andean Motmot", "Andean Solitaire", "Azara's Spinetail", "Bananaquit", "Black-capped Tanager", "Black-chested Jay", "Black-headed Saltator", "Blue-gray Tanager", "Blue-vented Hummingbird", "Boat-billed Flycatcher", "Bronze-winged Parrot", "Brown Jay", "Buff-throated Saltator", "Cabanis's Ground-Sparrow", "Cabanis's Wren", "Chestnut-capped Brushfinch", "Clay-colored Thrush", "Colombian Chachalaca", "Common Pauraque", "Common Potoo", "Common Tody-Flycatcher", "Crimson-fronted Parakeet", "Dusky-capped Flycatcher", "Flame-rumped Tanager", "Golden-faced Tyrannulet", "Gray Hawk", "Gray-cowled Wood-Rail", "Gray-headed Chachalaca", "Great Kiskadee", "Great-tailed Grackle", "Green Jay", "Hoffmann's Woodpecker", "House Wren", "Keel-billed Toucan", "Laughing Falcon", "Lesson's Motmot", "Lineated Woodpecker", "Little Tinamou", "Long-tailed Manakin", "Masked Tityra", "Melodious Blackbird", "Melodious Warbler", "Montezuma Oropendola", "Olivaceous Woodcreeper", "Orange-billed Nightingale-Thrush", "Orange-chinned Parakeet", "Orange-fronted Parakeet", "Red-billed Pigeon", "Red-crowned Ant-Tanager", "Red-headed Barbet", "Ringed Kingfisher", "Roadside Hawk", "Rose-throated Becard", "Rufous-and-white Wren", "Rufous-breasted Wren", "Rufous-capped Warbler", "Rufous-collared Sparrow", "Rufous-naped Wren", "Rufous-tailed Hummingbird", "Russet-backed Oropendola", "Russet-crowned Warbler", "Rusty-margined Flycatcher", "Scrub Tanager", "Silver-beaked Tanager", "Slate-throated Redstart", "Social Flycatcher", "Squirrel Cuckoo", "Steely-vented Hummingbird", "Streak-headed Woodcreeper", "Streaked Saltator", "Tennessee Warbler", "Tropical Kingbird", "Tropical Screech-Owl", "Western Wood-Pewee", "Whiskered Wren", "White-crowned Parrot", "White-eared Ground-Sparrow", "White-fronted Parrot", "White-tipped Dove", "Yellow Warbler", "Yellow-backed Oriole", "Yellow-bellied Elaenia", "Yellow-crowned Euphonia", "Yellow-faced Grassquit", "Yellow-headed Caracara", "Yellow-throated Euphonia", "Yellow-throated Vireo"]
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/NES/NES_taxonomic_skip.jsonl
+  labels: ['Passeriformes Passerellidae Melozone leucotis', 'Passeriformes Tyrannidae Zimmerius chrysops', 'Passeriformes Passerellidae Melozone cabanisi', 'Passeriformes Tyrannidae Myiozetetes similis', 'Passeriformes Acrocephalidae Hippolais polyglotta', 'Apodiformes Trochilidae Saucerottia hoffmanni', 'Passeriformes Furnariidae Sittasomus griseicapillus', 'Caprimulgiformes Caprimulgidae Nyctidromus albicollis', 'Passeriformes Thraupidae Stilpnia heinei', 'Apodiformes Trochilidae Amazilia tzacatl', 'Cuculiformes Cuculidae Piaya cayana', 'Passeriformes Icteridae Dives dives', 'Passeriformes Passerellidae Arremon brunneinucha', 'Passeriformes Troglodytidae Pheugopedius rutilus', 'Passeriformes Parulidae Basileuterus rufifrons', 'Piciformes Picidae Melanerpes hoffmannii', 'Accipitriformes Accipitridae Rupornis magnirostris', 'Columbiformes Columbidae Patagioenas flavirostris', 'Passeriformes Icteridae Icterus chrysater', 'Passeriformes Parulidae Leiothlypis peregrina', 'Falconiformes Falconidae Herpetotheres cachinnans', 'Passeriformes Thraupidae Coereba flaveola', 'Psittaciformes Psittacidae Pionus chalcopterus', 'Psittaciformes Psittacidae Psittacara finschi', 'Passeriformes Furnariidae Synallaxis azarae', 'Passeriformes Tyrannidae Pitangus sulphuratus', 'Passeriformes Thraupidae Saltator maximus', 'Strigiformes Strigidae Megascops choliba', 'Piciformes Ramphastidae Ramphastos sulfuratus', 'Passeriformes Corvidae Cyanocorax affinis', 'Passeriformes Pipridae Chiroxiphia linearis', 'Coraciiformes Alcedinidae Megaceryle torquata', 'Passeriformes Troglodytidae Thryophilus rufalbus', 'Passeriformes Thraupidae Ramphocelus carbo', 'Nyctibiiformes Nyctibiidae Nyctibius griseus', 'Passeriformes Thraupidae Saltator atriceps', 'Passeriformes Icteridae Psarocolius angustifrons', 'Accipitriformes Accipitridae Buteo plagiatus', 'Passeriformes Parulidae Myioborus miniatus', 'Passeriformes Cardinalidae Habia rubica', 'Piciformes Capitonidae Eubucco bourcierii', 'Passeriformes Thraupidae Ramphocelus flammigerus', 'Passeriformes Turdidae Turdus grayi', 'Passeriformes Icteridae Quiscalus mexicanus', 'Apodiformes Trochilidae Saucerottia saucerottei', 'Passeriformes Tyrannidae Myiozetetes cayanensis', 'Passeriformes Tyrannidae Contopus sordidulus', 'Galliformes Cracidae Ortalis columbiana', 'Passeriformes Corvidae Cyanocorax yncas', 'Passeriformes Thraupidae Tiaris olivaceus', 'Passeriformes Tyrannidae Todirostrum cinereum', 'Passeriformes Fringillidae Euphonia hirundinacea', 'Columbiformes Columbidae Leptotila verreauxi', 'Passeriformes Thraupidae Saltator striatipectus', 'Passeriformes Passerellidae Zonotrichia capensis', 'Piciformes Picidae Dryocopus lineatus', 'Psittaciformes Psittacidae Pionus senilis', 'Psittaciformes Psittacidae Brotogeris jugularis', 'Passeriformes Troglodytidae Troglodytes aedon', 'Passeriformes Troglodytidae Cantorchilus modestus', 'Passeriformes Corvidae Cyanocorax morio', 'Passeriformes Parulidae Setophaga petechia', 'Gruiformes Rallidae Aramides cajaneus', 'Passeriformes Turdidae Catharus aurantiirostris', 'Piciformes Picidae Melanerpes formicivorus', 'Tinamiformes Tinamidae Crypturellus soui', 'Psittaciformes Psittacidae Eupsittula canicularis', 'Passeriformes Thraupidae Thraupis episcopus', 'Coraciiformes Momotidae Momotus lessonii', 'Passeriformes Vireonidae Vireo flavifrons', 'Coraciiformes Momotidae Momotus aequatorialis', 'Passeriformes Icteridae Psarocolius montezuma', 'Galliformes Cracidae Ortalis cinereiceps', 'Passeriformes Furnariidae Lepidocolaptes souleyetii', 'Passeriformes Thraupidae Stilpnia vitriolina', 'Passeriformes Troglodytidae Pheugopedius mystacalis', 'Falconiformes Falconidae Daptrius chimachima', 'Passeriformes Fringillidae Euphonia luteicapilla', 'Passeriformes Tityridae Tityra semifasciata', 'Psittaciformes Psittacidae Amazona albifrons', 'Passeriformes Tyrannidae Elaenia flavogaster', 'Passeriformes Tyrannidae Tyrannus melancholicus', 'Passeriformes Tyrannidae Myiarchus tuberculifer', 'Passeriformes Turdidae Myadestes ralloides', 'Passeriformes Tyrannidae Megarynchus pitangua', 'Passeriformes Tityridae Pachyramphus aglaiae', 'Apodiformes Trochilidae Uranomitra franciae']
+
+- name: pow_classification_common
+  type: classification
+  train_data: data/birdset/POW/POW_common_skip.jsonl
+  num_labels: 89
+  # labels: ["Acorn Woodpecker", "Andean Emerald", "Andean Motmot", "Andean Solitaire", "Azara's Spinetail", "Bananaquit", "Black-capped Tanager", "Black-chested Jay", "Black-headed Saltator", "Blue-gray Tanager", "Blue-vented Hummingbird", "Boat-billed Flycatcher", "Bronze-winged Parrot", "Brown Jay", "Buff-throated Saltator", "Cabanis's Ground-Sparrow", "Cabanis's Wren", "Chestnut-capped Brushfinch", "Clay-colored Thrush", "Colombian Chachalaca", "Common Pauraque", "Common Potoo", "Common Tody-Flycatcher", "Crimson-fronted Parakeet", "Dusky-capped Flycatcher", "Flame-rumped Tanager", "Golden-faced Tyrannulet", "Gray Hawk", "Gray-cowled Wood-Rail", "Gray-headed Chachalaca", "Great Kiskadee", "Great-tailed Grackle", "Green Jay", "Hoffmann's Woodpecker", "House Wren", "Keel-billed Toucan", "Laughing Falcon", "Lesson's Motmot", "Lineated Woodpecker", "Little Tinamou", "Long-tailed Manakin", "Masked Tityra", "Melodious Blackbird", "Melodious Warbler", "Montezuma Oropendola", "Olivaceous Woodcreeper", "Orange-billed Nightingale-Thrush", "Orange-chinned Parakeet", "Orange-fronted Parakeet", "Red-billed Pigeon", "Red-crowned Ant-Tanager", "Red-headed Barbet", "Ringed Kingfisher", "Roadside Hawk", "Rose-throated Becard", "Rufous-and-white Wren", "Rufous-breasted Wren", "Rufous-capped Warbler", "Rufous-collared Sparrow", "Rufous-naped Wren", "Rufous-tailed Hummingbird", "Russet-backed Oropendola", "Russet-crowned Warbler", "Rusty-margined Flycatcher", "Scrub Tanager", "Silver-beaked Tanager", "Slate-throated Redstart", "Social Flycatcher", "Squirrel Cuckoo", "Steely-vented Hummingbird", "Streak-headed Woodcreeper", "Streaked Saltator", "Tennessee Warbler", "Tropical Kingbird", "Tropical Screech-Owl", "Western Wood-Pewee", "Whiskered Wren", "White-crowned Parrot", "White-eared Ground-Sparrow", "White-fronted Parrot", "White-tipped Dove", "Yellow Warbler", "Yellow-backed Oriole", "Yellow-bellied Elaenia", "Yellow-crowned Euphonia", "Yellow-faced Grassquit", "Yellow-headed Caracara", "Yellow-throated Euphonia", "Yellow-throated Vireo"]
+  # human_labels: ["Acorn Woodpecker", "Andean Emerald", "Andean Motmot", "Andean Solitaire", "Azara's Spinetail", "Bananaquit", "Black-capped Tanager", "Black-chested Jay", "Black-headed Saltator", "Blue-gray Tanager", "Blue-vented Hummingbird", "Boat-billed Flycatcher", "Bronze-winged Parrot", "Brown Jay", "Buff-throated Saltator", "Cabanis's Ground-Sparrow", "Cabanis's Wren", "Chestnut-capped Brushfinch", "Clay-colored Thrush", "Colombian Chachalaca", "Common Pauraque", "Common Potoo", "Common Tody-Flycatcher", "Crimson-fronted Parakeet", "Dusky-capped Flycatcher", "Flame-rumped Tanager", "Golden-faced Tyrannulet", "Gray Hawk", "Gray-cowled Wood-Rail", "Gray-headed Chachalaca", "Great Kiskadee", "Great-tailed Grackle", "Green Jay", "Hoffmann's Woodpecker", "House Wren", "Keel-billed Toucan", "Laughing Falcon", "Lesson's Motmot", "Lineated Woodpecker", "Little Tinamou", "Long-tailed Manakin", "Masked Tityra", "Melodious Blackbird", "Melodious Warbler", "Montezuma Oropendola", "Olivaceous Woodcreeper", "Orange-billed Nightingale-Thrush", "Orange-chinned Parakeet", "Orange-fronted Parakeet", "Red-billed Pigeon", "Red-crowned Ant-Tanager", "Red-headed Barbet", "Ringed Kingfisher", "Roadside Hawk", "Rose-throated Becard", "Rufous-and-white Wren", "Rufous-breasted Wren", "Rufous-capped Warbler", "Rufous-collared Sparrow", "Rufous-naped Wren", "Rufous-tailed Hummingbird", "Russet-backed Oropendola", "Russet-crowned Warbler", "Rusty-margined Flycatcher", "Scrub Tanager", "Silver-beaked Tanager", "Slate-throated Redstart", "Social Flycatcher", "Squirrel Cuckoo", "Steely-vented Hummingbird", "Streak-headed Woodcreeper", "Streaked Saltator", "Tennessee Warbler", "Tropical Kingbird", "Tropical Screech-Owl", "Western Wood-Pewee", "Whiskered Wren", "White-crowned Parrot", "White-eared Ground-Sparrow", "White-fronted Parrot", "White-tipped Dove", "Yellow Warbler", "Yellow-backed Oriole", "Yellow-bellied Elaenia", "Yellow-crowned Euphonia", "Yellow-faced Grassquit", "Yellow-headed Caracara", "Yellow-throated Euphonia", "Yellow-throated Vireo"]
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/POW/POW_common_skip.jsonl
+  labels: ['Blue-winged Warbler', 'Hairy Woodpecker', 'Red-bellied Woodpecker', 'Veery', 'American Crow', 'Red-eyed Vireo', 'Downy Woodpecker', 'White-breasted Nuthatch', 'Chestnut-sided Warbler', 'Brown Creeper', 'Red-shouldered Hawk', 'Hooded Warbler', 'Blue-headed Vireo', 'Pileated Woodpecker', 'Nashville Warbler', 'Wood Thrush', 'Black-throated Green Warbler', 'Black-capped Chickadee', 'Yellow-billed Cuckoo', 'Red-winged Blackbird', 'American Redstart', 'Brown-headed Cowbird', 'Eastern Wood-Pewee', 'Blue-gray Gnatcatcher', 'Blue Jay', 'Northern Cardinal', 'Ovenbird', 'Northern Flicker', 'Cedar Waxwing', 'Ruby-crowned Kinglet', 'American Robin', 'Baltimore Oriole', 'Common Yellowthroat', 'American Golden-Plover', 'Carolina Wren', 'Wild Turkey', 'Black-and-white Warbler', 'Rose-breasted Grosbeak', 'Kentucky Warbler', 'Tufted Titmouse', 'Eastern Towhee', 'Hermit Thrush', 'Canada Goose', 'Common Raven', 'Bay-breasted Warbler', 'Scarlet Tanager', 'Louisiana Waterthrush', "Swainson's Thrush"]
+
+- name: pow_classification_sci
+  type: classification
+  train_data: data/birdset/POW/POW_common_skip.jsonl
+  num_labels: 89
+  # labels: ["Acorn Woodpecker", "Andean Emerald", "Andean Motmot", "Andean Solitaire", "Azara's Spinetail", "Bananaquit", "Black-capped Tanager", "Black-chested Jay", "Black-headed Saltator", "Blue-gray Tanager", "Blue-vented Hummingbird", "Boat-billed Flycatcher", "Bronze-winged Parrot", "Brown Jay", "Buff-throated Saltator", "Cabanis's Ground-Sparrow", "Cabanis's Wren", "Chestnut-capped Brushfinch", "Clay-colored Thrush", "Colombian Chachalaca", "Common Pauraque", "Common Potoo", "Common Tody-Flycatcher", "Crimson-fronted Parakeet", "Dusky-capped Flycatcher", "Flame-rumped Tanager", "Golden-faced Tyrannulet", "Gray Hawk", "Gray-cowled Wood-Rail", "Gray-headed Chachalaca", "Great Kiskadee", "Great-tailed Grackle", "Green Jay", "Hoffmann's Woodpecker", "House Wren", "Keel-billed Toucan", "Laughing Falcon", "Lesson's Motmot", "Lineated Woodpecker", "Little Tinamou", "Long-tailed Manakin", "Masked Tityra", "Melodious Blackbird", "Melodious Warbler", "Montezuma Oropendola", "Olivaceous Woodcreeper", "Orange-billed Nightingale-Thrush", "Orange-chinned Parakeet", "Orange-fronted Parakeet", "Red-billed Pigeon", "Red-crowned Ant-Tanager", "Red-headed Barbet", "Ringed Kingfisher", "Roadside Hawk", "Rose-throated Becard", "Rufous-and-white Wren", "Rufous-breasted Wren", "Rufous-capped Warbler", "Rufous-collared Sparrow", "Rufous-naped Wren", "Rufous-tailed Hummingbird", "Russet-backed Oropendola", "Russet-crowned Warbler", "Rusty-margined Flycatcher", "Scrub Tanager", "Silver-beaked Tanager", "Slate-throated Redstart", "Social Flycatcher", "Squirrel Cuckoo", "Steely-vented Hummingbird", "Streak-headed Woodcreeper", "Streaked Saltator", "Tennessee Warbler", "Tropical Kingbird", "Tropical Screech-Owl", "Western Wood-Pewee", "Whiskered Wren", "White-crowned Parrot", "White-eared Ground-Sparrow", "White-fronted Parrot", "White-tipped Dove", "Yellow Warbler", "Yellow-backed Oriole", "Yellow-bellied Elaenia", "Yellow-crowned Euphonia", "Yellow-faced Grassquit", "Yellow-headed Caracara", "Yellow-throated Euphonia", "Yellow-throated Vireo"]
+  # human_labels: ["Acorn Woodpecker", "Andean Emerald", "Andean Motmot", "Andean Solitaire", "Azara's Spinetail", "Bananaquit", "Black-capped Tanager", "Black-chested Jay", "Black-headed Saltator", "Blue-gray Tanager", "Blue-vented Hummingbird", "Boat-billed Flycatcher", "Bronze-winged Parrot", "Brown Jay", "Buff-throated Saltator", "Cabanis's Ground-Sparrow", "Cabanis's Wren", "Chestnut-capped Brushfinch", "Clay-colored Thrush", "Colombian Chachalaca", "Common Pauraque", "Common Potoo", "Common Tody-Flycatcher", "Crimson-fronted Parakeet", "Dusky-capped Flycatcher", "Flame-rumped Tanager", "Golden-faced Tyrannulet", "Gray Hawk", "Gray-cowled Wood-Rail", "Gray-headed Chachalaca", "Great Kiskadee", "Great-tailed Grackle", "Green Jay", "Hoffmann's Woodpecker", "House Wren", "Keel-billed Toucan", "Laughing Falcon", "Lesson's Motmot", "Lineated Woodpecker", "Little Tinamou", "Long-tailed Manakin", "Masked Tityra", "Melodious Blackbird", "Melodious Warbler", "Montezuma Oropendola", "Olivaceous Woodcreeper", "Orange-billed Nightingale-Thrush", "Orange-chinned Parakeet", "Orange-fronted Parakeet", "Red-billed Pigeon", "Red-crowned Ant-Tanager", "Red-headed Barbet", "Ringed Kingfisher", "Roadside Hawk", "Rose-throated Becard", "Rufous-and-white Wren", "Rufous-breasted Wren", "Rufous-capped Warbler", "Rufous-collared Sparrow", "Rufous-naped Wren", "Rufous-tailed Hummingbird", "Russet-backed Oropendola", "Russet-crowned Warbler", "Rusty-margined Flycatcher", "Scrub Tanager", "Silver-beaked Tanager", "Slate-throated Redstart", "Social Flycatcher", "Squirrel Cuckoo", "Steely-vented Hummingbird", "Streak-headed Woodcreeper", "Streaked Saltator", "Tennessee Warbler", "Tropical Kingbird", "Tropical Screech-Owl", "Western Wood-Pewee", "Whiskered Wren", "White-crowned Parrot", "White-eared Ground-Sparrow", "White-fronted Parrot", "White-tipped Dove", "Yellow Warbler", "Yellow-backed Oriole", "Yellow-bellied Elaenia", "Yellow-crowned Euphonia", "Yellow-faced Grassquit", "Yellow-headed Caracara", "Yellow-throated Euphonia", "Yellow-throated Vireo"]
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/POW/POW_sci_skip.jsonl
+  labels: ['Geothlypis formosa', 'Sitta carolinensis', 'Pipilo erythrophthalmus', 'Polioptila caerulea', 'Geothlypis trichas', 'Pluvialis dominica', 'Certhia americana', 'Setophaga citrina', 'Vireo solitarius', 'Icterus galbula', 'Cyanocitta cristata', 'Dryobates villosus', 'Pheucticus ludovicianus', 'Coccyzus americanus', 'Setophaga virens', 'Seiurus aurocapilla', 'Turdus migratorius', 'Hylocichla mustelina', 'Agelaius phoeniceus', 'Vermivora cyanoptera', 'Bombycilla cedrorum', 'Parkesia motacilla', 'Piranga olivacea', 'Colaptes auratus', 'Catharus guttatus', 'Leiothlypis ruficapilla', 'Setophaga castanea', 'Branta canadensis', 'Contopus virens', 'Catharus fuscescens', 'Mniotilta varia', 'Corvus corax', 'Setophaga pensylvanica', 'Thryothorus ludovicianus', 'Buteo lineatus', 'Corvus brachyrhynchos', 'Cardinalis cardinalis', 'Melanerpes carolinus', 'Vireo olivaceus', 'Baeolophus bicolor', 'Corthylio calendula', 'Catharus ustulatus', 'Setophaga ruticilla', 'Dryocopus pileatus', 'Poecile atricapillus', 'Meleagris gallopavo', 'Molothrus ater', 'Dryobates pubescens']
+
+- name: pow_detection_sci
+  type: detection
+  train_data: data/birdset/POW/POW_common_skip.jsonl
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/POW/POW_sci.jsonl
+  labels: ['Geothlypis formosa', 'Sitta carolinensis', 'Pipilo erythrophthalmus', 'Polioptila caerulea', 'Geothlypis trichas', 'Pluvialis dominica', 'Certhia americana', 'Setophaga citrina', 'Vireo solitarius', 'Icterus galbula', 'Cyanocitta cristata', 'Dryobates villosus', 'Pheucticus ludovicianus', 'Coccyzus americanus', 'Setophaga virens', 'Seiurus aurocapilla', 'Turdus migratorius', 'Hylocichla mustelina', 'Agelaius phoeniceus', 'Vermivora cyanoptera', 'Bombycilla cedrorum', 'Parkesia motacilla', 'Piranga olivacea', 'Colaptes auratus', 'Catharus guttatus', 'Leiothlypis ruficapilla', 'Setophaga castanea', 'Branta canadensis', 'Contopus virens', 'Catharus fuscescens', 'Mniotilta varia', 'Corvus corax', 'Setophaga pensylvanica', 'Thryothorus ludovicianus', 'Buteo lineatus', 'Corvus brachyrhynchos', 'Cardinalis cardinalis', 'Melanerpes carolinus', 'Vireo olivaceus', 'Baeolophus bicolor', 'Corthylio calendula', 'Catharus ustulatus', 'Setophaga ruticilla', 'Dryocopus pileatus', 'Poecile atricapillus', 'Meleagris gallopavo', 'Molothrus ater', 'Dryobates pubescens']
+
+
+- name: nbp_classification_common
+  type: classification
+  labels: ["Thekla's Lark", 'Eurasian Jay', 'Common Nightingale', 'Common Buzzard', 'Barn Swallow', 'European Greenfinch', 'Zitting Cisticola', 'European Goldfinch', 'Dartford Warbler', 'Crested Lark', 'Eurasian Blackbird', 'Song Thrush', 'Crested Tit', 'Common Chiffchaff', 'Red Crossbill', 'European Starling', 'Eurasian Golden Oriole', 'Tree Pipit', 'Eurasian Skylark', 'Eurasian Wren', 'Short-toed Treecreeper', 'Eastern Subalpine Warbler', 'Sardinian Warbler', 'European Robin', 'Eurasian Blackcap', 'Wood Lark', 'European Turtle-Dove', 'Carrion Crow', 'Eurasian Wryneck', 'Great Spotted Woodpecker', 'Long-tailed Tit', 'Spotted Flycatcher', 'Eurasian Linnet', 'Coal Tit', 'Eurasian Magpie', 'European Serin', 'Marsh Tit', 'Common Wood-Pigeon', 'Dunnock', 'Eurasian Blue Tit', 'Cirl Bunting', "Cetti's Warbler", 'Great Tit', 'House Sparrow', 'Eurasian Bullfinch', 'Common Chaffinch', 'Gray Wagtail', 'Eurasian Collared-Dove', 'Common Firecrest', 'Rock Sparrow', 'Eurasian Nuthatch']
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/NBP/NBP_common_skip.jsonl
+
+- name: nbp_classification_sci
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/NBP/NBP_sci_skip.jsonl
+  labels: ['Emberiza cirlus', 'Anthus trivialis', 'Jynx torquilla', 'Curruca cantillans', 'Lophophanes cristatus', 'Galerida theklae', 'Certhia brachydactyla', 'Streptopelia decaocto', 'Carduelis carduelis', 'Sylvia atricapilla', 'Dendrocopos major', 'Prunella modularis', 'Turdus philomelos', 'Muscicapa striata', 'Loxia curvirostra', 'Cyanistes caeruleus', 'Cettia cetti', 'Garrulus glandarius', 'Regulus ignicapilla', 'Parus major', 'Galerida cristata', 'Alauda arvensis', 'Sturnus vulgaris', 'Petronia petronia', 'Curruca melanocephala', 'Turdus merula', 'Hirundo rustica', 'Oriolus oriolus', 'Periparus ater', 'Fringilla coelebs', 'Erithacus rubecula', 'Streptopelia turtur', 'Serinus serinus', 'Curruca undata', 'Chloris chloris', 'Aegithalos caudatus', 'Phylloscopus collybita', 'Troglodytes troglodytes', 'Luscinia megarhynchos', 'Pyrrhula pyrrhula', 'Motacilla cinerea', 'Corvus corone', 'Passer domesticus', 'Pica pica', 'Columba palumbus', 'Poecile palustris', 'Cisticola juncidis', 'Linaria cannabina', 'Lullula arborea', 'Buteo buteo', 'Sitta europaea']
+
+- name: nbp_detection_sci
+  type: detection
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/NBP/NBP_sci.jsonl
+  labels: ['Emberiza cirlus', 'Anthus trivialis', 'Jynx torquilla', 'Curruca cantillans', 'Lophophanes cristatus', 'Galerida theklae', 'Certhia brachydactyla', 'Streptopelia decaocto', 'Carduelis carduelis', 'Sylvia atricapilla', 'Dendrocopos major', 'Prunella modularis', 'Turdus philomelos', 'Muscicapa striata', 'Loxia curvirostra', 'Cyanistes caeruleus', 'Cettia cetti', 'Garrulus glandarius', 'Regulus ignicapilla', 'Parus major', 'Galerida cristata', 'Alauda arvensis', 'Sturnus vulgaris', 'Petronia petronia', 'Curruca melanocephala', 'Turdus merula', 'Hirundo rustica', 'Oriolus oriolus', 'Periparus ater', 'Fringilla coelebs', 'Erithacus rubecula', 'Streptopelia turtur', 'Serinus serinus', 'Curruca undata', 'Chloris chloris', 'Aegithalos caudatus', 'Phylloscopus collybita', 'Troglodytes troglodytes', 'Luscinia megarhynchos', 'Pyrrhula pyrrhula', 'Motacilla cinerea', 'Corvus corone', 'Passer domesticus', 'Pica pica', 'Columba palumbus', 'Poecile palustris', 'Cisticola juncidis', 'Linaria cannabina', 'Lullula arborea', 'Buteo buteo', 'Sitta europaea']
+
+- name: per_classification_common
+  type: classification
+  labels: ['Russet-backed Oropendola', 'Bluish-gray Saltator', 'Plain-brown Woodcreeper', 'Musician Wren', 'Boat-billed Flycatcher', 'Wing-barred Piprites', 'Great Antshrike', 'Striped Woodcreeper', 'White-rumped Sirystes', 'Collared Forest-Falcon', 'Buff-throated Woodcreeper', 'Gray-capped Flycatcher', 'Paradise Tanager', 'Red-necked Woodpecker', 'Golden-crowned Spadebill', 'Amazonian Trogon', 'Bluish-fronted Jacamar', 'Straight-billed Woodcreeper', 'Tawny-bellied Screech-Owl', 'White-bellied Tody-Tyrant', 'Chestnut-winged Foliage-gleaner', 'White-throated Woodpecker', 'Spot-winged Antshrike', 'Mealy Amazon', 'Red-bellied Macaw', 'Olive Oropendola', 'Streaked Xenops', 'Western Striolated-Puffbird', 'Squirrel Cuckoo', 'Little Woodpecker', 'Dusky-throated Antshrike', 'Lemon-throated Barbet', 'White-winged Becard', 'Blue-crowned Trogon', 'Striped Cuckoo', 'Green Ibis', "Spix's Guan", 'Screaming Piha', 'Yellow-margined Flatbill', 'Common Potoo', 'Solitary Black Cacique', "Goeldi's Antbird", 'Cinnamon-throated Woodcreeper', 'Plain-throated Antwren', 'Red-crowned Ant-Tanager', 'Cobalt-winged Parakeet', 'Black-fronted Nunbird', 'Amazonian Pygmy-Owl', 'Grayish Mourner', 'Black Caracara', 'Dusky-capped Greenlet', 'Gray Antwren', 'Ruddy Quail-Dove', 'Elegant Woodcreeper', 'Black-throated Antbird', 'Bright-rumped Attila', 'Starred Wood-Quail', 'Fasciated Antshrike', 'White-lored Tyrannulet', 'Black-faced Cotinga', 'White-flanked Antwren', 'Ringed Antpipit', 'Buff-breasted Wren', 'Tropical Royal Flycatcher', 'White-throated Toucan', 'Scaled Pigeon', 'Yellow-tufted Woodpecker', 'Black-tailed Trogon', 'Undulated Tinamou', 'Dusky-capped Flycatcher', 'Pale-vented Pigeon', 'Ruddy Pigeon', 'Amazonian Barred-Woodcreeper', 'Ringed Woodpecker', 'Plumbeous Pigeon', 'Amazonian Motmot', 'Blue-headed Parrot', 'Golden-green Woodpecker', 'Blue Ground Dove', 'Green-backed Trogon', 'Green-and-rufous Kingfisher', 'Piratic Flycatcher', 'Barred Forest-Falcon', 'Plumbeous Antbird', 'Cinereous Mourner', 'Buff-throated Saltator', 'Rufous-fronted Antthrush', 'Dusky-headed Parakeet', "Hauxwell's Thrush", 'Black-spotted Bare-eye', 'Purple-throated Euphonia', 'Great Tinamou', "Euler's Flycatcher", 'Olivaceous Woodcreeper', 'Cinnamon-rumped Foliage-gleaner', 'Cinereous Tinamou', 'Rufous-capped Antthrush', 'Gilded Barbet', 'Ferruginous Pygmy-Owl', 'Yellow-crowned Tyrannulet', 'Long-billed Woodcreeper', 'White-crested Spadebill', "Bartlett's Tinamou", 'White-necked Thrush', 'Gray Antbird', 'Forest Elaenia', 'Ringed Kingfisher', 'Yellow-rumped Cacique', 'Gray-cowled Wood-Rail', 'Dull-capped Attila', 'Amazonian Grosbeak', 'Little Tinamou', 'Ash-throated Gnateater', 'Gray-fronted Dove', 'Horned Screamer', 'Speckled Chachalaca', 'Plain-winged Antshrike', 'Long-winged Antwren', 'Black-billed Thrush', 'Purple-throated Fruitcrow', 'Waved Woodpecker (Scale-breasted)', 'Pygmy Antwren', 'Band-tailed Manakin', 'Black-capped Becard', 'Barred Antshrike', 'Thrush-like Wren', 'Black-faced Antthrush', 'Collared Trogon', 'Gray-crowned Flatbill', 'Ochre-throated Foliage-gleaner', 'Rusty-fronted Tody-Flycatcher', "Buckley's Forest-Falcon"]
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/PER/PER_common_skip.jsonl
+
+- name: per_classification_sci
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/PER/PER_sci_skip.jsonl
+  labels: ['Tinamus major', 'Ramphastos tucanus', 'Automolus ochrolaemus', 'Megaceryle torquata', 'Thamnomanes ardesiacus', 'Piprites chloris', 'Patagioenas subvinacea', 'Thamnophilus doliatus', 'Tyrannulus elatus', 'Xiphorhynchus obsoletus', 'Pachyramphus polychopterus', 'Platyrinchus coronatus', 'Mesembrinibis cayennensis', 'Trogon curucui', 'Trogon ramonianus', 'Celeus torquatus', 'Trogon collaris', 'Myiarchus tuberculifer', 'Patagioenas plumbea', 'Celeus undatus [grammicus Group]', 'Galbula cyanescens', 'Onychorhynchus coronatus', 'Cymbilaimus lineatus', 'Melanerpes cruentatus', 'Myrmotherula brachyura', 'Campephilus rubricollis', 'Monasa nigrifrons', 'Sirystes albocinereus', 'Myrmotherula menetriesii', 'Chloroceryle inda', 'Geotrygon montana', 'Daptrius ater', 'Cacicus cela', 'Aramides cajaneus', 'Querula purpurata', 'Piculus chrysochloros', 'Dendrocolaptes certhia', 'Piculus leucolaemus', 'Glaucidium brasilianum', 'Dendrexetastes rufigula', 'Conioptilon mcilhennyi', 'Orthopsittaca manilatus', 'Philydor pyrrhodes', 'Tolmomyias assimilis', 'Odontophorus stellatus', 'Thamnophilus schistaceus', 'Formicarius colma', 'Cyphorhinus arada', 'Psarocolius angustifrons', 'Saltator maximus', 'Piaya cayana', 'Akletos goeldii', 'Eubucco richardsoni', 'Nasica longirostris', 'Nystalus obamai', 'Tapera naevia', 'Taraba major', 'Ornithion inerme', 'Xiphorhynchus elegans', 'Formicarius rufifrons', 'Dryobates passerinus', 'Pionus menstruus', 'Penelope jacquacu', 'Crypturellus cinereus', 'Trogon melanurus', 'Amazona farinosa', 'Rhytipterna simplex', 'Pipra fasciicauda', 'Isleria hauxwelli', 'Myrmotherula axillaris', 'Myrmotherula longipennis', 'Glaucidium hardyi', 'Phlegopsis nigromaculata', 'Legatus leucophaius', 'Micrastur buckleyi', 'Nyctibius griseus', 'Conopophaga peruviana', 'Dendroma erythroptera', 'Turdus ignobilis', 'Campylorhynchus turdinus', 'Habia rubica', 'Pachyramphus marginatus', 'Momotus momota', 'Poecilotriccus latirostris', 'Platyrinchus platyrhynchos', 'Ortalis guttata', 'Lipaugus vociferans', 'Brotogeris cyanoptera', 'Myrmophylax atrothorax', 'Micrastur semitorquatus', 'Corythopis torquatus', 'Dendroplex picus', 'Micrastur ruficollis', 'Cacicus solitarius', 'Aratinga weddellii', 'Xiphorhynchus guttatus', 'Claravis pretiosa', 'Attila bolivianus', 'Cercomacra cinerascens', 'Crypturellus undulatus', 'Megascops watsonii', 'Turdus hauxwelli', 'Megarynchus pitangua', 'Tolmomyias poliocephalus', 'Capito auratus', 'Formicarius analis', 'Hemitriccus griseipectus', 'Patagioenas speciosa', 'Xenops rutilans', 'Trogon viridis', 'Lathrotriccus euleri', 'Sittasomus griseicapillus', 'Anhima cornuta', 'Laniocera hypopyrra', 'Crypturellus bartletti', 'Myrmelastes hyperythrus', 'Turdus albicollis', 'Saltator coerulescens', 'Cantorchilus leucotis', 'Dendrocincla fuliginosa', 'Myiozetetes granadensis', 'Attila spadiceus', 'Myiopagis gaimardii', 'Crypturellus soui', 'Leptotila rufaxilla', 'Cyanoloxia rothschildii', 'Pachysylvia hypoxantha', 'Euphonia chlorotica', 'Pygiptila stellaris', 'Psarocolius bifasciatus', 'Patagioenas cayennensis', 'Tangara chilensis']
+
+- name: uhh_classification_sci
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/UHH/UHH_sci_skip.jsonl
+  labels: ['Himatione sanguinea', 'Meleagris gallopavo', 'Crithagra mozambica', 'Alectoris chukar', 'Myadestes obscurus', 'Estrilda astrild', 'Callipepla californica', 'Buteo solitarius', 'Chasiempis sandwichensis', 'Cardinalis cardinalis', 'Pternistis erckelii', 'Garrulax canorus', 'Haemorhous mexicanus', 'Hydrobates castro', 'Loxioides bailleui', 'Loxops mana', 'Loxops coccineus', 'Alauda arvensis', 'Leiothrix lutea', 'Pterodroma sandwichensis', 'Horornis diphone', 'Zosterops japonicus', 'Lophura leucomelanos', 'Drepanis coccinea', 'Branta sandvicensis', 'Francolinus francolinus', 'Chlorodrepanis virens']
+
+- name: sne_classification_sci
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/SNE/SNE_sci_skip.jsonl
+  labels: ['Patagioenas fasciata', 'Sphyrapicus thyroideus', 'Leiothlypis ruficapilla', 'Regulus satrapa', 'Branta canadensis', 'Catharus ustulatus', 'Geothlypis tolmiei', 'Melanerpes formicivorus', 'Turdus migratorius', 'Zenaida macroura', 'Setophaga occidentalis', 'Setophaga coronata', 'Pipilo maculatus', 'Contopus sordidulus', 'Pipilo chlorurus', 'Cardellina pusilla', 'Cyanocitta stelleri', 'Setophaga nigrescens', 'Vireo huttoni', 'Catharus guttatus', 'Melospiza lincolnii', 'Myadestes townsendi', 'Zonotrichia leucophrys', 'Poecile gambeli', 'Junco hyemalis', 'Thryomanes bewickii', 'Dryobates albolarvatus', 'Sitta canadensis', 'Coccothraustes vespertinus', 'Pheucticus melanocephalus', 'Troglodytes aedon', 'Empidonax hammondii', 'Haemorhous cassinii', 'Spinus pinus', 'Spinus tristis', 'Passerella iliaca', 'Corvus corax', 'Empidonax difficilis [difficilis Group]', 'Setophaga townsendi', 'Contopus cooperi', 'Piranga ludoviciana', 'Passerina amoena', 'Loxia curvirostra', 'Colaptes auratus', 'Vireo cassinii', 'Calypte anna', 'Corthylio calendula', 'Leiothlypis celata', 'Empidonax oberholseri', 'Pooecetes gramineus', 'Vireo gilvus', 'Certhia americana', 'Haemorhous purpureus', 'Oreortyx pictus', 'Molothrus ater', 'Poecile rufescens']
+
+- name: hsn_classification_common
+  type: classification
+  labels: ["Thekla's Lark", 'Eurasian Jay', 'Common Nightingale', 'Common Buzzard', 'Barn Swallow', 'European Greenfinch', 'Zitting Cisticola', 'European Goldfinch', 'Dartford Warbler', 'Crested Lark', 'Eurasian Blackbird', 'Song Thrush', 'Crested Tit', 'Common Chiffchaff', 'Red Crossbill', 'European Starling', 'Eurasian Golden Oriole', 'Tree Pipit', 'Eurasian Skylark', 'Eurasian Wren', 'Short-toed Treecreeper', 'Eastern Subalpine Warbler', 'Sardinian Warbler', 'European Robin', 'Eurasian Blackcap', 'Wood Lark', 'European Turtle-Dove', 'Carrion Crow', 'Eurasian Wryneck', 'Great Spotted Woodpecker', 'Long-tailed Tit', 'Spotted Flycatcher', 'Eurasian Linnet', 'Coal Tit', 'Eurasian Magpie', 'European Serin', 'Marsh Tit', 'Common Wood-Pigeon', 'Dunnock', 'Eurasian Blue Tit', 'Cirl Bunting', "Cetti's Warbler", 'Great Tit', 'House Sparrow', 'Eurasian Bullfinch', 'Common Chaffinch', 'Gray Wagtail', 'Eurasian Collared-Dove', 'Common Firecrest', 'Rock Sparrow', 'Eurasian Nuthatch']
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/HSN/HSN_common_skip.jsonl
+  labels: ['Northern Flicker', "Clark's Nutcracker", 'Yellow Warbler', 'Gray-crowned Rosy-Finch', 'American Pipit', 'Rock Wren', 'Hermit Thrush', 'Mountain Chickadee', 'Warbling Vireo', 'Fox Sparrow', "Brewer's Blackbird", 'Orange-crowned Warbler', 'Yellow-rumped Warbler', 'Mountain Bluebird', 'American Robin', 'White-crowned Sparrow', "Cassin's Finch", 'Mallard', 'Dusky Flycatcher', 'Dark-eyed Junco', 'Spotted Sandpiper']
+
+- name: hsn_classification_sci
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/HSN/HSN_sci_skip.jsonl
+  labels: ['Vireo gilvus', 'Nucifraga columbiana', 'Anthus rubescens', 'Junco hyemalis', 'Leiothlypis celata', 'Salpinctes obsoletus', 'Poecile gambeli', 'Anas platyrhynchos', 'Leucosticte tephrocotis', 'Turdus migratorius', 'Setophaga petechia', 'Euphagus cyanocephalus', 'Passerella iliaca', 'Catharus guttatus', 'Colaptes auratus', 'Haemorhous cassinii', 'Empidonax oberholseri', 'Setophaga coronata', 'Zonotrichia leucophrys', 'Actitis macularius', 'Sialia currucoides']
+
+- name: per_detection_sci
+  type: detection
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/PER/PER_sci.jsonl
+  labels: ['Emberiza cirlus', 'Anthus trivialis', 'Jynx torquilla', 'Curruca cantillans', 'Lophophanes cristatus', 'Galerida theklae', 'Certhia brachydactyla', 'Streptopelia decaocto', 'Carduelis carduelis', 'Sylvia atricapilla', 'Dendrocopos major', 'Prunella modularis', 'Turdus philomelos', 'Muscicapa striata', 'Loxia curvirostra', 'Cyanistes caeruleus', 'Cettia cetti', 'Garrulus glandarius', 'Regulus ignicapilla', 'Parus major', 'Galerida cristata', 'Alauda arvensis', 'Sturnus vulgaris', 'Petronia petronia', 'Curruca melanocephala', 'Turdus merula', 'Hirundo rustica', 'Oriolus oriolus', 'Periparus ater', 'Fringilla coelebs', 'Erithacus rubecula', 'Streptopelia turtur', 'Serinus serinus', 'Curruca undata', 'Chloris chloris', 'Aegithalos caudatus', 'Phylloscopus collybita', 'Troglodytes troglodytes', 'Luscinia megarhynchos', 'Pyrrhula pyrrhula', 'Motacilla cinerea', 'Corvus corone', 'Passer domesticus', 'Pica pica', 'Columba palumbus', 'Poecile palustris', 'Cisticola juncidis', 'Linaria cannabina', 'Lullula arborea', 'Buteo buteo', 'Sitta europaea']
+
+
+- name: nes_detection_common
+  type: detection
+  labels: ['Dusky-capped Flycatcher', 'Yellow-throated Euphonia', 'Gray Hawk', 'Clay-colored Thrush', 'Streaked Saltator', 'White-eared Ground-Sparrow', 'Yellow-headed Caracara', 'Tennessee Warbler', 'White-tipped Dove', 'Andean Solitaire', 'Social Flycatcher', 'Rufous-and-white Wren', 'Tropical Kingbird', 'Bronze-winged Parrot', 'Laughing Falcon', 'Green Jay', 'Russet-backed Oropendola', 'Orange-chinned Parakeet', 'Lineated Woodpecker', 'Squirrel Cuckoo', 'Acorn Woodpecker', 'Roadside Hawk', 'Yellow-crowned Euphonia', 'Red-billed Pigeon', 'Scrub Tanager', 'Little Tinamou', 'Common Potoo', 'Red-headed Barbet', 'Golden-faced Tyrannulet', 'Great-tailed Grackle', 'Yellow Warbler', 'Long-tailed Manakin', 'Yellow-backed Oriole', 'Rufous-tailed Hummingbird', 'Ringed Kingfisher', 'Gray-headed Chachalaca', 'Colombian Chachalaca', 'Black-headed Saltator', 'Flame-rumped Tanager', 'Chestnut-capped Brushfinch', 'Crimson-fronted Parakeet', 'Rufous-collared Sparrow', 'Whiskered Wren', 'Black-chested Jay', 'Blue-vented Hummingbird', 'Rufous-breasted Wren', 'Western Wood-Pewee', 'Yellow-faced Grassquit', "Hoffmann's Woodpecker", 'Slate-throated Redstart', "Cabanis's Ground-Sparrow", 'Common Pauraque', 'Rusty-margined Flycatcher', 'Keel-billed Toucan', 'Buff-throated Saltator', 'Yellow-bellied Elaenia', 'Orange-fronted Parakeet', 'Northern House Wren', 'Masked Tityra', 'Brown Jay', 'Blue-gray Tanager', "Azara's Spinetail", 'Black-capped Tanager', 'Montezuma Oropendola', 'Red-crowned Ant-Tanager', 'Boat-billed Flycatcher', 'Great Kiskadee', 'Tropical Screech-Owl', 'Steely-vented Hummingbird', 'Yellow-throated Vireo', 'Streak-headed Woodcreeper', 'Melodious Blackbird', 'Orange-billed Nightingale-Thrush', 'White-crowned Parrot', 'Andean Emerald', "Lesson's Motmot", 'Silver-beaked Tanager', 'Bananaquit', 'Olivaceous Woodcreeper', 'Melodious Warbler', 'Gray-cowled Wood-Rail', "Cabanis's Wren", 'Common Tody-Flycatcher', 'Rose-throated Becard', 'Andean Motmot', 'Rufous-capped Warbler', 'White-fronted Amazon']
+  train_data: data/birdset/NES/train.jsonl
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/NES/NES_common.jsonl
+
+- name: nes_detection_sci
+  type: detection
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/birdset/NES/NES_sci.jsonl
+  labels: ['Pachyramphus aglaiae', 'Euphonia hirundinacea', 'Dryocopus lineatus', 'Catharus aurantiirostris', 'Piaya cayana', 'Saltator striatipectus', 'Elaenia flavogaster', 'Megaceryle torquata', 'Myadestes ralloides', 'Todirostrum cinereum', 'Melozone leucotis', 'Thraupis episcopus', 'Saucerottia hoffmanni', 'Myiarchus tuberculifer', 'Leiothlypis peregrina', 'Quiscalus mexicanus', 'Momotus aequatorialis', 'Troglodytes aedon', 'Eubucco bourcierii', 'Daptrius chimachima', 'Tyrannus melancholicus', 'Thryophilus rufalbus', 'Crypturellus soui', 'Stilpnia heinei', 'Myioborus miniatus', 'Tityra semifasciata', 'Setophaga petechia', 'Myiozetetes cayanensis', 'Basileuterus rufifrons', 'Sittasomus griseicapillus', 'Lepidocolaptes souleyetii', 'Psarocolius montezuma', 'Zonotrichia capensis', 'Cyanocorax affinis', 'Stilpnia vitriolina', 'Rupornis magnirostris', 'Cyanocorax morio', 'Coereba flaveola', 'Hippolais polyglotta', 'Psarocolius angustifrons', 'Saltator maximus', 'Melanerpes formicivorus', 'Brotogeris jugularis', 'Leptotila verreauxi', 'Ramphocelus flammigerus', 'Ramphastos sulfuratus', 'Cantorchilus modestus', 'Saucerottia saucerottei', 'Tiaris olivaceus', 'Chiroxiphia linearis', 'Pitangus sulphuratus', 'Ortalis columbiana', 'Uranomitra franciae', 'Ortalis cinereiceps', 'Amazona albifrons', 'Melanerpes hoffmannii', 'Buteo plagiatus', 'Pionus senilis', 'Aramides cajaneus', 'Pionus chalcopterus', 'Myiozetetes similis', 'Nyctibius griseus', 'Patagioenas flavirostris', 'Melozone cabanisi', 'Icterus chrysater', 'Ramphocelus carbo', 'Cyanocorax yncas', 'Saltator atriceps', 'Momotus lessonii', 'Nyctidromus albicollis', 'Pheugopedius rutilus', 'Eupsittula canicularis', 'Herpetotheres cachinnans', 'Zimmerius chrysops', 'Habia rubica', 'Amazilia tzacatl', 'Megascops choliba', 'Contopus sordidulus', 'Vireo flavifrons', 'Psittacara finschi', 'Pheugopedius mystacalis', 'Synallaxis azarae', 'Megarynchus pitangua', 'Arremon brunneinucha', 'Turdus grayi', 'Dives dives', 'Euphonia luteicapilla']
+
+
+# UNSEEN
+- name: unseen-species-sci-species
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/unseen-species-species-sci-classification/v1.32/test_species.jsonl
+  labels: ['Pachycephala soror', 'Myzomela nigrita', 'Psaltoda adonis', 'Sitta castanea', 'Caprimulgus pulchellus', 'Ranoidea aurea', 'Machlolophus aplonotus', 'Aethopyga shelleyi', 'Columba pollenii', 'Cinnyris johannae', 'Physeter macrocephalus', 'Okanagana occidentalis', 'Pachycephala feminina', 'Rhipidura semirubra', 'Herpsilochmus roraimae', 'Aplonis magna', 'Ranoidea nudidigita', 'Oenanthe dubia', 'Orchelimum silvaticum', 'Trachyphonus margaritatus', 'Bostrychia olivacea', 'Leptodactylus natalensis', 'Falco cherrug', 'Asthenes arequipae', 'Saltator cinctus', 'Lanius newtoni', 'Apalis chariessa', 'Psarocolius cassini', 'Bucco noanamae', 'Accipiter collaris', 'Ficedula nigrorufa', 'Certhia nipalensis', 'Apus bradfieldi', 'Circus cinereus', 'Amazona versicolor', 'Haematopus chathamensis', 'Thlypopsis fulviceps', 'Heliodoxa branickii', 'Oecanthus californicus', 'Melaniparus fasciiventer', 'Columba arquatrix', 'Sholicola major', 'Caprimulgus andamanicus', 'Cinclosoma marginatum', 'Chloropsis flavipennis', 'Puffinus assimilis', 'Polioptila facilis', 'Nothoprocta taczanowskii', 'Saucerottia cyanura', 'Geokichla wardii', 'Pterocles personatus', 'Empidonomus aurantioatrocristatus', 'Dendropsophus joannae', 'Carpodacus trifasciatus', 'Ducula luctuosa', 'Sirystes subcanescens', 'Ploceus pelzelni', 'Ninox natalis', 'Vanellus tricolor', 'Pycnonotus penicillatus', 'Aulacorhynchus whitelianus', 'Arachnothera dilutior', 'Phylloscopus misoriensis', 'Campethera bennettii', 'Muscicapa segregata', 'Mixornis kelleyi', 'Dicrurus lophorinus', 'Thlypopsis inornata', 'Ploceus alienus', 'Magicicada tredecassini', 'Melaniparus fringillinus', 'Zosterops vellalavella', 'Eleutherodactylus unicolor', 'Lonchura flaviprymna', 'Climacteris melanurus', 'Odontophorus dialeucos', 'Brachypteryx sinensis', 'Thripophaga amacurensis', 'Ficedula disposita', 'Inezia subflava', 'Alcedo semitorquata', 'Carpodacus rodopeplus', 'Puffinus opisthomelas', 'Pachycephala modesta', 'Mirafra gilletti', 'Zosterops cinereus', 'Hirundo domicola', 'Chorthippus acroleucus', 'Symposiachrus infelix', 'Lybius rubrifacies', 'Recurvirostra novaehollandiae', 'Gryllus bermudensis', 'Picumnus spilogaster', 'Otus thilohoffmanni', 'Oenanthe xanthoprymna', 'Ploceus katangae', 'Rallus madagascariensis', 'Estrilda ochrogaster', 'Melanerpes herminieri', 'Anthus sokokensis', 'Myrmelastes caurensis', 'Anas penelope', 'Celebesica abbotti', 'Ploceus heuglini', 'Herpsilochmus motacilloides', 'Oenanthe lugens', 'Petroica pusilla', 'Myzomela cineracea', 'Heliodoxa gularis', 'Platysteira albifrons', 'Metallura aeneocauda', 'Poecile hypermelaenus', 'Otus mayottensis', 'Anthus brachyurus', 'Gryllus cohni', 'Amazona dufresniana', 'Ixobrychus sturmii', 'Atlapetes meridae', 'Microspingus trifasciatus', 'Agapornis pullarius', 'Zoothera mollissima', 'Cinnyris tsavoensis', 'Oecanthus nigricornis', 'Artamus monachus', 'Progne dominicensis', 'Anthreptes reichenowi', 'Charadrius montanus', 'Monarcha frater', 'Falco concolor', 'Carpodacus roseus', 'Merops mentalis', 'Anas capensis', 'Pycnonotus blanfordi', 'Ardenna grisea', 'Chalcomitra balfouri', 'Pternistis harwoodi', 'Colluricincla obscura', 'Ceblepyris caesius', 'Symposiachrus vidua', 'Rana dalmatina', 'Quiscalus nicaraguensis', 'Egretta picata', 'Pica mauritanica', 'Aethopyga ignicauda', 'Rhyticeros subruficollis', 'Pachycephala lanioides', 'Zosterops chloronothos', 'Hyla andersonii', 'Xiphocolaptes falcirostris', 'Pachycephala lorentzi', 'Hyperolius stictus', 'Litoria latopalmata', 'Oecanthus celerinictus', 'Hyperolius pictus', 'Columba rupestris', 'Philemon meyeri', 'Kleinothraupis reyi', 'Rhyticeros undulatus', 'Knipolegus cyanirostris', 'Hyperolius parallelus', 'Buteo trizonatus', 'Cyanomitra bannermani', 'Circus buffoni', 'Phalacrocorax varius', 'Petroica polymorpha', 'Gerygone fusca', 'Dicaeum pygmaeum', 'Myiothlypis chrysogaster', 'Thamnophilus insignis', 'Ardenna carneipes', 'Myrmothera fulviventris', 'Pyrrhura griseipectus', 'Manorina melanotis', 'Buteo japonicus', 'Petrochelidon rufocollaris', 'Saltator maxillosus', 'Passer gongonensis', 'Geotrygon chrysia', 'Sitta leucopsis', 'Phaethornis idaliae', 'Rhipidura kubaryi', 'Pternistis icterorhynchus', 'Bufotes boulengeri', 'Amazilia luciae', 'Chlidonias albostriatus', 'Dendropsophus sanborni', 'Treron affinis', 'Passer insularis', 'Hyla eximia', 'Cisticola brunnescens', 'Canis lupaster', 'Litoria tyleri', 'Knipolegus lophotes', 'Picus dedemi', 'Sporophila nigrorufa', 'Dryocopus schulzii', 'Vireo osburni', 'Touit batavicus', 'Arremonops tocuyensis', 'Zosterops mysorensis']
+  max_duration: 10
+
+- name: unseen-species-taxonomic-species
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/unseen-species-taxonomic-classification/v1.32/test_species.jsonl
+  labels: ['Chordata Aves Passeriformes Nectariniidae Arachnothera dilutior', 'Chordata Aves Bucerotiformes Bucerotidae Rhyticeros undulatus', 'Chordata Aves Passeriformes Hirundinidae Hirundo domicola', 'Chordata Aves Passeriformes Muscicapidae Muscicapa segregata', 'Chordata Aves Passeriformes Polioptilidae Polioptila facilis', 'Chordata Amphibia Anura Pelodryadidae Ranoidea aurea', 'Chordata Aves Tinamiformes Tinamidae Nothoprocta taczanowskii', 'Chordata Aves Falconiformes Falconidae Falco concolor', 'Chordata Amphibia Anura Hylidae Dendropsophus joannae', 'Chordata Aves Passeriformes Zosteropidae Zosterops chloronothos', 'Chordata Aves Galliformes Phasianidae Pternistis icterorhynchus', 'Chordata Aves Passeriformes Furnariidae Thripophaga amacurensis', 'Chordata Aves Passeriformes Hirundinidae Petrochelidon rufocollaris', 'Chordata Aves Passeriformes Zosteropidae Zosterops mysorensis', 'Chordata Aves Passeriformes Thraupidae Thlypopsis fulviceps', 'Chordata Aves Passeriformes Timaliidae Mixornis kelleyi', 'Chordata Aves Passeriformes Pachycephalidae Pachycephala modesta', 'Chordata Aves Passeriformes Motacillidae Anthus sokokensis', 'Chordata Aves Accipitriformes Accipitridae Accipiter collaris', 'Chordata Amphibia Anura Pelodryadidae Litoria tyleri', 'Chordata Aves Piciformes Ramphastidae Aulacorhynchus whitelianus', 'Chordata Aves Passeriformes Platysteiridae Platysteira albifrons', 'Chordata Aves Piciformes Picidae Melanerpes herminieri', 'Chordata Aves Passeriformes Certhiidae Certhia nipalensis', 'Chordata Aves Passeriformes Pycnonotidae Pycnonotus penicillatus', 'Chordata Aves Procellariiformes Procellariidae Ardenna carneipes', 'Chordata Aves Passeriformes Passerellidae Atlapetes meridae', 'Chordata Aves Apodiformes Trochilidae Heliodoxa gularis', 'Chordata Aves Columbiformes Columbidae Columba rupestris', 'Chordata Aves Piciformes Lybiidae Trachyphonus margaritatus', 'Chordata Aves Passeriformes Nectariniidae Anthreptes reichenowi', 'Chordata Aves Passeriformes Campephagidae Celebesica abbotti', 'Arthropoda Insecta Orthoptera Acrididae Chorthippus acroleucus', 'Chordata Aves Passeriformes Muscicapidae Ficedula disposita', 'Chordata Aves Pteroclidiformes Pteroclididae Pterocles personatus', 'Chordata Aves Passeriformes Passerellidae Arremonops tocuyensis', 'Chordata Aves Passeriformes Pachycephalidae Pachycephala feminina', 'Chordata Aves Passeriformes Thraupidae Saltator cinctus', 'Chordata Aves Columbiformes Columbidae Columba arquatrix', 'Chordata Aves Passeriformes Fringillidae Carpodacus trifasciatus', 'Chordata Aves Passeriformes Ploceidae Ploceus alienus', 'Chordata Aves Charadriiformes Charadriidae Charadrius montanus', 'Chordata Aves Passeriformes Nectariniidae Cinnyris tsavoensis', 'Chordata Aves Passeriformes Thraupidae Kleinothraupis reyi', 'Chordata Aves Piciformes Bucconidae Bucco noanamae', 'Chordata Aves Passeriformes Ploceidae Ploceus pelzelni', 'Chordata Aves Accipitriformes Accipitridae Circus buffoni', 'Chordata Aves Passeriformes Petroicidae Petroica polymorpha', 'Chordata Aves Passeriformes Thraupidae Thlypopsis inornata', 'Chordata Amphibia Anura Hyperoliidae Hyperolius stictus', 'Chordata Aves Passeriformes Muscicapidae Oenanthe lugens', 'Chordata Amphibia Anura Eleutherodactylidae Eleutherodactylus unicolor', 'Chordata Aves Passeriformes Thamnophilidae Herpsilochmus motacilloides', 'Chordata Aves Charadriiformes Laridae Chlidonias albostriatus', 'Chordata Aves Passeriformes Muscicapidae Oenanthe xanthoprymna', 'Chordata Aves Passeriformes Sturnidae Aplonis magna', 'Chordata Aves Strigiformes Strigidae Ninox natalis', 'Chordata Aves Passeriformes Climacteridae Climacteris melanurus', 'Chordata Aves Apodiformes Trochilidae Saucerottia cyanura', 'Chordata Aves Passeriformes Dicaeidae Dicaeum pygmaeum', 'Arthropoda Insecta Orthoptera Gryllidae Gryllus bermudensis', 'Chordata Aves Passeriformes Fringillidae Carpodacus rodopeplus', 'Chordata Aves Passeriformes Phylloscopidae Phylloscopus misoriensis', 'Chordata Aves Passeriformes Furnariidae Asthenes arequipae', 'Chordata Aves Piciformes Picidae Campethera bennettii', 'Chordata Aves Passeriformes Nectariniidae Aethopyga ignicauda', 'Chordata Aves Piciformes Lybiidae Lybius rubrifacies', 'Chordata Amphibia Anura Pelodryadidae Litoria latopalmata', 'Arthropoda Insecta Hemiptera Cicadidae Magicicada tredecassini', 'Arthropoda Insecta Orthoptera Gryllidae Oecanthus celerinictus', 'Chordata Aves Passeriformes Icteridae Psarocolius cassini', 'Chordata Aves Passeriformes Monarchidae Symposiachrus infelix', 'Arthropoda Insecta Orthoptera Tettigoniidae Orchelimum silvaticum', 'Chordata Aves Psittaciformes Psittacidae Touit batavicus', 'Chordata Aves Passeriformes Tyrannidae Sirystes subcanescens', 'Chordata Aves Passeriformes Paridae Poecile hypermelaenus', 'Chordata Aves Passeriformes Parulidae Myiothlypis chrysogaster', 'Chordata Aves Caprimulgiformes Caprimulgidae Caprimulgus pulchellus', 'Chordata Aves Passeriformes Sittidae Sitta castanea', 'Chordata Aves Passeriformes Tyrannidae Inezia subflava', 'Chordata Aves Passeriformes Thraupidae Saltator maxillosus', 'Chordata Amphibia Anura Hylidae Hyla eximia', 'Chordata Aves Coraciiformes Meropidae Merops mentalis', 'Chordata Aves Gruiformes Rallidae Rallus madagascariensis', 'Chordata Aves Passeriformes Acanthizidae Gerygone fusca', 'Chordata Aves Passeriformes Ploceidae Ploceus heuglini', 'Chordata Aves Passeriformes Monarchidae Symposiachrus vidua', 'Chordata Aves Passeriformes Meliphagidae Myzomela nigrita', 'Chordata Aves Apodiformes Apodidae Apus bradfieldi', 'Chordata Aves Piciformes Picidae Picus dedemi', 'Chordata Aves Bucerotiformes Bucerotidae Rhyticeros subruficollis', 'Chordata Aves Passeriformes Nectariniidae Cyanomitra bannermani', 'Chordata Aves Passeriformes Pachycephalidae Colluricincla obscura', 'Chordata Aves Apodiformes Trochilidae Metallura aeneocauda', 'Chordata Aves Passeriformes Thamnophilidae Herpsilochmus roraimae', 'Chordata Aves Piciformes Picidae Picumnus spilogaster', 'Arthropoda Insecta Orthoptera Gryllidae Oecanthus nigricornis', 'Chordata Aves Apodiformes Trochilidae Phaethornis idaliae', 'Chordata Aves Passeriformes Paridae Melaniparus fringillinus', 'Chordata Amphibia Anura Ranidae Rana dalmatina', 'Chordata Aves Passeriformes Zosteropidae Zosterops vellalavella', 'Chordata Aves Passeriformes Laniidae Lanius newtoni', 'Chordata Aves Passeriformes Thraupidae Microspingus trifasciatus', 'Chordata Aves Psittaciformes Psittacidae Amazona dufresniana', 'Chordata Aves Procellariiformes Procellariidae Puffinus opisthomelas', 'Chordata Aves Passeriformes Tyrannidae Knipolegus cyanirostris', 'Chordata Aves Accipitriformes Accipitridae Buteo trizonatus', 'Chordata Aves Passeriformes Furnariidae Xiphocolaptes falcirostris', 'Chordata Aves Passeriformes Passeridae Passer gongonensis', 'Chordata Amphibia Anura Hyperoliidae Hyperolius pictus', 'Chordata Aves Accipitriformes Accipitridae Buteo japonicus', 'Chordata Amphibia Anura Hylidae Hyla andersonii', 'Chordata Aves Passeriformes Pachycephalidae Pachycephala soror', 'Chordata Aves Pelecaniformes Ardeidae Ixobrychus sturmii', 'Chordata Aves Pelecaniformes Threskiornithidae Bostrychia olivacea', 'Chordata Aves Passeriformes Thraupidae Sporophila nigrorufa', 'Chordata Aves Passeriformes Alaudidae Mirafra gilletti', 'Chordata Aves Suliformes Phalacrocoracidae Phalacrocorax varius', 'Chordata Aves Psittaciformes Psittacidae Agapornis pullarius', 'Chordata Aves Passeriformes Estrildidae Lonchura flaviprymna', 'Chordata Aves Columbiformes Columbidae Columba pollenii', 'Chordata Aves Galliformes Odontophoridae Odontophorus dialeucos', 'Chordata Aves Passeriformes Tyrannidae Knipolegus lophotes', 'Chordata Aves Caprimulgiformes Caprimulgidae Caprimulgus andamanicus', 'Chordata Aves Apodiformes Trochilidae Heliodoxa branickii', 'Chordata Aves Passeriformes Tyrannidae Empidonomus aurantioatrocristatus', 'Chordata Aves Passeriformes Estrildidae Estrilda ochrogaster', 'Chordata Aves Anseriformes Anatidae Anas capensis', 'Chordata Aves Passeriformes Fringillidae Carpodacus roseus', 'Chordata Aves Passeriformes Pachycephalidae Pachycephala lanioides', 'Chordata Aves Passeriformes Thamnophilidae Thamnophilus insignis', 'Chordata Aves Passeriformes Rhipiduridae Rhipidura semirubra', 'Chordata Aves Columbiformes Columbidae Geotrygon chrysia', 'Chordata Aves Charadriiformes Haematopodidae Haematopus chathamensis', 'Chordata Aves Passeriformes Artamidae Artamus monachus', 'Chordata Aves Procellariiformes Procellariidae Puffinus assimilis', 'Arthropoda Insecta Orthoptera Gryllidae Oecanthus californicus', 'Chordata Amphibia Anura Leptodactylidae Leptodactylus natalensis', 'Chordata Aves Passeriformes Campephagidae Ceblepyris caesius', 'Chordata Aves Passeriformes Cisticolidae Apalis chariessa', 'Chordata Aves Passeriformes Petroicidae Petroica pusilla', 'Chordata Aves Charadriiformes Recurvirostridae Recurvirostra novaehollandiae', 'Chordata Aves Passeriformes Nectariniidae Chalcomitra balfouri', 'Chordata Mammalia Carnivora Canidae Canis lupaster', 'Chordata Aves Pelecaniformes Ardeidae Egretta picata', 'Chordata Aves Passeriformes Muscicapidae Oenanthe dubia', 'Chordata Aves Passeriformes Muscicapidae Ficedula nigrorufa', 'Chordata Aves Psittaciformes Psittacidae Pyrrhura griseipectus', 'Chordata Mammalia Cetacea Physeteridae Physeter macrocephalus', 'Chordata Amphibia Anura Hylidae Dendropsophus sanborni', 'Chordata Aves Passeriformes Motacillidae Anthus brachyurus', 'Chordata Aves Passeriformes Cisticolidae Cisticola brunnescens', 'Chordata Aves Passeriformes Turdidae Geokichla wardii', 'Chordata Aves Columbiformes Columbidae Treron affinis', 'Chordata Aves Passeriformes Hirundinidae Progne dominicensis', 'Chordata Aves Passeriformes Zosteropidae Zosterops cinereus', 'Chordata Aves Passeriformes Ploceidae Ploceus katangae', 'Chordata Aves Passeriformes Monarchidae Monarcha frater', 'Chordata Amphibia Anura Bufonidae Bufotes boulengeri', 'Arthropoda Insecta Hemiptera Cicadidae Okanagana occidentalis', 'Chordata Aves Passeriformes Muscicapidae Brachypteryx sinensis', 'Chordata Aves Passeriformes Meliphagidae Manorina melanotis', 'Chordata Aves Procellariiformes Procellariidae Ardenna grisea', 'Chordata Aves Strigiformes Strigidae Otus thilohoffmanni', 'Chordata Aves Strigiformes Strigidae Otus mayottensis', 'Chordata Aves Passeriformes Icteridae Quiscalus nicaraguensis', 'Chordata Aves Passeriformes Dicruridae Dicrurus lophorinus', 'Chordata Aves Passeriformes Vireonidae Vireo osburni', 'Chordata Amphibia Anura Hyperoliidae Hyperolius parallelus', 'Chordata Aves Passeriformes Meliphagidae Philemon meyeri', 'Chordata Aves Passeriformes Paridae Machlolophus aplonotus', 'Chordata Aves Coraciiformes Alcedinidae Alcedo semitorquata', 'Chordata Aves Galliformes Phasianidae Pternistis harwoodi', 'Chordata Aves Passeriformes Corvidae Pica mauritanica', 'Chordata Aves Passeriformes Pycnonotidae Pycnonotus blanfordi', 'Chordata Aves Passeriformes Sittidae Sitta leucopsis', 'Chordata Aves Apodiformes Trochilidae Amazilia luciae', 'Chordata Aves Passeriformes Muscicapidae Sholicola major', 'Chordata Amphibia Anura Pelodryadidae Ranoidea nudidigita', 'Chordata Aves Passeriformes Paridae Melaniparus fasciiventer', 'Chordata Aves Passeriformes Turdidae Zoothera mollissima', 'Chordata Aves Passeriformes Psophodidae Cinclosoma marginatum', 'Chordata Aves Passeriformes Chloropseidae Chloropsis flavipennis', 'Chordata Aves Passeriformes Rhipiduridae Rhipidura kubaryi', 'Chordata Aves Passeriformes Passeridae Passer insularis', 'Chordata Aves Psittaciformes Psittacidae Amazona versicolor', 'Chordata Aves Passeriformes Thamnophilidae Myrmelastes caurensis', 'Chordata Aves Falconiformes Falconidae Falco cherrug', 'Chordata Aves Columbiformes Columbidae Ducula luctuosa', 'Chordata Aves Passeriformes Pachycephalidae Pachycephala lorentzi', 'Chordata Aves Accipitriformes Accipitridae Circus cinereus', 'Chordata Aves Charadriiformes Charadriidae Vanellus tricolor', 'Chordata Aves Passeriformes Meliphagidae Myzomela cineracea', 'Chordata Aves Passeriformes Nectariniidae Cinnyris johannae', 'Arthropoda Insecta Orthoptera Gryllidae Gryllus cohni', 'Chordata Aves Piciformes Picidae Dryocopus schulzii', 'Chordata Aves Anseriformes Anatidae Anas penelope', 'Chordata Aves Passeriformes Nectariniidae Aethopyga shelleyi', 'Chordata Aves Passeriformes Grallariidae Myrmothera fulviventris', 'Arthropoda Insecta Hemiptera Cicadidae Psaltoda adonis', ]
+  max_duration: 10
+
+- name: unseen-species-common-species
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/unseen-species-species-common-classification/v1.32/test_species.jsonl
+  labels: ["Abyssinian Waxbill", "African Green Toad", "African Olive Pigeon", "African Wolf", "Agile Frog", "Alpine Thrush", "Amazonian Inezia", "Andaman Nightjar", "Angolan Reed Frog", "Ashy Myzomela", "Australian Pied Cormorant", "Ayeyarwady Bulbul", "Banded Lapwing", "Bannerman's Sunbird", "Baudo Oropendola", "Bennett's Woodpecker", "Bermuda beach cricket", "Biak Leaf Warbler", "Biak White-eye", "Black-and-orange Flycatcher", "Black-and-tawny Seedeater", "Black-bibbed Tit", "Black-bodied Woodpecker", "Black-eared Miner", "Black-fronted Tern", "Black-horned Tree Cricket", "Black-tailed Treecreeper", "Black-vented Shearwater", "Black-winged Monarch", "Blue Mountain Vireo", "Blue-billed Black Tyrant", "Blue-cheeked Amazon", "Blue-moustached Bee-eater", "Blue-tailed Hummingbird", "Bradfield's Swift", "Broad-palmed Frog", "Brown-backed Whistler", "Buff-bellied Tanager", "Burrowing Coqui", "Cape Teal", "Caribbean Martin", "Cassin's 13-Year Cicada", "Caura Antbird", "Chatham Oystercatcher", "Chestnut-collared Swallow", "Chinese Shortwing", "Christmas Boobook", "Cinereous Harrier", "Cobija Tree Frog", "Comoros Olive Pigeon", "Creamy-bellied Antwren", "Crested Black Tyrant", "Crowned Slaty Flycatcher", "Cuzco Warbler", "Dark-winged Canastero", "Delta Amacuro Softtail", "Dwarf Bittern", "Eastern Buzzard", "Eurasian Wigeon", "Fast-calling tree cricket", "Fire-tailed Sunbird", "Flesh-footed Shearwater", "Forest Buzzard", "Forest Demon", "Fulvous-headed Tanager", "Furtive Flycatcher", "Gillett's Lark", "Green and Golden Bell Frog", "Grey Cuckooshrike", "Grey-breasted Parakeet", "Grey-capped Hemispingus", "Grey-faced Tit-Babbler", "Grey-fronted Green Pigeon", "Guadeloupe Woodpecker", "Half-collared Kingfisher", "Harwood's Spurfowl", "Hauraki Little Shearwater", "Heuglin's Masked Weaver", "Heuglin's Spurfowl", "Hill Pigeon", "Hill Swallow", "Honduran Emerald", "Indian Black-lored Tit", "Indian Nuthatch", "Irregular-trilling field cricket", "Ivory-backed Woodswallow", "Johanna's Sunbird", "Katanga Masked Weaver", "Key West Quail-Dove", "Kosrae White-eye", "Kurdish Wheatear", "Lilac-tailed Parrotlet", "Little Shearwater", "Long-spurred Meadow Katydid", "Long-tailed Starling", "Long-winged Harrier", "Lorentz's Whistler", "Lovely Sunbird", "Madagascar Rail", "Madagascar Sandgrouse", "Maghreb Magpie", "Mamberamo Shrikethrush", "Manus Fantail", "Manus Monarch", "Masked Saltator", "Mauritius Olive White-eye", "Mayotte Scops Owl", "Merida Brushfinch", "Meyer's Friarbird", "Minute Hermit", "Mountain Plover", "Mountain Tree Frog", "Mourning Wheatear", "Moustached Woodcreeper", "Nicaraguan Grackle", "Nilgiri Blue Robin", "Olive Ibis", "Pacific Robin", "Pale Spiderhunter", "Pallas's Rosefinch", "Papuan Black Myzomela", "Parrot-billed Sparrow", "Pectoral-patch Cisticola", "Philippine Leafbird", "Pied Heron", "Pied Thrush", "Pine Barrens Treefrog", "Pink-throated Brilliant", "Plain-backed Sunbird", "Plain-pouched Hornbill", "Pohnpei Fantail", "Pygmy Cuckooshrike", "Pygmy Flowerpecker", "Red-faced Barbet", "Red-headed Lovebird", "Red-necked Avocet", "Red-throated Tit", "Rennell Whistler", "Rio Bahu White-lipped Frog", "Rio Negro Gnatcatcher", "Rocky Mountain Cicada", "Roraiman Antwren", "Rufous-webbed Brilliant", "Rusty-flanked Treecreeper", "Saker Falcon", "Salvadori's Nightjar", "Sanborn's Tree Frog", "Sao Tome Fiscal", "Scaled Metaltail", "Sclater's Whistler", "Semicollared Hawk", "Serendib Scops Owl", "Short-tailed Pipit", "Silver-tipped Imperial Pigeon", "Slender-billed Weaver", "Socotra Sparrow", "Socotra Sunbird", "Sokoke Pipit", "Solomons Robin", "Sombre Rock Chat", "Sooty Falcon", "Sooty Shearwater", "Sooty-capped Puffbird", "Southern Leaf Green Tree Frog", "Sperm Whale", "Spot-winged Rosefinch", "Sri Lanka Drongo", "St. Lucia Amazon", "St. Lucia Parrot", "Strange Weaver", "Streak-backed Antshrike", "Stripe-breasted Tit", "Sumatran Woodpecker", "Sumba Brown Flycatcher", "Tacarcuna Wood Quail", "Taczanowski's Tinamou", "Tepui Toucanet", "Thick-billed Saltator", "Three-banded Rosefinch", "Three-striped Hemispingus", "Tocuyo Sparrow", "Todd's Sirystes", "Tsavo Sunbird", "Tyler's Tree Frog", "Variable Reed Frog", "Vella Lavella White-eye", "Western Gerygone", "Western Quail-thrush", "Western Tree Cricket", "White-bellied Piculet", "White-breasted Whistler", "White-cheeked Nuthatch", "White-collared Monarch", "White-fronted Wattle-eye", "White-lored Antpitta", "White-tipped Grasshopper", "White-winged Apalis", "Wreathed Hornbill", "Yellow-breasted Barbet", "Yellow-eared Bulbul", "Yellow-rumped Mannikin", "Yellow-spotted Reed Frog"]
+  max_duration: 10
+
+- name: unseen-genus-sci-species
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/unseen-species-species-sci-classification/v1.32/test_genus.jsonl
+  labels: ['Eugerygone rubra', 'Cyrtoxipha columbiana', 'Leucocarbo verrucosus', 'Jacamaralcyon tridactyla', 'Gymnophaps solomonensis', 'Aglaeactis pamela', 'Uperoleia rugosa', 'Aphelocephala nigricincta', 'Afrixalus sylvaticus', 'Leucocarbo chalconotus', 'Speothos venaticus', 'Speculanas specularis', 'Meconema meridionale', 'Urocitellus columbianus', 'Tympanistalna gastrica', 'Neopsephotus bourkii', 'Vini ultramarina', 'Urocitellus beldingi', 'Tylas eduardi', 'Uperoleia laevigata', 'Leucocarbo onslowi', 'Rhodothraupis celaeno', 'Stipiturus malachurus', 'Vini stepheni', 'Heterocercus linteatus', 'Urocitellus richardsonii', 'Afrixalus fornasini', 'Falcipennis falcipennis', 'Procarduelis nipalensis', 'Afrixalus wittei', 'Aiolopus strepens', 'Pseudochorthippus curtipennis', 'Cacomantis leucolophus', 'Aphelocephala pectoralis', 'Vini kuhlii', 'Astrapia splendidissima', 'Oreomystis bairdi', 'Heterocercus flavivertex', 'Stipiturus ruficeps', 'Eurostopodus argus', 'Hymenops perspicillatus', 'Rhodostethia rosea', 'Enodes erythrophris', 'Lesbia victoriae', 'Rhinocrypta lanceolata', 'Drepanorhynchus reichenowi', 'Cryptotympana facialis', 'Eurostopodus mystacalis', 'Afrixalus delicatus', 'Afrixalus morerei', 'Aglaeactis castelnaudii', 'Rhopophilus pekinensis', 'Leucocarbo carunculatus', 'Urocitellus elegans', 'Cyrtoxipha gundlachi', 'Aratinga nenday', 'Catharopeza bishopi', 'Lesbia nuna', 'Pachycoccyx audeberti', 'Astrapia stephaniae', 'Afrixalus aureus', 'Heterocercus aurantiivertex', 'Afrixalus quadrivittatus', 'Vini peruviana', 'Afrixalus crotalus', 'Ptychoramphus aleuticus', 'Nemobius sylvestris', 'Leucocarbo colensoi', 'Cacicus latirostris', 'Urocitellus undulatus', 'Leucocarbo atriceps', 'Amazonetta brasiliensis', 'Astrapia nigra', 'Pseudochorthippus parallelus', 'Leucocarbo bransfieldensis', 'Astrapia mayeri', 'Stipiturus mallee', 'Cryptosylvicola randrianasoloi', 'Aglaeactis aliciae', 'Rhopophilus albosuperciliaris', 'Gymnophaps albertisii', 'Aglaeactis cupripennis', 'Goldmania violiceps', 'Astrapia rothschildi', 'Meconema thalassinum', 'Eurostopodus diabolicus', 'Afrixalus fulvovittatus', 'Vini australis', 'Aphelocephala leucopsis', 'Doliornis remseni', 'Pachycare flavogriseum', 'Taeniopygia guttata', 'Stizoptera bichenovii', 'Chalcorana chalconota', 'Eurostopodus papuensis', 'Afrixalus stuhlmanni', 'Probosciger aterrimus', 'Doliornis sclateri', 'Afrixalus brachycnemis', 'Afrixalus knysnae', 'Urocitellus armatus']
+  max_duration: 10
+
+- name: unseen-genus-common-species
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/unseen-species-species-common-classification/v1.32/test_genus.jsonl
+  labels: ["Akikiki", "Antarctic Shag", "Arfak Astrapia", "Auckland Shag", "Band-tailed Cacique", "Band-tailed Oropendola", "Banded Banana Frog", "Banded Whiteface", "Bay-vented Cotinga", "Beijing Babbler", "Belding's Ground Squirrel", "Black Giant Cicada", "Black-hooded Sunbeam", "Black-tailed Trainbearer", "Blue Lorikeet", "Blue-crowned Lorikeet", "Bourke's Parrot", "Bow-winged Grasshopper", "Brazilian Teal", "Broad Green-winged Grasshopper", "Bronze-winged Duck", "Bush Dog", "Cassin's Auklet", "Chatham Shag", "Chestnut-bellied Cotinga", "Chestnut-breasted Whiteface", "Columbian Ground Squirrel", "Columbian Trig", "Crested Gallito", "Crimson-collared Grosbeak", "Cryptic Warbler", "Dark-breasted Rosefinch", "De Witte's Spiny Reed Frog", "Delicate Spiny Reed Frog", "Double-barred Finch", "Fiery-browed Starling", "Fish Crow", "Flame-crested Manakin", "Forest Banana Frog", "Fornasini's Spiny Reed Frog", "Four-lined Spiny Reed Frog", "Garnet Robin", "Golden Dwarf Reed Frog", "Golden-winged Sunbird", "Goldenface", "Green-tailed Trainbearer", "Gundlach's trig", "Huon Astrapia", "Imperial Shag", "Java White-lipped Frog", "Kerguelen Shag", "Knysna Spiny Reed Frog", "Kuhl's Lorikeet", "Long-tailed Ground Squirrel", "Mallee Emu-wren", "Marsh meadow grasshopper", "Meadow Grasshopper", "Morere's Spiny Reed Frog", "Nanday Parakeet", "New Zealand King Shag", "Oak Bush-cricket", "Orange-crested Manakin", "Otago Shag", "Pale Mountain Pigeon", "Palm Cockatoo", "Papuan Mountain Pigeon", "Papuan Nightjar", "Princess Stephanie's Astrapia", "Purple-backed Sunbeam", "Red-bellied cicada", "Ribbon-tailed Astrapia", "Richardson's Ground Squirrel", "Ross's Gull", "Rufous-crowned Emu-wren", "Satanic Nightjar", "Shining Sunbeam", "Short-legged Spiny Reed Frog", "Siberian Grouse", "Smooth Toadlet", "Southern Emu-wren", "Southern Emuwren", "Southern Oak Bush-Cricket", "Southern Whiteface", "Spectacled Tyrant", "Splendid Astrapia", "Spotted Nightjar", "Stephen's Lorikeet", "Stuhlmann's Spiny Reed Frog", "Tarim Babbler", "Thick-billed Cuckoo", "Three-toed Jacamar", "Tylas Vanga", "Uinta Ground Squirrel", "Ultramarine Lorikeet", "Violet-capped Hummingbird", "Whistling Warbler", "White-crowned Cuckoo", "White-throated Nightjar", "White-tufted Sunbeam", "Wood Cricket", "Wrinkled Toadlet", "Wyoming Ground Squirrel", "Yellow-crested Manakin", "Zebra Finch", "Zimbabwe Banana Frog"]
+  max_duration: 10
+
+
+- name: unseen-genus-taxonomic-species
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/unseen-species-taxonomic-classification/v1.32/test_genus.jsonl
+  labels: ['Chordata Amphibia Anura Hyperoliidae Afrixalus stuhlmanni', 'Chordata Aves Passeriformes Cotingidae Doliornis sclateri', 'Chordata Mammalia Rodentia Sciuridae Urocitellus undulatus', 'Chordata Aves Suliformes Phalacrocoracidae Leucocarbo onslowi', 'Chordata Amphibia Anura Hyperoliidae Afrixalus brachycnemis', 'Chordata Aves Passeriformes Paradisaeidae Astrapia splendidissima', 'Chordata Aves Cuculiformes Cuculidae Cacomantis leucolophus', 'Arthropoda Insecta Orthoptera Acrididae Aiolopus strepens', 'Chordata Aves Passeriformes Acanthizidae Aphelocephala leucopsis', 'Chordata Aves Passeriformes Estrildidae Stizoptera bichenovii', 'Chordata Aves Psittaciformes Psittacidae Vini ultramarina', 'Chordata Amphibia Anura Hyperoliidae Afrixalus aureus', 'Arthropoda Insecta Hemiptera Cicadidae Tympanistalna gastrica', 'Chordata Aves Apodiformes Trochilidae Aglaeactis castelnaudii', 'Chordata Aves Passeriformes Maluridae Stipiturus mallee', 'Chordata Aves Apodiformes Trochilidae Goldmania violiceps', 'Chordata Aves Passeriformes Pipridae Heterocercus aurantiivertex', 'Chordata Aves Anseriformes Anatidae Amazonetta brasiliensis', 'Chordata Aves Suliformes Phalacrocoracidae Leucocarbo bransfieldensis', 'Arthropoda Insecta Orthoptera Trigonidiidae Nemobius sylvestris', 'Chordata Aves Caprimulgiformes Caprimulgidae Eurostopodus argus', 'Chordata Amphibia Anura Hyperoliidae Afrixalus knysnae', 'Arthropoda Insecta Orthoptera Trigonidiidae Cyrtoxipha columbiana', 'Chordata Aves Passeriformes Pipridae Heterocercus flavivertex', 'Chordata Amphibia Anura Hyperoliidae Afrixalus delicatus', 'Chordata Aves Apodiformes Trochilidae Lesbia victoriae', 'Chordata Amphibia Anura Hyperoliidae Afrixalus wittei', 'Chordata Aves Psittaciformes Psittacidae Neopsephotus bourkii', 'Chordata Aves Caprimulgiformes Caprimulgidae Eurostopodus papuensis', 'Chordata Aves Passeriformes Tyrannidae Hymenops perspicillatus', 'Chordata Aves Passeriformes Sylviidae Rhopophilus pekinensis', 'Chordata Aves Anseriformes Anatidae Speculanas specularis', 'Chordata Amphibia Anura Hyperoliidae Afrixalus fornasini', 'Chordata Mammalia Rodentia Sciuridae Urocitellus beldingi', 'Chordata Aves Passeriformes Fringillidae Procarduelis nipalensis', 'Chordata Aves Passeriformes Cotingidae Doliornis remseni', 'Chordata Aves Caprimulgiformes Caprimulgidae Eurostopodus mystacalis', 'Arthropoda Insecta Orthoptera Acrididae Pseudochorthippus curtipennis', 'Chordata Mammalia Carnivora Canidae Speothos venaticus', 'Arthropoda Insecta Orthoptera Tettigoniidae Meconema meridionale', 'Chordata Aves Apodiformes Trochilidae Lesbia nuna', 'Arthropoda Insecta Orthoptera Acrididae Pseudochorthippus parallelus', 'Chordata Amphibia Anura Hyperoliidae Afrixalus morerei', 'Chordata Aves Passeriformes Petroicidae Eugerygone rubra', 'Chordata Amphibia Anura Hyperoliidae Afrixalus crotalus', 'Chordata Aves Psittaciformes Psittacidae Vini peruviana', 'Chordata Aves Passeriformes Paradisaeidae Astrapia stephaniae', 'Chordata Mammalia Rodentia Sciuridae Urocitellus columbianus', 'Arthropoda Insecta Orthoptera Trigonidiidae Cyrtoxipha gundlachi', 'Chordata Aves Passeriformes Rhinocryptidae Rhinocrypta lanceolata', 'Chordata Aves Passeriformes Fringillidae Oreomystis bairdi', 'Chordata Aves Passeriformes Maluridae Stipiturus malachurus', 'Chordata Aves Passeriformes Maluridae Stipiturus ruficeps', 'Chordata Aves Psittaciformes Psittacidae Probosciger aterrimus', 'Chordata Aves Charadriiformes Alcidae Ptychoramphus aleuticus', 'Chordata Aves Piciformes Galbulidae Jacamaralcyon tridactyla', 'Chordata Aves Psittaciformes Psittacidae Vini australis', 'Chordata Aves Passeriformes Pipridae Heterocercus linteatus', 'Chordata Aves Charadriiformes Laridae Rhodostethia rosea', 'Chordata Aves Apodiformes Trochilidae Aglaeactis aliciae', 'Chordata Aves Psittaciformes Psittacidae Aratinga nenday', 'Chordata Mammalia Rodentia Sciuridae Urocitellus armatus', 'Chordata Amphibia Anura Hyperoliidae Afrixalus fulvovittatus', 'Chordata Aves Suliformes Phalacrocoracidae Leucocarbo carunculatus', 'Chordata Aves Passeriformes Icteridae Cacicus latirostris', 'Chordata Aves Passeriformes Nectariniidae Drepanorhynchus reichenowi', 'Chordata Aves Passeriformes Acanthizidae Pachycare flavogriseum', 'Chordata Aves Suliformes Phalacrocoracidae Leucocarbo chalconotus', 'Chordata Amphibia Anura Myobatrachidae Uperoleia rugosa', 'Chordata Aves Passeriformes Paradisaeidae Astrapia nigra', 'Chordata Aves Cuculiformes Cuculidae Pachycoccyx audeberti', 'Chordata Aves Apodiformes Trochilidae Aglaeactis cupripennis', 'Arthropoda Insecta Hemiptera Cicadidae Cryptotympana facialis', 'Chordata Aves Caprimulgiformes Caprimulgidae Eurostopodus diabolicus', 'Chordata Aves Apodiformes Trochilidae Aglaeactis pamela', 'Chordata Amphibia Anura Ranidae Chalcorana chalconota', 'Chordata Aves Columbiformes Columbidae Gymnophaps albertisii', 'Chordata Aves Passeriformes Parulidae Catharopeza bishopi', 'Chordata Aves Passeriformes Sylviidae Rhopophilus albosuperciliaris', 'Chordata Aves Suliformes Phalacrocoracidae Leucocarbo verrucosus', 'Chordata Aves Passeriformes Vangidae Tylas eduardi', 'Chordata Aves Passeriformes Estrildidae Taeniopygia guttata', 'Chordata Aves Suliformes Phalacrocoracidae Leucocarbo atriceps', 'Chordata Aves Columbiformes Columbidae Gymnophaps solomonensis', 'Chordata Mammalia Rodentia Sciuridae Urocitellus richardsonii', 'Chordata Aves Passeriformes Sturnidae Enodes erythrophris', 'Chordata Aves Passeriformes Acanthizidae Aphelocephala nigricincta', 'Chordata Aves Galliformes Phasianidae Falcipennis falcipennis', 'Chordata Amphibia Anura Hyperoliidae Afrixalus quadrivittatus', 'Chordata Aves Passeriformes Bernieridae Cryptosylvicola randrianasoloi', 'Chordata Aves Psittaciformes Psittacidae Vini kuhlii', 'Chordata Amphibia Anura Hyperoliidae Afrixalus sylvaticus', 'Chordata Mammalia Rodentia Sciuridae Urocitellus elegans', 'Chordata Aves Passeriformes Cardinalidae Rhodothraupis celaeno', 'Chordata Aves Passeriformes Paradisaeidae Astrapia mayeri', 'Arthropoda Insecta Orthoptera Tettigoniidae Meconema thalassinum', 'Chordata Aves Passeriformes Paradisaeidae Astrapia rothschildi', 'Chordata Amphibia Anura Myobatrachidae Uperoleia laevigata', 'Chordata Aves Passeriformes Acanthizidae Aphelocephala pectoralis', 'Chordata Aves Psittaciformes Psittacidae Vini stepheni', 'Chordata Aves Suliformes Phalacrocoracidae Leucocarbo colensoi']
+  max_duration: 10
+
+- name: unseen-family-sci-species
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/unseen-species-species-sci-classification/v1.32/test_family.jsonl
+  labels: ['Cyphoderris monstrosa', 'Alytes cisternasii', 'Calyptophilus tertius', 'Neophocaena phocaenoides', 'Hoplobatrachus chinensis', 'Cyphoderris buckelli', 'Babyrousa babyrussa', 'Occidozyga martensii', 'Castor canadensis', 'Sus barbatus', 'Pelecanoides georgicus', 'Sus scrofa', 'Alytes muletensis', 'Quasipaa exilispinosa', 'Elachura formosa', 'Hoplobatrachus occipitalis', 'Spalacopus cyanus', 'Pelecanoides urinatrix', 'Occidozyga lima', 'Euphlyctis cyanophlyctis', 'Alytes obstetricans', 'Potamochoerus porcus', 'Phocoenoides dalli', 'Phocoena phocoena', 'Castor fiber', 'Fejervarya cancrivora', 'Occidozyga sumatrana', 'Octodon degus', 'Minervarya rufescens', 'Hylochoerus meinertzhageni', 'Minervarya nepalensis', 'Fejervarya multistriata', 'Fejervarya limnocharis', 'Sphaerotheca rolandae', 'Calyptophilus frugivorus', 'Minervarya agricola']
+  max_duration: 10
+
+- name: unseen-family-common-species
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/unseen-species-species-common-classification/v1.32/test_family.jsonl
+  labels: ['Nepal Wart Frog', 'Lesser Spiny Frog', 'Malabar Wart Frog', 'Wild Boar', 'South Georgia Diving Petrel', 'Green Puddle Frog', 'Midwife toad', 'Common Midwife Toad', 'Crowned bullfrog', 'Babiroussa des Moluques', 'Catalonian Midwife Toad', 'Pinselohrschwein', 'Finless Porpoise', 'Common Degu', 'Iberian Midwife Toad', 'Paddy Field Frog', 'Great Grig', 'Coruro', 'Spotted Elachura', 'Tasman Common Diving-Petrel', 'Eastern Chat-Tanager', 'Hong Kong Rice-paddy Frog', 'East Asian Bullfrog', 'Sumatran Puddle Frog', 'Western Chat-Tanager', 'Common skittering frog', 'Round-tongued Floating Frog', 'Eurasian Wild Pig', 'Bartschwein', 'Forest Hog', 'Harbor Porpoise', 'Common Diving Petrel', 'Crab-eating Frog', 'American Beaver', 'Marbled Sand Frog', 'Eurasian Beaver', 'Common Indian Cricket Frog', "Dall's Porpoise", "Buckell's Grig", 'Mallorcan Midwife Toad']
+  max_duration: 10
+
+
+- name: unseen-family-taxonomic-species
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/unseen-species-taxonomic-classification/v1.32/test_family.jsonl
+  labels: ['Chordata Amphibia Anura Dicroglossidae Occidozyga sumatrana', 'Chordata Mammalia Cetacea Phocoenidae Phocoenoides dalli', 'Chordata Amphibia Anura Dicroglossidae Occidozyga lima', 'Chordata Amphibia Anura Dicroglossidae Hoplobatrachus chinensis', 'Chordata Amphibia Anura Dicroglossidae Minervarya agricola', 'Chordata Amphibia Anura Dicroglossidae Sphaerotheca rolandae', 'Chordata Amphibia Anura Dicroglossidae Fejervarya cancrivora', 'Chordata Mammalia Artiodactyla Suidae Potamochoerus porcus', 'Chordata Mammalia Cetacea Phocoenidae Phocoena phocoena', 'Chordata Mammalia Cetacea Phocoenidae Neophocaena phocaenoides', 'Chordata Aves Procellariiformes Pelecanoididae Pelecanoides georgicus', 'Arthropoda Insecta Orthoptera Prophalangopsidae Cyphoderris buckelli', 'Chordata Amphibia Anura Alytidae Alytes obstetricans', 'Chordata Amphibia Anura Dicroglossidae Fejervarya limnocharis', 'Chordata Mammalia Rodentia Octodontidae Spalacopus cyanus', 'Chordata Amphibia Anura Dicroglossidae Minervarya nepalensis', 'Chordata Amphibia Anura Dicroglossidae Quasipaa exilispinosa', 'Arthropoda Insecta Orthoptera Prophalangopsidae Cyphoderris monstrosa', 'Chordata Aves Passeriformes Calyptophilidae Calyptophilus frugivorus', 'Chordata Mammalia Artiodactyla Suidae Sus scrofa', 'Chordata Mammalia Artiodactyla Suidae Hylochoerus meinertzhageni', 'Chordata Amphibia Anura Dicroglossidae Minervarya rufescens', 'Chordata Amphibia Anura Dicroglossidae Fejervarya multistriata', 'Chordata Mammalia Rodentia Octodontidae Octodon degus', 'Chordata Amphibia Anura Dicroglossidae Occidozyga martensii', 'Chordata Amphibia Anura Dicroglossidae Euphlyctis cyanophlyctis', 'Chordata Aves Procellariiformes Pelecanoididae Pelecanoides urinatrix', 'Chordata Amphibia Anura Alytidae Alytes muletensis', 'Chordata Aves Passeriformes Calyptophilidae Calyptophilus tertius', 'Chordata Mammalia Artiodactyla Suidae Babyrousa babyrussa', 'Chordata Mammalia Rodentia Castoridae Castor fiber', 'Chordata Amphibia Anura Dicroglossidae Hoplobatrachus occipitalis', 'Chordata Mammalia Artiodactyla Suidae Sus barbatus', 'Chordata Mammalia Rodentia Castoridae Castor canadensis', 'Chordata Amphibia Anura Alytidae Alytes cisternasii', 'Chordata Aves Passeriformes Elachuridae Elachura formosa']
+  max_duration: 10
+
+  #-------- UNSEEN BALANCED --------
+
+- name: unseen-species-taxonomic-species-balanced
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/unseen-species-taxonomic-classification/v1.32/test_species_36labels.jsonl
+  labels: ["Chordata Aves Passeriformes Tyrannidae Inezia subflava", "Chordata Aves Passeriformes Meliphagidae Philemon meyeri", "Chordata Aves Passeriformes Petroicidae Petroica pusilla", "Chordata Aves Columbiformes Columbidae Columba arquatrix", "Chordata Aves Falconiformes Falconidae Falco concolor", "Chordata Aves Passeriformes Thraupidae Saltator cinctus", "Chordata Aves Passeriformes Thraupidae Saltator maxillosus", "Chordata Aves Passeriformes Petroicidae Petroica polymorpha", "Chordata Aves Passeriformes Thraupidae Thlypopsis inornata", "Chordata Aves Passeriformes Furnariidae Asthenes arequipae", "Chordata Aves Passeriformes Nectariniidae Aethopyga ignicauda", "Chordata Aves Passeriformes Motacillidae Anthus sokokensis", "Chordata Aves Passeriformes Cisticolidae Cisticola brunnescens", "Chordata Aves Passeriformes Thamnophilidae Herpsilochmus motacilloides", "Chordata Aves Passeriformes Paridae Machlolophus aplonotus", "Chordata Aves Passeriformes Nectariniidae Anthreptes reichenowi", "Chordata Aves Passeriformes Parulidae Myiothlypis chrysogaster", "Chordata Aves Passeriformes Corvidae Pica mauritanica", "Chordata Aves Passeriformes Timaliidae Mixornis kelleyi", "Chordata Aves Psittaciformes Psittacidae Touit batavicus", "Chordata Aves Bucerotiformes Bucerotidae Rhyticeros undulatus", "Chordata Aves Passeriformes Hirundinidae Petrochelidon rufocollaris", "Chordata Aves Passeriformes Sittidae Sitta castanea", "Chordata Aves Columbiformes Columbidae Treron affinis", "Chordata Aves Passeriformes Thamnophilidae Herpsilochmus roraimae", "Chordata Aves Passeriformes Acanthizidae Gerygone fusca", "Chordata Aves Coraciiformes Alcedinidae Alcedo semitorquata", "Chordata Aves Passeriformes Paridae Melaniparus fringillinus", "Chordata Aves Passeriformes Climacteridae Climacteris melanurus", "Chordata Amphibia Anura Pelodryadidae Ranoidea nudidigita", "Chordata Aves Passeriformes Tyrannidae Sirystes subcanescens", "Chordata Aves Passeriformes Pachycephalidae Pachycephala lanioides", "Chordata Aves Accipitriformes Accipitridae Circus buffoni", "Chordata Aves Passeriformes Campephagidae Ceblepyris caesius", "Chordata Aves Passeriformes Passerellidae Arremonops tocuyensis", "Chordata Aves Procellariiformes Procellariidae Ardenna carneipes"]
+  max_duration: 10
+
+- name: unseen-genus-taxonomic-species-balanced
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/unseen-species-taxonomic-classification/v1.32/test_genus_36labels.jsonl
+  labels: ["Chordata Aves Anseriformes Anatidae Amazonetta brasiliensis", "Arthropoda Insecta Orthoptera Acrididae Pseudochorthippus parallelus", "Chordata Aves Psittaciformes Psittacidae Aratinga nenday", "Chordata Aves Passeriformes Rhinocryptidae Rhinocrypta lanceolata", "Chordata Aves Passeriformes Pipridae Heterocercus aurantiivertex", "Chordata Aves Apodiformes Trochilidae Lesbia victoriae", "Arthropoda Insecta Hemiptera Cicadidae Cryptotympana facialis", "Chordata Aves Piciformes Galbulidae Jacamaralcyon tridactyla", "Chordata Aves Psittaciformes Psittacidae Probosciger aterrimus", "Chordata Aves Passeriformes Sylviidae Rhopophilus pekinensis", "Chordata Aves Passeriformes Maluridae Stipiturus malachurus", "Chordata Aves Passeriformes Estrildidae Stizoptera bichenovii", "Chordata Aves Cuculiformes Cuculidae Cacomantis leucolophus", "Chordata Aves Passeriformes Acanthizidae Aphelocephala leucopsis", "Chordata Aves Passeriformes Vangidae Tylas eduardi", "Chordata Aves Apodiformes Trochilidae Lesbia nuna", "Chordata Aves Passeriformes Tyrannidae Hymenops perspicillatus", "Chordata Aves Charadriiformes Laridae Rhodostethia rosea", "Arthropoda Insecta Orthoptera Trigonidiidae Nemobius sylvestris", "Chordata Aves Passeriformes Fringillidae Procarduelis nipalensis", "Chordata Aves Passeriformes Cardinalidae Rhodothraupis celaeno", "Chordata Aves Psittaciformes Psittacidae Neopsephotus bourkii", "Chordata Aves Apodiformes Trochilidae Aglaeactis pamela", "Chordata Aves Passeriformes Acanthizidae Pachycare flavogriseum", "Chordata Aves Caprimulgiformes Caprimulgidae Eurostopodus mystacalis", "Chordata Aves Passeriformes Bernieridae Cryptosylvicola randrianasoloi", "Chordata Aves Passeriformes Pipridae Heterocercus linteatus", "Chordata Aves Passeriformes Nectariniidae Drepanorhynchus reichenowi", "Chordata Aves Passeriformes Cotingidae Doliornis sclateri", "Chordata Aves Passeriformes Sylviidae Rhopophilus albosuperciliaris", "Chordata Aves Passeriformes Pipridae Heterocercus flavivertex", "Arthropoda Insecta Hemiptera Cicadidae Tympanistalna gastrica", "Chordata Aves Caprimulgiformes Caprimulgidae Eurostopodus argus", "Chordata Aves Psittaciformes Psittacidae Vini peruviana", "Chordata Aves Passeriformes Petroicidae Eugerygone rubra", "Chordata Aves Apodiformes Trochilidae Aglaeactis cupripennis"]
+  max_duration: 10
+
+- name: unseen-family-taxonomic-species-balanced
+  type: classification
+  num_labels: 89
+  unknown_label: "other"
+  sample_rate: 16000
+  window_width: 10
+  window_shift: 5
+  llm_data: data/unseen-species-taxonomic-classification/v1.32/test_family_36labels.jsonl
+  labels: ["Chordata Aves Passeriformes Elachuridae Elachura formosa", "Chordata Mammalia Cetacea Phocoenidae Phocoenoides dalli", "Chordata Amphibia Anura Alytidae Alytes obstetricans", "Chordata Mammalia Cetacea Phocoenidae Phocoena phocoena", "Chordata Amphibia Anura Dicroglossidae Fejervarya limnocharis", "Chordata Mammalia Artiodactyla Suidae Hylochoerus meinertzhageni", "Chordata Mammalia Artiodactyla Suidae Sus scrofa", "Chordata Mammalia Rodentia Castoridae Castor canadensis", "Arthropoda Insecta Orthoptera Prophalangopsidae Cyphoderris monstrosa", "Chordata Mammalia Artiodactyla Suidae Potamochoerus porcus", "Chordata Amphibia Anura Dicroglossidae Hoplobatrachus chinensis", "Chordata Mammalia Artiodactyla Suidae Sus barbatus", "Chordata Mammalia Artiodactyla Suidae Babyrousa babyrussa", "Chordata Aves Passeriformes Calyptophilidae Calyptophilus tertius", "Chordata Aves Passeriformes Calyptophilidae Calyptophilus frugivorus", "Chordata Aves Procellariiformes Pelecanoididae Pelecanoides urinatrix", "Chordata Amphibia Anura Alytidae Alytes cisternasii", "Chordata Amphibia Anura Dicroglossidae Fejervarya multistriata", "Chordata Amphibia Anura Dicroglossidae Occidozyga lima", "Chordata Mammalia Rodentia Castoridae Castor fiber", "Chordata Amphibia Anura Dicroglossidae Fejervarya cancrivora", "Arthropoda Insecta Orthoptera Prophalangopsidae Cyphoderris buckelli", "Chordata Mammalia Cetacea Phocoenidae Neophocaena phocaenoides", "Chordata Amphibia Anura Dicroglossidae Occidozyga martensii", "Chordata Amphibia Anura Dicroglossidae Hoplobatrachus occipitalis", "Chordata Mammalia Rodentia Octodontidae Octodon degus", "Chordata Amphibia Anura Dicroglossidae Minervarya nepalensis", "Chordata Amphibia Anura Dicroglossidae Euphlyctis cyanophlyctis", "Chordata Aves Procellariiformes Pelecanoididae Pelecanoides georgicus", "Chordata Amphibia Anura Dicroglossidae Minervarya rufescens", "Chordata Amphibia Anura Dicroglossidae Quasipaa exilispinosa", "Chordata Amphibia Anura Dicroglossidae Sphaerotheca rolandae", "Chordata Mammalia Rodentia Octodontidae Spalacopus cyanus", "Chordata Amphibia Anura Alytidae Alytes muletensis", "Chordata Amphibia Anura Dicroglossidae Minervarya agricola", "Chordata Amphibia Anura Dicroglossidae Occidozyga sumatrana"]
+  max_duration: 10
+
+# - name: unseen-class-sci-species
+#   type: classification
+#   num_labels: 89
+#   unknown_label: "other"
+#   sample_rate: 16000
+#   window_width: 10
+#   window_shift: 5
+#   llm_data: data/unseen-species-species-sci-classification/v1.32/test_class.jsonl
+#   labels: ['Gehyra mutilata', 'Ptyodactylus guttatus', 'Hemidactylus frenatus', 'Mecistops leptorhynchus', 'Crotalus oreganus', 'Alligator mississippiensis', 'Gladicosa gulosa', 'Gekko gecko', 'Thamnophis sirtalis', 'Natrix natrix', 'Pantherophis obsoletus', 'Varanus griseus', 'Gekko smithii', 'Chelonoidis niger', 'Crotalus polystictus', 'Cyrtodactylus deccanensis', 'Crotalus cerastes', 'Ptenopus garrulus', 'Crotalus viridis', 'Sistrurus catenatus', 'Crotalus horridus', 'Mediodactylus kotschyi', 'Platycryptus undatus', 'Crotalus ornatus', 'Elaphe sauromates', 'Crotalus molossus', 'Gekko reevesii', 'Crotalus ruber', 'Malpolon monspessulanus', 'Crotalus atrox', 'Pituophis catenifer', 'Crotalus pyrrhus']
+#   max_duration: 10
+
+# - name: unseen-class-common-species
+#   type: classification
+#   num_labels: 89
+#   unknown_label: "other"
+#   sample_rate: 16000
+#   window_width: 10
+#   window_shift: 5
+#   llm_data: data/unseen-species-species-common-classification/v1.32/test_class.jsonl
+#   labels: ['Deccan Ground Gecko', 'Gopher Snake', 'Asian House Gecko', 'East-Four-lined Ratsnake', 'Western Ratsnake', 'Large Forest Gecko', 'Great Basin Rattlesnake', 'Western Santa Cruz Giant Tortoise', 'Sonoran Gopher Snake', 'Southwestern Speckled Rattlesnake', 'Drumming Sword Wolf Spider', 'grass snake', 'Prairie Rattlesnake', 'Mexican Black-tailed Rattlesnake', "Reeves' Tokay Gecko", 'Southern Pacific Rattlesnake', 'Western Montpellier Snake', 'American Alligator', 'Maritime Garter Snake', 'Northern Pacific Rattlesnake', 'Timber Rattlesnake', 'Sinai Fan-fingered Gecko', 'Spotted Barking Gecko', 'Eastern Black-tailed Rattlesnake', 'Common Barking Gecko', 'Mexican Lancehead Rattlesnake', 'Western Diamond-backed Rattlesnake', 'Northern Black-tailed Rattlesnake', 'Red Diamond Rattlesnake', 'Tokay Gecko', 'Grey Monitor', 'Tan Jumping Spider', 'Common Four-clawed Gecko', 'Central African slender-snouted crocodile', "Kotschy's Gecko", 'Sidewinder', 'Massasauga']
+#   max_duration: 10
+
+# - name: unseen-class-taxonomic-species
+#   type: classification
+#   num_labels: 89
+#   unknown_label: "other"
+#   sample_rate: 16000
+#   window_width: 10
+#   window_shift: 5
+#   llm_data: data/unseen-species-taxonomic-classification/v1.32/test_class.jsonl
+#   labels: ['Arthropoda Arachnida Araneae Salticidae Platycryptus undatus', 'Arthropoda Arachnida Araneae Lycosidae Gladicosa gulosa']
+#   max_duration: 10
+
+# - name: unseen-class-common-species
+#   type: classification  
+#   num_labels: 89
+#   unknown_label: "other"
+#   sample_rate: 16000
+#   window_width: 10
+#   window_shift: 5
+#   llm_data: data/unseen-species-species-sci-classification/v1/test.jsonl
+#   labels: ['Timber Rattlesnake', 'Western Ratsnake', 'Reeves' Tokay Gecko', 'Mourning Gecko', 'Tan Jumping Spider', 'Gray Ratsnake', 'Khorat Blind Snake', 'Western Montpellier Snake', 'Northern Pacific Rattlesnake', 'Large Forest Gecko', 'Asian House Gecko', 'Sinai Fan-fingered Gecko', 'Common Four-clawed Gecko', 'Kotschy's Gecko', 'Tokay Gecko', 'Spotted Barking Gecko', 'Western Santa Cruz Giant Tortoise', 'Sidewinder', 'Deccan Ground Gecko', 'Red Diamond Rattlesnake', 'Central African slender-snouted crocodile', 'East-Four-lined Ratsnake', 'Grey Monitor', 'Drumming Sword Wolf Spider', 'Southwestern Speckled Rattlesnake', 'Gopher Snake', 'Mexican Lancehead Rattlesnake', 'Eastern Black-tailed Rattlesnake', 'Common Barking Gecko', 'Massasauga', 'Sonoran Gopher Snake', 'Puff Adder', 'Prairie Rattlesnake', 'Northern Black-tailed Rattlesnake', 'American Alligator', 'Great Basin Rattlesnake', 'Western Diamond-backed Rattlesnake', 'Mexican Black-tailed Rattlesnake', 'Southern Pacific Rattlesnake', 'Fragile Thick-toed gecko', 'Indian Golden Gecko', 'Maritime Garter Snake', 'Asp Viper', 'grass snake']
+#   max_duration: 10
+
+# - name: unseen-class-sci-species
+#   type: classification
+#   num_labels: 89
+#   unknown_label: "other"
+#   sample_rate: 16000
+#   window_width: 10
+#   window_shift: 5
+#   llm_data: data/unseen-species-species-sci-classification/v1/test.jsonl
+#   labels: ['Timber Rattlesnake', 'Western Ratsnake', 'Reeves' Tokay Gecko', 'Mourning Gecko', 'Tan Jumping Spider', 'Gray Ratsnake', 'Khorat Blind Snake', 'Western Montpellier Snake', 'Northern Pacific Rattlesnake', 'Large Forest Gecko', 'Asian House Gecko', 'Sinai Fan-fingered Gecko', 'Common Four-clawed Gecko', 'Kotschy's Gecko', 'Tokay Gecko', 'Spotted Barking Gecko', 'Western Santa Cruz Giant Tortoise', 'Sidewinder', 'Deccan Ground Gecko', 'Red Diamond Rattlesnake', 'Central African slender-snouted crocodile', 'East-Four-lined Ratsnake', 'Grey Monitor', 'Drumming Sword Wolf Spider', 'Southwestern Speckled Rattlesnake', 'Gopher Snake', 'Mexican Lancehead Rattlesnake', 'Eastern Black-tailed Rattlesnake', 'Common Barking Gecko', 'Massasauga', 'Sonoran Gopher Snake', 'Puff Adder', 'Prairie Rattlesnake', 'Northern Black-tailed Rattlesnake', 'American Alligator', 'Great Basin Rattlesnake', 'Western Diamond-backed Rattlesnake', 'Mexican Black-tailed Rattlesnake', 'Southern Pacific Rattlesnake', 'Fragile Thick-toed gecko', 'Indian Golden Gecko', 'Maritime Garter Snake', 'Asp Viper', 'grass snake']
+#   max_duration: 10
+
+- name: red-teaming
+  type: captioning
+  sample_rate: 44100
+  max_duration: 5
+  llm_data: data/red-teaming/test.jsonl
