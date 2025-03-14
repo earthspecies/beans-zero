@@ -5,14 +5,15 @@ A zero-shot audio + text, bioacoustic benchmark dataset.
 
 ## Installation
 Create a virtual environment, we recommend "uv".
+```curl -LsSf https://astral.sh/uv/install.sh | sh```
 
-```pip install beans-zero```
+Install with pip.
+TODO
 
 ## From source
 
-Clone
-> ```git:```
+1. Clone this repo
 
-> ```cd beans-zero```
+2. ```cd beans-zero```
 
-> ```uv sync```
+3. ```uv sync```
