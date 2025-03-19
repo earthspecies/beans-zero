@@ -1,5 +1,6 @@
 import math
 import torch
+import numpy as np
 from pycocoevalcap.cider.cider import Cider
 from pycocoevalcap.spice.spice import Spice
 
@@ -22,19 +23,32 @@ class AveragePrecision:
         self.targets = torch.tensor(torch.LongStorage(), dtype=torch.int64, requires_grad=False)
         self.weights = torch.tensor(torch.FloatStorage(), dtype=torch.float32, requires_grad=False)
 
-    def update(self, output, target, weight=None):
+    def update(self, output: torch.Tensor, target: torch.Tensor, weight: torch.Tensor | None = None):
         """
-        Args:
-            output (Tensor): NxK tensor that for each of the N examples
-                indicates the probability of the example belonging to each of
-                the K classes, according to the model. The probabilities should
-                sum to one over all classes
-            target (Tensor): binary NxK tensor that encodes which of the K
-                classes are associated with the N-th input
-                    (eg: a row [0, 1, 0, 1] indicates that the example is
-                         associated with classes 2 and 4)
-            weight (optional, Tensor): Nx1 tensor representing the weight for
-                each example (each weight > 0)
+        Updates the meter with new data
+
+        Arguments
+        ---------
+        output: tensor
+            NxK tensor that for each of the N examples
+            indicates the probability of the example belonging to each of
+            the K classes, according to the model. The probabilities should
+            sum to one over all classes
+        target: tensor
+            binary NxK tensor that encodes which of the K classes are associated
+            with the N-th input (eg: a row [0, 1, 0, 1] indicates that the example is
+            associated with classes 2 and 4)
+        weight: tensor (optional)
+            Nx1 tensor representing the weight for each example (each weight > 0)
+
+        Examples
+        --------
+        >>> ap = AveragePrecision()
+        >>> output = torch.tensor([[0.1, 0.9], [0.9, 0.1]])
+        >>> target = torch.tensor([[0, 1], [1, 0]])
+        >>> ap.update(output, target)
+        >>> ap.get_metric()
+        tensor([1., 1.])
         """
         if not torch.is_tensor(output):
             output = torch.from_numpy(output)
@@ -42,8 +56,10 @@ class AveragePrecision:
             target = torch.from_numpy(target)
 
         if weight is not None:
-            if not torch.is_tensor(weight):
+            if isinstance(weight, np.ndarray):
                 weight = torch.from_numpy(weight)
+            elif isinstance(weight, list):
+                weight = torch.Tensor(weight)
             weight = weight.squeeze()
         if output.dim() == 1:
             output = output.view(-1, 1)
@@ -59,7 +75,6 @@ class AveragePrecision:
             assert weight.numel() == target.size(0), "Weight dimension 1 should be the same as that of target"
             assert torch.min(weight) >= 0, "Weight should be non-negative only"
 
-        # FIXME: why not force boolean dtype ?
         assert torch.equal(target**2, target), "targets should be binary (0 or 1)"
         if self.scores.numel() > 0:
             assert target.size(1) == self.targets.size(1), (
@@ -86,16 +101,19 @@ class AveragePrecision:
             self.weights.resize_(offset + weight.size(0))
             self.weights.narrow(0, offset, weight.size(0)).copy_(weight)
 
-    def get_metric(self):
+    def get_metric(self) -> torch.Tensor:
         """Returns the model's average precision for each class
-        Return:
-            ap (FloatTensor): 1xK tensor, with avg precision for each class k
+        Returns
+        -------
+        ap: tensor
+            1xK tensor, with avg precision for each class k
         """
 
         if self.scores.numel() == 0:
-            return 0
+            return 0  # not a tensor ?
+
         ap = torch.zeros(self.scores.size(1))
-        rg = torch.arange(1, self.scores.size(0) + 1).float()
+        rg = torch.arange(1, self.scores.size(0) + 1).float()  # what is rg ?
         if self.weights.numel() > 0:
             weight = self.weights.new(self.weights.size())
             weighted_truth = self.weights.new(self.weights.size())
@@ -128,6 +146,8 @@ class AveragePrecision:
 
 
 class BinaryF1Score:
+    """Binary F1 score"""
+
     def __init__(self):
         self.num_positives = 0
         self.num_trues = 0
@@ -156,11 +176,13 @@ class BinaryF1Score:
 
 
 class MulticlassBinaryF1Score:
+    """Multiclass binary F1 score for multiple classes"""
+
     def __init__(self, num_classes):
         self.metrics = [BinaryF1Score() for _ in range(num_classes)]
         self.num_classes = num_classes
 
-    def update(self, logits, y):
+    def update(self, logits: torch.Tensor, y: torch.Tensor):
         probs = torch.sigmoid(logits)
         for i in range(self.num_classes):
             binary_logits = torch.stack((1 - probs[:, i], probs[:, i]), dim=1)
@@ -186,6 +208,8 @@ class MulticlassBinaryF1Score:
 
 
 class MeanAveragePrecision:
+    """Average precision over classes for multilabel classification"""
+
     def __init__(self):
         self.ap = AveragePrecision()
 
@@ -198,7 +222,7 @@ class MeanAveragePrecision:
     def get_metric(self):
         return {"map": self.ap.get_metric().mean().item()}
 
-    def get_primary_metric(self):
+    def get_primary_metric(self) -> float:
         return self.get_metric()["map"]
 
 

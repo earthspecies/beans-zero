@@ -6,12 +6,13 @@ readme = "README.md"
 requires-python = ">=3.10"
 
 dependencies = [
-    "datasets>=3.3.2",
+    "datasets==3.4.0",
     "pycocoevalcap>=1.2",
     "pydantic>=2.10.6",
     "pytest>=8.3.5",
     "scikit-learn>=1.1.1",
     "xgboost>=1.6.1",
+    "torch>=2.0.0",
 ]
 
 [build-system]

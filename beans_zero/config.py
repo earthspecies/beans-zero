@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 
+TASK_TYPES = ["detection", "classification", "captioning"]
+
 
 class EvaluationConfig(BaseModel):
     """Default configuration for evaluation of zero-shot learning models."""
@@ -10,6 +12,8 @@ class EvaluationConfig(BaseModel):
     multi_label: bool = False
 
     default_label_for_detection: str = "None"
+    verbose: bool = False
+    classification_score_average: str = "weighted"
 
 
 eval_cfg = EvaluationConfig()
