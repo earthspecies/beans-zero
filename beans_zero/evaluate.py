@@ -326,7 +326,7 @@ def main():
             beans_cfg = json.load(cfg_file)
         return beans_cfg
 
-    beans_cfg = load_beans_cfg("../beans0_dataset_config.json")
+    beans_cfg = load_beans_cfg("../beans_zero_dataset_config.json")
     components = beans_cfg["metadata"]["components"]
     ds_names = [d["name"] for d in components]
     ds_tasks = [d["task"] for d in components]
