@@ -1,6 +1,7 @@
 import math
-import torch
+
 import numpy as np
+import torch
 from pycocoevalcap.cider.cider import Cider
 from pycocoevalcap.spice.spice import Spice
 
@@ -146,14 +147,46 @@ class AveragePrecision:
 
 
 class BinaryF1Score:
-    """Binary F1 score"""
+    """Binary F1 score.
+
+    This class is used to compute the F1 score for binary classification tasks.
+
+    Examples
+    --------
+    >>> f1 = BinaryF1Score()
+    >>> logits = torch.tensor([[0.1, 0.9], [0.9, 0.1]])
+    >>> y = torch.tensor([1, 0])
+    >>> f1.update(logits, y)
+    >>> f1.get_metric()
+    {'prec': 1.0, 'rec': 1.0, 'f1': 1.0}
+    >>> logits = torch.tensor([[0.1, 0.9], [0.9, 0.1]])
+    >>> y = torch.tensor([0, 0])
+    >>> f1.update(logits, y)
+    >>> f1.get_metric()
+    {'prec': 0.0, 'rec': 0.0, 'f1': 0.0}
+    """
 
     def __init__(self):
         self.num_positives = 0
         self.num_trues = 0
         self.num_tps = 0
 
-    def update(self, logits, y):
+    def update(self, logits: torch.Tensor, y: torch.Tensor):
+        """Updates the metric with new data
+
+        Arguments
+        ---------
+        logits : tensor
+            Nx2 tensor that for each of the N examples
+            indicates the logits of the example belonging to each of
+            the 2 classes, according to the model. The positive class is the second column.
+
+        y : tensor
+            binary Nx1 tensor that encodes which of the 2 classes are associated
+            with the N-th input (eg: a row [0, 1] indicates that the example is
+            associated with the positive class)
+        """
+        assert logits.ndim == 2 and logits.size(1) == 2
         positives = logits.argmax(axis=1) == 1
         trues = y == 1
         tps = trues & positives
@@ -161,7 +194,8 @@ class BinaryF1Score:
         self.num_trues += torch.sum(trues).cpu().item()
         self.num_tps += torch.sum(tps).cpu().item()
 
-    def get_metric(self):
+    def get_metric(self) -> dict[str, float]:
+        """Returns the model's precision, recall, and F1 score based on the stored statistics"""
         prec = 0.0 if self.num_positives == 0 else self.num_tps / self.num_positives
         rec = 0.0 if self.num_trues == 0 else self.num_tps / self.num_trues
         if prec + rec > 0.0:
@@ -176,9 +210,23 @@ class BinaryF1Score:
 
 
 class MulticlassBinaryF1Score:
-    """Multiclass binary F1 score for multiple classes"""
+    """Multiclass binary F1 score for multi-label classification tasks.
 
-    def __init__(self, num_classes):
+    This class is used to compute the F1 score for multi-label classification tasks,
+    where each example can belong to multiple classes.
+
+    Examples
+    --------
+    >>> f1 = MulticlassBinaryF1Score(3)
+    >>> logits = torch.tensor([[0.1, 0.9, 0.1], [0.9, 0.1, 0.7]])
+    >>> y = torch.tensor([[0, 1, 0], [1, 0, 1]])
+    >>> f1.update(logits, y)
+    >>> f1.get_metric()
+    {'macro_prec': 1.0, 'macro_rec': 1.0, 'macro_f1':
+    1.0}
+    """
+
+    def __init__(self, num_classes: int):
         self.metrics = [BinaryF1Score() for _ in range(num_classes)]
         self.num_classes = num_classes
 
@@ -227,8 +275,8 @@ class MeanAveragePrecision:
 
 
 def compute_spider(references: list[str], hypotheses: list[str]):
-    """
-    Compute the SPIDEr metric (SPICE + CIDEr)
+    """Compute the SPIDEr metric (SPICE + CIDEr)
+
     Arguments
     ---------
     references: list[str]

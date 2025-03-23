@@ -1,10 +1,16 @@
+"""Evaluation module for evaluating predictions against ground truth labels."""
+
+import argparse
+import json
+from pathlib import Path
 from typing import Iterable
 
+import pandas as pd
 import torch
+from config import TASK_TYPES, eval_cfg
+from metrics import MeanAveragePrecision, MulticlassBinaryF1Score, compute_spider
+from parse_text_outputs import EvalPostProcessor
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
-
-from .config import eval_cfg, TASK_TYPES
-from .metrics import MeanAveragePrecision, MulticlassBinaryF1Score, compute_spider
 
 
 def _evaluate_captioning(
@@ -84,12 +90,14 @@ def parse_detection_output(
     if isinstance(output, str):
         # TODO: This is some special case handling for "None" labels.
         # We have to make this clear in the documentation.
-        if output.lower() == "none":
+        # if output.lower() == "none":
+        #     return tensor
+        if output == "None":
             return tensor
 
         # FIXME: what about doing lowercase here ?
-        # original code: output = output.split(", ")
-        output = [s.strip() for s in output.split(",")]
+        output = output.split(", ")
+        # output = [s.strip() for s in output.split(",")]
         for label in output:
             if label in label_to_id:
                 tensor[label_to_id[label]] = 1
@@ -107,7 +115,6 @@ def _evaluate_detection(
     predictions: Iterable[str],
     true_labels: Iterable[str],
     labels: Iterable[str] = None,
-    binarization_threshold: float = eval_cfg.binarization_threshold,
     verbose: bool = eval_cfg.verbose,
 ) -> dict[str, float]:
     """
@@ -122,8 +129,6 @@ def _evaluate_detection(
         Iterable of true labels in text format.
     labels: Iterable[str], optional
         Iterable of possible labels. If None, inferred from the true_labels.
-    binarization_threshold: float, optional
-        Threshold for binarizing the output scores.
     verbose: bool, optional
         Whether to print the computed metrics.
 
@@ -281,3 +286,78 @@ def evaluate(predictions: Iterable[str], true_labels: Iterable[str], task: str, 
         return _evaluate_captioning(true_labels, predictions)  # reference captions are the true labels
     else:
         raise NotImplementedError(f"task {task} has no metrics implemented. Choose from {TASK_TYPES}")
+
+
+def main():
+    """Evaluate a predictions file. The predictions file must have the following columns:
+
+    - dataset_name: The name of the dataset
+    - prediction: The model's prediction
+    - label: The ground truth label
+    - optional, id: The unique identifier for the sample
+
+    """
+    parser = argparse.ArgumentParser(description="Evaluate a predictions file.")
+    parser.add_argument("predictions_file", type=str, help="Path to the predictions file.")
+    parser.add_argument("output_path", type=str, help="Path to save the evaluation results.")
+
+    # Load the predictions file
+    args = parser.parse_args()
+
+    # Load the predictions file
+    predictions_path = Path(args.predictions_file)
+
+    if not predictions_path.exists():
+        raise FileNotFoundError(f"Predictions file not found at {predictions_path}")
+
+    if predictions_path.suffix == ".csv":
+        outputs = pd.read_csv(predictions_path)
+    elif predictions_path.suffix == ".json" or predictions_path.suffix == ".jsonl":
+        outputs = pd.read_json(predictions_path, orient="records", lines=True)
+    else:
+        raise ValueError("Predictions file must be a CSV or JSON file.")
+
+    assert "dataset_name" in outputs.columns, "'dataset_name' column not found in predictions file."
+    assert "prediction" in outputs.columns, "'prediction' column not found in predictions file."
+    assert "label" in outputs.columns, "'label' column not found in predictions file."
+
+    def load_beans_cfg(cfg_path: str):
+        with open(cfg_path, "r") as cfg_file:
+            beans_cfg = json.load(cfg_file)
+        return beans_cfg
+
+    beans_cfg = load_beans_cfg("../beans0_dataset_config.json")
+    components = beans_cfg["metadata"]["components"]
+    ds_names = [d["name"] for d in components]
+    ds_tasks = [d["task"] for d in components]
+
+    all_metrics = {}
+    for i, name in enumerate(ds_names):
+        # subset the predictions dataframe
+        sub = outputs[outputs["dataset_name"] == name]
+
+        task = ds_tasks[i]
+        if task == "captioning":
+            # skip for now
+            continue
+
+        labels = sub["label"].to_list()
+        label_set = set(labels)
+
+        processor = EvalPostProcessor(target_label_set=label_set, task=task)
+
+        predictions = processor(sub["prediction"].to_list())
+        metrics = evaluate(predictions, labels, task, list(labels))
+
+        print(f"\nMetrics for dataset {name}:\n{metrics}")
+
+        all_metrics[name] = metrics
+
+    if args.output_path:
+        with open(args.output_path, "w") as f:
+            json.dump(all_metrics, f, indent=2)
+            print(f"Metrics saved to {args.output_path}")
+
+
+if __name__ == "__main__":
+    main()

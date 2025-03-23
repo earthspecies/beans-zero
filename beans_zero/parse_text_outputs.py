@@ -1,91 +1,123 @@
-import numpy as np
+from dataclasses import dataclass
+from typing import Literal
+
 from Levenshtein import distance as levenshtein_distance
-from sklearn.metrics.pairwise import cosine_similarity
-from .config import eval_cfg
 
 
-# def parse_prediction(self, text: str):
-#     return text.split(END_TOKEN)[0]
+@dataclass
+class EvalPostProcessor:
+    """Post-process the predictions from the NatureLM-audio model.
+    This can also be used for evaluating other models.
 
+    Arguments
+    ---------
+    match_to_labels : bool
+        Whether to match the predictions to the labels
+    multi_label : bool
+        Whether to allow multiple labels for each prediction
+    end_token : str
+        The end token for the prediction
+    max_levenstein_distance : int
+        The maximum levenshtein distance for a match
 
-def get_nearest_label(
-    text: str,
-    labels: list[str],
-    max_distance_for_match: int = eval_cfg.max_distance_for_match,
-    embedding_match: bool = False,
-    label_embeddings: np.array = None,
-    multi_label: bool = eval_cfg.multi_label,
-    embedding_model=None,
-) -> str:
+    Examples
+    --------
+    >>> processor = EvalPostProcessor()
+    >>> predictions = ["dog", "cat", "bird"]
+    >>> labels = ["dog", "cat", "bird"]
+    >>> processor(predictions)
+    ['dog', 'cat', 'bird']
+
     """
-    Get the nearest label in labels to the text.
 
-    If the text is in the labels, return the text.
-    If not, return the label with the smallest Levenshtein distance to the text.
-    Or, if embedding_match is True, return the label with the highest cosine similarity to the text embedding.
+    target_label_set: set[str]
+    task: Literal["classification", "detection", "captioning"]
+    end_token: str = "<|end_of_text|>"
+    max_levenstein_distance: int = 5
 
-    Args:
-        text: str
-        labels: list[str]
-    """
-    # Check for exact match first
-    # FIXME: move this to model
-    # text = self.parse_prediction(text)
+    def __post_init__(self):
+        if self.task not in ["classification", "detection", "captioning"]:
+            raise ValueError("The task must be one of 'classification', 'detection', 'captioning'")
 
-    # test exact match first
-    if text in labels:
-        return text
+        self.multi_label = False  # classification
+        if self.task == "detection":
+            self.multi_label = True
+            self.target_label_set.add("None")
 
-    # No exact match. Use embedder or levenshtein distance for approximate match.
-    if embedding_match:
-        text_embedding = embedding_model.embed([text])
-        max_similarity = np.argmax(cosine_similarity(text_embedding, label_embeddings)[0])
-        return labels[max_similarity]
+        self.match_to_labels = True
+        if self.task == "captioning":
+            # this is not a match issue, so just return the input
+            self.match_to_labels = False
+            self.target_label_set = set()
 
-    nearest_label = min(labels, key=lambda label: levenshtein_distance(text, label))
-    if levenshtein_distance(nearest_label, text) > max_distance_for_match and multi_label:
-        return eval_cfg.default_label_for_detection  # DETECTION only: no strong match, choose None
+    def remove_eos_token(self, text: str) -> str:
+        return text.split(self.end_token)[0]
 
-    return nearest_label
+    def get_nearest_label(self, text: str) -> str:
+        """
+        Find the nearest label to the text using levenshtein distance.
+        If the distance is greater than max_distance_for_match, return 'None'.
 
+        If multi_label is True, return a comma-separated string of labels.
 
-def get_nearest_labels(text: str, labels: list[str], separator: str = ",") -> str:
-    """
-    Parse text into multiple predictions based on a separator.
-    For each prediction, get the nearest label.
+        Arguments
+        ---------
+        text : str
+            The text to match
 
-    Args:
-        text: str
-        labels: list[str]
-        separator: str
-    """
-    predictions = [get_nearest_label(prediction, labels) for prediction in text.split(separator)]
-    # print(f"prediction {text} getting labels {predictions}")
-    # FIXME: This is very specific to a model ??
-    # return ", ".join(predictions)
-    return separator.join(predictions)
+        Returns
+        -------
+        str
+            The matched label
+        """
+        # Check for exact match first
+        text = self.remove_eos_token(text)
+        # TODO do lower()?
+        # equal_labels = [label for label in labels if label == text]
+        if text in self.target_label_set:
+            return text
 
+        nearest_label = min(list(self.target_label_set), key=lambda label: levenshtein_distance(text, label))
+        if levenshtein_distance(nearest_label, text) > self.max_levenstein_distance and self.multi_label:
+            return "None"  # DETECTION only: no strong match, choose None
 
-def get_approximate_labels(text: str, labels: list[str], max_distance: int = eval_cfg.max_distance_for_match) -> str:
-    """
-    Find labels that are nearly contained within the text, case-insensitive, and using a distance function.
-    If none of the labels is found, return a default label.
-    """
-    text = text.lower()
-    matched_labels = []
+        return nearest_label
 
-    for label in labels:
-        label_lower = label.lower()  # TODO: in general, we need to normalize the text and labels
+    def get_nearest_labels(self, text: str) -> str:
+        """
+        Parse text into multiple predictions based on a separator ','.
+        For each prediction, get the nearest label.
 
-        # slide the label over the text and check for a match using levenstein distance
-        for i in range(len(text) - len(label_lower) + 1):
-            substring = text[i : i + len(label_lower)]
-            if levenshtein_distance(substring, label_lower) <= max_distance:
-                matched_labels.append(label)
-                break
+        Arguments
+        ---------
+        text : str
+            The text to match
+        labels : list[str]
+            The list of labels to match against
 
-    print(f"TEXT {text} getting labels {matched_labels}")
-    if matched_labels:
-        return ", ".join(matched_labels)
+        Returns
+        -------
+        str
+            The matched labels
+        """
+        predictions = [self.get_nearest_label(prediction.strip()) for prediction in text.split(",")]
+        # print(f"prediction {text} getting labels {predictions}")
 
-    return eval_cfg.default_label_for_detection
+        return ", ".join(predictions)
+
+    def __call__(self, predictions: list[str]) -> list[str]:
+        """
+        Post-process the predictions from a model.
+        If the models output several predictions, they are separated by a comma.
+        """
+        if not self.match_to_labels:  # Return raw outputs
+            return predictions
+
+        matched_predictions = []
+        for i, prediction in enumerate(predictions):
+            if self.multi_label:
+                matched_predictions.append(self.get_nearest_labels(prediction))
+            else:
+                matched_predictions.append(self.get_nearest_label(prediction))
+
+        return matched_predictions
