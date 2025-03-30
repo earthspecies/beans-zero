@@ -169,29 +169,6 @@ def _evaluate_detection(
     map_metric.update(predictions_tensor, labels_tensor)
     map_value = map_metric.get_metric()["map"]
 
-    # Compute Multi-Label Classification Metrics
-    # Binarize the outputs using a threshold (e.g., 0.5) if outputs are scores
-    # Adjust the threshold as needed based on your specific use case
-    # if predictions_tensor.max() > 1.0 or predictions_tensor.min() < 0.0:
-    #     # Assume outputs are not probabilities, apply sigmoid or another activation if necessary
-    #     output_binary = (predictions_tensor >= binarization_threshold).int()
-    # else:
-    #     # If outputs are probabilities
-    #     output_binary = (output_tensor >= binarization_threshold).int()
-
-    # # Similarly, ensure target is binary
-    # target_binary = (target_tensor > 0).int()
-
-    # # Convert tensors to numpy arrays for sklearn
-    # y_true = target_binary.cpu().numpy()
-    # y_pred = output_binary.cpu().numpy()
-
-    # Compute metrics
-    # accuracy = accuracy_score(y_true, y_pred)
-    # precision = precision_score(y_true, y_pred, average="weighted", zero_division=0)
-    # recall = recall_score(y_true, y_pred, average="weighted", zero_division=0)
-    # f1 = f1_score(y_true, y_pred, average="weighted", zero_division=0)
-
     map = MulticlassBinaryF1Score(num_labels)
     map.update(predictions_tensor, labels_tensor)
     f1 = map.get_metric()["macro_f1"]
@@ -347,7 +324,7 @@ def main():
         processor = EvalPostProcessor(target_label_set=label_set, task=task)
 
         predictions = processor(sub["prediction"].to_list())
-        metrics = evaluate(predictions, labels, task, list(labels))
+        metrics = evaluate(predictions, labels, task, None)
 
         print(f"\nMetrics for dataset {name}:\n{metrics}")
 
