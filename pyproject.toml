@@ -1,19 +1,19 @@
 [project]
 name = "beans-zero"
 version = "0.1.0"
-description = "Add your description here"
+description = "BEANZ-ZERO package for zero-shot evaluation of audio-text bioacoustics models"
 readme = "README.md"
 requires-python = ">=3.10"
 
 dependencies = [
-    "datasets==3.4.0",
-    "pycocoevalcap>=1.2",
+    "datasets>=3.4.0",
     "pydantic>=2.10.6",
     "pytest>=8.3.5",
     "scikit-learn>=1.1.1",
     "xgboost>=1.6.1",
     "torch>=2.0.0",
     "levenshtein>=0.27.1",
+    "pycocoevalcap>=1.2",
 ]
 
 [dependency-groups]
@@ -22,6 +22,10 @@ dev = [
     "pytest>=7.1.2",
     "ruff>=0.8.1",
 ]
+
+[project.urls]
+Homepage = "https://github.com/earthspecies/beans-zero"
+Repository = "https://github.com/earthspecies/beans-zero"
 
 [build-system]
 requires = ["hatchling"]
@@ -38,20 +42,42 @@ pythonpath = [
   ".", "beans_zero",
 ]
 
+python_files = [
+    "test_*.py",
+    "check_*.py",
+]
+
 [tool.ruff]
-line-length = 120
+line-length = 88
+indent-width = 4
 exclude = [
   "**/*.ipynb"
 ]
 
 [tool.ruff.lint]
-# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
-# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
-# McCabe complexity (`C901`) by default.
-select = [
-  "E4",
-  "E7",
-  "E9",
-  "F", # Flake8
-  "I", # isort
-]
+# List of plugins and Rules
+# Pycodestyle all errors and warning, Pydoclint, Pyflakes, bugbear, annotations
+select = ["E4", "E7", "E9", "F"] # Default rules
+extend-select = ["DOC", "B9", "B", "E", "W", "ANN"]
+fixable = ["ALL"]
+unfixable = []
+preview = true
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-line-length = "dynamic"
+
+[tool.ruff.lint.mccabe]
+# Flag errors (`C901`) whenever the complexity level exceeds 10.
+max-complexity = 10
+
+[tool.codespell]
+skip = "*.csv"
+
+[tool.isort]
+profile = "black"
+line_length = 80
+filter_files = true
