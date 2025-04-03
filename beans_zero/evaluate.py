@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import logging
 from pathlib import Path
 from typing import Iterable
 
@@ -9,8 +10,10 @@ import pandas as pd
 import torch
 from config import TASK_TYPES, eval_cfg
 from metrics import MeanAveragePrecision, MulticlassBinaryF1Score, compute_spider
-from parse_text_outputs import EvalPostProcessor
+from post_processor import EvalPostProcessor
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+
+logger = logging.getLogger("beans_zero")
 
 
 def _evaluate_captioning(
@@ -41,7 +44,7 @@ def _evaluate_captioning(
     """
     spider_score = compute_spider(references, hypotheses)
     if verbose:
-        print(f"SPIDEr Score: {spider_score:.4f}")
+        logger.info(f"SPIDEr Score: {spider_score:.4f}")
 
     return {"spider_score": spider_score}
 
@@ -67,6 +70,10 @@ def parse_detection_output(
     -------
         tensor: A tensor representing the scores for each label.
 
+    Raises
+    ------
+    ValueError: If the number of labels is <= 0
+
     Examples
     --------
     >>> num_labels = 3
@@ -80,7 +87,7 @@ def parse_detection_output(
     >>> parse_detection_output({"mouse": 0.9, "dog": 0.8}, num_labels, label_to_id)
     tensor([0., 0.8, 0.])
     """
-    if num_labels == 0:
+    if num_labels <= 0 or not isinstance(num_labels, int):
         raise ValueError("Number of labels must be greater than 0.")
 
     # This is the default tensor to return, which means no labels were detected
@@ -141,7 +148,7 @@ def _evaluate_detection(
     >>> predictions = ["cat, dog", {"cat": 0.9, "dog": 0.8}, "None"]
     >>> true_labels = ["cat, dog", "cat", "None"]
     >>> evaluate_detection(predictions, true_labels)
-
+    {'mAP': 1.0, 'F1': 1.0, 'Recall': 1.0, 'Precision': 1.0}
     """
     if labels is None:
         # Infer labels from both target and output
@@ -155,7 +162,7 @@ def _evaluate_detection(
 
     num_labels = len(labels)
     if verbose:
-        print("Labels are:\n", labels)
+        logger.info("Labels are:\n", labels)
 
     label_to_id = {label: i for i, label in enumerate(labels)}
 
@@ -176,11 +183,11 @@ def _evaluate_detection(
     precision = map.get_metric()["macro_prec"]
 
     if verbose:
-        print("Multi-Label Classification Metrics:")
-        print(f"  Mean Average Precision (mAP): {map_value:.4f}")
-        print(f"  Macro avg Precision: {precision:.4f}")
-        print(f"  Macro avg Recall   : {recall:.4f}")
-        print(f"  Macro avg F1 Score : {f1:.4f}")
+        logger.info(f"""Multi-Label Classification Metrics:\n
+                Mean Average Precision (mAP): {map_value:.4f}
+                Macro avg Precision: {precision:.4f}
+                Macro avg Recall   : {recall:.4f}
+                Macro avg F1 Score : {f1:.4f}""")
 
     return {"mAP": map_value, "F1": f1, "Recall": recall, "Precision": precision}
 
@@ -198,11 +205,15 @@ def _evaluate_classification(
 
     Arguments
     ---------
-        predictions (Iterable[str]): Predicted labels.
-        true_labels (Iterable[str]): True labels, possibly containing multiple labels separated by commas.
-        score_average (str): Type of averaging to use for Precision, Recall, and F1 Score.
-            see for e.g. https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html
-        verbose (bool): Whether to print the computed metrics
+    predictions: Iterable[str]
+        Predicted labels.
+    true_labels: Iterable[str]
+        True labels, possibly containing multiple labels separated by commas.
+    score_average: str
+        Type of averaging to use for Precision, Recall, and F1 Score.
+        see for e.g. https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html
+    verbose: bool
+        Whether to print the computed metrics
 
     Returns
     -------
@@ -225,12 +236,12 @@ def _evaluate_classification(
     f1 = f1_score(true_labels, predictions, average=score_average, zero_division=0)
 
     if verbose:
-        print("Classification Metrics:")
-        print(f"  Accuracy       : {accuracy:.4f}")
-        print(f"  Precision      : {precision:.4f}")
-        print(f"  Recall         : {recall:.4f}")
-        print(f"  F1 Score       : {f1:.4f}")
-        print(f"  Top-1 Accuracy : {top1_accuracy:.4f}")
+        logger.info(f"""Classification Metrics:\n
+                Accuracy: {accuracy:.4f}
+                Precision: {precision:.4f}
+                Recall   : {recall:.4f}
+                F1 Score : {f1:.4f}
+                Top-1 Accuracy: {top1_accuracy:.4f}""")
 
     return {
         "Accuracy": accuracy,
@@ -241,13 +252,29 @@ def _evaluate_classification(
     }
 
 
-def evaluate(predictions: Iterable[str], true_labels: Iterable[str], task: str, labels: Iterable[str] = None):
+def evaluate(predictions: Iterable[str], true_labels: Iterable[str], task: str, labels: Iterable[str] = None) -> dict:
     """
     Evaluate the predictions against the true labels for a given task.
-    Args:
-        predictions (list): List of predictions.
-        true_labels (list): List of ground truth labels.
-        task (str): The task type ("detection", "classification", "captioning").
+
+    Arguments
+    ---------
+    predictions: Iterable[str]
+        List of predictions.
+    true_labels: Iterable[str]
+        List of ground truth labels.
+    task: str
+        The task type ("detection", "classification", "captioning").
+    labels: Iterable[str], optional
+        List of possible labels. Required for detection task.
+
+    Returns
+    -------
+        dict: Dictionary containing all computed metrics.
+
+    Raises
+    ------
+        ValueError: If the number of predictions and true labels do not match.
+        NotImplementedError: If the task is not supported.
     """
     if len(predictions) != len(true_labels):
         raise ValueError("Number of predictions and true labels must match.")
@@ -265,21 +292,92 @@ def evaluate(predictions: Iterable[str], true_labels: Iterable[str], task: str, 
         raise NotImplementedError(f"task {task} has no metrics implemented. Choose from {TASK_TYPES}")
 
 
-def main():
+def compute_metrics(outputs: pd.DataFrame, verbose: bool = True) -> dict:
+    """Compute metrics from a model output dataframe.
+
+    Arguments
+    ---------
+    outputs: pd.DataFrame
+        DataFrame containing the model outputs. The dataframe must contain the following columns:
+        - dataset_name: The name of the dataset
+        - prediction: The model's prediction
+        - label: The ground truth label
+
+    verbose: bool
+        Whether to print the computed metrics for each dataset.
+
+    Returns
+    -------
+        dict: Dictionary containing all computed metrics.
+
+    Raises
+    ------
+        ValueError: If the required columns are not found in the dataframe.
+    """
+    if not all(col in outputs.columns for col in eval_cfg.required_keys_in_predictions_file):
+        raise ValueError(
+            f"Model outputs dataframe must contain the following columns: {eval_cfg.required_keys_in_predictions_file}"
+        )
+
+    with open("../beans_zero_dataset_config.json", "r") as cfg_file:
+        beans_cfg = json.load(cfg_file)
+
+    components = beans_cfg["metadata"]["components"]
+    ds_names = [d["name"] for d in components]
+    ds_tasks = [d["task"] for d in components]
+
+    all_metrics = {}
+    for i, name in enumerate(ds_names):
+        # subset the predictions dataframe
+        sub = outputs[outputs["dataset_name"] == name]
+
+        task = ds_tasks[i]
+
+        labels = sub["label"].to_list()
+        label_set = set(labels)
+
+        processor = EvalPostProcessor(target_label_set=label_set, task=task)
+
+        predictions = processor(sub["prediction"].to_list())
+        metrics = evaluate(predictions, labels, task, None)
+
+        logger.info(f"\nMetrics for dataset {name}:\n{metrics}")
+
+        all_metrics[name] = metrics
+
+    return all_metrics
+
+
+def parse_args() -> argparse.Namespace:
+    """Parse command line arguments
+
+    Returns
+    -------
+        argparse.Namespace: Parsed command line arguments
+    """
+    parser = argparse.ArgumentParser(description="Evaluate a predictions file.")
+    parser.add_argument("predictions_file", type=str, required=True, help="Path to the predictions file.")
+    parser.add_argument("output_path", type=str, required=False, help="Path to save the evaluation results.")
+    return parser.parse_args()
+
+
+def main() -> None:
     """Evaluate a predictions file. The predictions file must have the following columns:
 
     - dataset_name: The name of the dataset
     - prediction: The model's prediction
     - label: The ground truth label
-    - optional, id: The unique identifier for the sample
+
+    The predictions file can be in CSV or JSON or JSONL format.
+    The output will be saved to the specified output path.
+
+    Raises
+    ------
+    FileNotFoundError: If the predictions file does not exist.
+    ValueError: If the predictions file is not in CSV or JSON format.
 
     """
-    parser = argparse.ArgumentParser(description="Evaluate a predictions file.")
-    parser.add_argument("predictions_file", type=str, help="Path to the predictions file.")
-    parser.add_argument("output_path", type=str, help="Path to save the evaluation results.")
-
-    # Load the predictions file
-    args = parser.parse_args()
+    args = parse_args()
 
     # Load the predictions file
     predictions_path = Path(args.predictions_file)
@@ -294,46 +392,12 @@ def main():
     else:
         raise ValueError("Predictions file must be a CSV or JSON file.")
 
-    assert "dataset_name" in outputs.columns, "'dataset_name' column not found in predictions file."
-    assert "prediction" in outputs.columns, "'prediction' column not found in predictions file."
-    assert "label" in outputs.columns, "'label' column not found in predictions file."
-
-    def load_beans_cfg(cfg_path: str):
-        with open(cfg_path, "r") as cfg_file:
-            beans_cfg = json.load(cfg_file)
-        return beans_cfg
-
-    beans_cfg = load_beans_cfg("../beans_zero_dataset_config.json")
-    components = beans_cfg["metadata"]["components"]
-    ds_names = [d["name"] for d in components]
-    ds_tasks = [d["task"] for d in components]
-
-    all_metrics = {}
-    for i, name in enumerate(ds_names):
-        # subset the predictions dataframe
-        sub = outputs[outputs["dataset_name"] == name]
-
-        task = ds_tasks[i]
-        if task == "captioning":
-            # skip for now
-            continue
-
-        labels = sub["label"].to_list()
-        label_set = set(labels)
-
-        processor = EvalPostProcessor(target_label_set=label_set, task=task)
-
-        predictions = processor(sub["prediction"].to_list())
-        metrics = evaluate(predictions, labels, task, None)
-
-        print(f"\nMetrics for dataset {name}:\n{metrics}")
-
-        all_metrics[name] = metrics
+    all_metrics = compute_metrics(outputs)
 
     if args.output_path:
         with open(args.output_path, "w") as f:
             json.dump(all_metrics, f, indent=2)
-            print(f"Metrics saved to {args.output_path}")
+            logger.info(f"Metrics saved to {args.output_path}")
 
 
 if __name__ == "__main__":

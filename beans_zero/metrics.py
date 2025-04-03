@@ -7,24 +7,33 @@ from pycocoevalcap.spice.spice import Spice
 
 
 class AveragePrecision:
-    """
+    """Computes the average precision for multilabel classification
+
     Taken from https://github.com/amdegroot/tnt
 
     FIXME: Why not use this implementation ?
     https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html#sklearn.metrics.average_precision_score
 
+    Examples
+    --------
+    >>> ap = AveragePrecision()
+    >>> output = torch.tensor([[0.1, 0.9], [0.9, 0.1]])
+    >>> target = torch.tensor([[0, 1], [1, 0]])
+    >>> ap.update(output, target)
+    >>> ap.get_metric()
+    tensor([1., 1.])
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.reset()
 
-    def reset(self):
+    def reset(self) -> None:
         """Resets the meter with empty member variables"""
-        self.scores = torch.tensor(torch.FloatStorage(), dtype=torch.float32, requires_grad=False)
-        self.targets = torch.tensor(torch.LongStorage(), dtype=torch.int64, requires_grad=False)
-        self.weights = torch.tensor(torch.FloatStorage(), dtype=torch.float32, requires_grad=False)
+        self.scores = torch.tensor(torch.UntypedStorage(), dtype=torch.float32, requires_grad=False)
+        self.targets = torch.tensor(torch.UntypedStorage(), dtype=torch.int64, requires_grad=False)
+        self.weights = torch.tensor(torch.UntypedStorage(), dtype=torch.float32, requires_grad=False)
 
-    def update(self, output: torch.Tensor, target: torch.Tensor, weight: torch.Tensor | None = None):
+    def update(self, output: torch.Tensor, target: torch.Tensor, weight: torch.Tensor | None = None) -> None:
         """
         Updates the meter with new data
 
@@ -41,15 +50,6 @@ class AveragePrecision:
             associated with classes 2 and 4)
         weight: tensor (optional)
             Nx1 tensor representing the weight for each example (each weight > 0)
-
-        Examples
-        --------
-        >>> ap = AveragePrecision()
-        >>> output = torch.tensor([[0.1, 0.9], [0.9, 0.1]])
-        >>> target = torch.tensor([[0, 1], [1, 0]])
-        >>> ap.update(output, target)
-        >>> ap.get_metric()
-        tensor([1., 1.])
         """
         if not torch.is_tensor(output):
             output = torch.from_numpy(output)
@@ -78,18 +78,18 @@ class AveragePrecision:
 
         assert torch.equal(target**2, target), "targets should be binary (0 or 1)"
         if self.scores.numel() > 0:
-            assert target.size(1) == self.targets.size(1), (
-                "dimensions for output should match previously added examples."
-            )
+            assert target.size(1) == self.targets.size(
+                1
+            ), "dimensions for output should match previously added examples."
 
         # make sure storage is of sufficient size
-        if self.scores.storage().size() < self.scores.numel() + output.numel():
-            new_size = math.ceil(self.scores.storage().size() * 1.5)
-            new_weight_size = math.ceil(self.weights.storage().size() * 1.5)
-            self.scores.storage().resize_(int(new_size + output.numel()))
-            self.targets.storage().resize_(int(new_size + output.numel()))
+        if self.scores.untyped_storage().size() < self.scores.numel() + output.numel():
+            new_size = math.ceil(self.scores.untyped_storage().size() * 1.5)
+            new_weight_size = math.ceil(self.weights.untyped_storage().size() * 1.5)
+            self.scores.untyped_storage().resize_(int(new_size + output.numel()))
+            self.targets.untyped_storage().resize_(int(new_size + output.numel()))
             if weight is not None:
-                self.weights.storage().resize_(int(new_weight_size + output.size(0)))
+                self.weights.untyped_storage().resize_(int(new_weight_size + output.size(0)))
 
         # store scores and targets
         offset = self.scores.size(0) if self.scores.dim() > 0 else 0
@@ -114,7 +114,7 @@ class AveragePrecision:
             return 0  # not a tensor ?
 
         ap = torch.zeros(self.scores.size(1))
-        rg = torch.arange(1, self.scores.size(0) + 1).float()  # what is rg ?
+        rg = torch.arange(1, self.scores.size(0) + 1).float()
         if self.weights.numel() > 0:
             weight = self.weights.new(self.weights.size())
             weighted_truth = self.weights.new(self.weights.size())
@@ -159,19 +159,19 @@ class BinaryF1Score:
     >>> f1.update(logits, y)
     >>> f1.get_metric()
     {'prec': 1.0, 'rec': 1.0, 'f1': 1.0}
-    >>> logits = torch.tensor([[0.1, 0.9], [0.9, 0.1]])
-    >>> y = torch.tensor([0, 0])
+    >>> f1 = BinaryF1Score(); logits = torch.tensor([[0.1, 0.9], [0.9, 0.1]])
+    >>> y = torch.tensor([0, 1])
     >>> f1.update(logits, y)
     >>> f1.get_metric()
     {'prec': 0.0, 'rec': 0.0, 'f1': 0.0}
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.num_positives = 0
         self.num_trues = 0
         self.num_tps = 0
 
-    def update(self, logits: torch.Tensor, y: torch.Tensor):
+    def update(self, logits: torch.Tensor, y: torch.Tensor) -> None:
         """Updates the metric with new data
 
         Arguments
@@ -195,7 +195,17 @@ class BinaryF1Score:
         self.num_tps += torch.sum(tps).cpu().item()
 
     def get_metric(self) -> dict[str, float]:
-        """Returns the model's precision, recall, and F1 score based on the stored statistics"""
+        """Returns the model's precision, recall, and F1 score based on the stored statistics
+
+        Returns
+        -------
+        prec: float
+            Precision of the model, on the current data
+        rec: float
+            Recall of the model
+        f1: float
+            F1 score of the model
+        """
         prec = 0.0 if self.num_positives == 0 else self.num_tps / self.num_positives
         rec = 0.0 if self.num_trues == 0 else self.num_tps / self.num_trues
         if prec + rec > 0.0:
@@ -205,7 +215,7 @@ class BinaryF1Score:
 
         return {"prec": prec, "rec": rec, "f1": f1}
 
-    def get_primary_metric(self):
+    def get_primary_metric(self) -> float:
         return self.get_metric()["f1"]
 
 
@@ -218,25 +228,51 @@ class MulticlassBinaryF1Score:
     Examples
     --------
     >>> f1 = MulticlassBinaryF1Score(3)
-    >>> logits = torch.tensor([[0.1, 0.9, 0.1], [0.9, 0.1, 0.7]])
-    >>> y = torch.tensor([[0, 1, 0], [1, 0, 1]])
+    >>> logits = torch.tensor([[0.1, 9, 0.1], [9, 0.1, 7], [0.1, 0.1, 7]])
+    >>> y = torch.tensor([[0, 1, 0], [1, 0, 1], [0, 0, 1]])
     >>> f1.update(logits, y)
     >>> f1.get_metric()
-    {'macro_prec': 1.0, 'macro_rec': 1.0, 'macro_f1':
-    1.0}
+    {'macro_prec': 1.0, 'macro_rec': 1.0, 'macro_f1': 1.0}
     """
 
-    def __init__(self, num_classes: int):
+    def __init__(self, num_classes: int) -> None:
         self.metrics = [BinaryF1Score() for _ in range(num_classes)]
         self.num_classes = num_classes
 
-    def update(self, logits: torch.Tensor, y: torch.Tensor):
+    def update(self, logits: torch.Tensor, y: torch.Tensor) -> None:
+        """Updates the metric with new data
+
+        Arguments
+        ---------
+        logits : tensor
+            NxK tensor that for each of the N examples
+            indicates the unnormalized logits of the example belonging to each of
+            the K classes. A torch.sigmoid is applied to the logits to get the probability
+            that the example belongs to each class.
+
+        y : tensor
+            binary NxK tensor that encodes which of the K classes are associated.
+            Multiple classes can be associated with each example.
+            Eg: a row [1, 1, 0] indicates that the example is associated with classes 1 and 2.
+
+        """
         probs = torch.sigmoid(logits)
         for i in range(self.num_classes):
             binary_logits = torch.stack((1 - probs[:, i], probs[:, i]), dim=1)
             self.metrics[i].update(binary_logits, y[:, i])
 
-    def get_metric(self):
+    def get_metric(self) -> dict[str, float]:
+        """Computes the macro-averaged precision, recall, and F1 score for all classes
+
+        Returns
+        -------
+        macro_prec: float
+            Macro-averaged precision of the model, on the current data
+        macro_rec: float
+            Macro-averaged recall of the model
+        macro_f1: float
+            Macro-averaged F1 score of the model
+        """
         macro_prec = 0.0
         macro_rec = 0.0
         macro_f1 = 0.0
@@ -251,30 +287,40 @@ class MulticlassBinaryF1Score:
             "macro_f1": macro_f1 / self.num_classes,
         }
 
-    def get_primary_metric(self):
+    def get_primary_metric(self) -> float:
         return self.get_metric()["macro_f1"]
 
 
 class MeanAveragePrecision:
-    """Average precision over classes for multilabel classification"""
+    """Average precision over classes for multilabel classification
 
-    def __init__(self):
+    Examples
+    --------
+    >>> map = MeanAveragePrecision()
+    >>> output = torch.tensor([[0.1, 0.9], [0.9, 0.1]])
+    >>> target = torch.tensor([[0, 1], [1, 0]])
+    >>> map.update(output, target)
+    >>> map.get_metric()
+    {'map': 1.0}
+    """
+
+    def __init__(self) -> None:
         self.ap = AveragePrecision()
 
-    def reset(self):
+    def reset(self) -> None:
         self.ap.reset()
 
-    def update(self, output, target, weight=None):
+    def update(self, output: torch.Tensor, target: torch.Tensor, weight: torch.Tensor = None) -> None:
         self.ap.update(output, target, weight)
 
-    def get_metric(self):
+    def get_metric(self) -> dict[str, float]:
         return {"map": self.ap.get_metric().mean().item()}
 
     def get_primary_metric(self) -> float:
         return self.get_metric()["map"]
 
 
-def compute_spider(references: list[str], hypotheses: list[str]):
+def compute_spider(references: list[str], hypotheses: list[str]) -> float:
     """Compute the SPIDEr metric (SPICE + CIDEr)
 
     Arguments
@@ -289,7 +335,8 @@ def compute_spider(references: list[str], hypotheses: list[str]):
 
     Returns
     -------
-        spider_score: SPIDEr score for the captioning task
+    spider_score: float
+        SPIDEr score for the captioning task
 
     Example
     -------
@@ -315,4 +362,4 @@ def compute_spider(references: list[str], hypotheses: list[str]):
     # SPIDEr = (CIDEr + SPICE) / 2
     spider_score = (cider_score + spice_score) / 2
 
-    return spider_score
+    return float(spider_score)
