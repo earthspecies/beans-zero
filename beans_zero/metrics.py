@@ -29,11 +29,22 @@ class AveragePrecision:
 
     def reset(self) -> None:
         """Resets the meter with empty member variables"""
-        self.scores = torch.tensor(torch.UntypedStorage(), dtype=torch.float32, requires_grad=False)
-        self.targets = torch.tensor(torch.UntypedStorage(), dtype=torch.int64, requires_grad=False)
-        self.weights = torch.tensor(torch.UntypedStorage(), dtype=torch.float32, requires_grad=False)
+        self.scores = torch.tensor(
+            torch.UntypedStorage(), dtype=torch.float32, requires_grad=False
+        )
+        self.targets = torch.tensor(
+            torch.UntypedStorage(), dtype=torch.int64, requires_grad=False
+        )
+        self.weights = torch.tensor(
+            torch.UntypedStorage(), dtype=torch.float32, requires_grad=False
+        )
 
-    def update(self, output: torch.Tensor, target: torch.Tensor, weight: torch.Tensor | None = None) -> None:
+    def update(
+        self,
+        output: torch.Tensor,
+        target: torch.Tensor,
+        weight: torch.Tensor | None = None,
+    ) -> None:
         """
         Updates the meter with new data
 
@@ -65,15 +76,21 @@ class AveragePrecision:
         if output.dim() == 1:
             output = output.view(-1, 1)
         else:
-            assert output.dim() == 2, "wrong output size (should be 1D or 2D with one column per class)"
+            assert (
+                output.dim() == 2
+            ), "wrong output size (should be 1D or 2D with one column per class)"
         if target.dim() == 1:
             target = target.view(-1, 1)
         else:
-            assert target.dim() == 2, "wrong target size (should be 1D or 2D with one column per class)"
+            assert (
+                target.dim() == 2
+            ), "wrong target size (should be 1D or 2D with one column per class)"
 
         if weight is not None:
             assert weight.dim() == 1, "Weight dimension should be 1"
-            assert weight.numel() == target.size(0), "Weight dimension 1 should be the same as that of target"
+            assert weight.numel() == target.size(
+                0
+            ), "Weight dimension 1 should be the same as that of target"
             assert torch.min(weight) >= 0, "Weight should be non-negative only"
 
         assert torch.equal(target**2, target), "targets should be binary (0 or 1)"
@@ -89,7 +106,9 @@ class AveragePrecision:
             self.scores.untyped_storage().resize_(int(new_size + output.numel()))
             self.targets.untyped_storage().resize_(int(new_size + output.numel()))
             if weight is not None:
-                self.weights.untyped_storage().resize_(int(new_weight_size + output.size(0)))
+                self.weights.untyped_storage().resize_(
+                    int(new_weight_size + output.size(0))
+                )
 
         # store scores and targets
         offset = self.scores.size(0) if self.scores.dim() > 0 else 0
@@ -179,7 +198,8 @@ class BinaryF1Score:
         logits : tensor
             Nx2 tensor that for each of the N examples
             indicates the logits of the example belonging to each of
-            the 2 classes, according to the model. The positive class is the second column.
+            the 2 classes, according to the model.
+            The positive class is the second column.
 
         y : tensor
             binary Nx1 tensor that encodes which of the 2 classes are associated
@@ -195,7 +215,8 @@ class BinaryF1Score:
         self.num_tps += torch.sum(tps).cpu().item()
 
     def get_metric(self) -> dict[str, float]:
-        """Returns the model's precision, recall, and F1 score based on the stored statistics
+        """Returns the model's precision, recall, and F1 score based on
+        the stored statistics
 
         Returns
         -------
@@ -228,11 +249,19 @@ class MulticlassBinaryF1Score:
     Examples
     --------
     >>> f1 = MulticlassBinaryF1Score(3)
-    >>> logits = torch.tensor([[0.1, 9, 0.1], [9, 0.1, 7], [0.1, 0.1, 7]])
+    >>> logits = torch.tensor([[0., 9, 0], [9, 0., 7], [0., 0., 7]])
     >>> y = torch.tensor([[0, 1, 0], [1, 0, 1], [0, 0, 1]])
     >>> f1.update(logits, y)
     >>> f1.get_metric()
     {'macro_prec': 1.0, 'macro_rec': 1.0, 'macro_f1': 1.0}
+    >>> logits = torch.tensor([[0.01, 9, 0.01], [9, 0.01, 7], [0.01, 0.01, 7]])
+    >>> y = torch.tensor([[0, 1, 0], [1, 0, 1], [0, 0, 1]])
+    >>> f1.update(logits, y)
+    >>> metrics = f1.get_metric()
+    >>> metrics["macro_prec"] < 1.0
+    True
+    >>> metrics["macro_f1"] < 1.0
+    True
     """
 
     def __init__(self, num_classes: int) -> None:
@@ -246,18 +275,23 @@ class MulticlassBinaryF1Score:
         ---------
         logits : tensor
             NxK tensor that for each of the N examples
-            indicates the unnormalized logits of the example belonging to each of
-            the K classes. A torch.sigmoid is applied to the logits to get the probability
-            that the example belongs to each class.
+            contains the unnormalized logits of the example belonging to each of
+            the K classes. A torch.sigmoid is applied to the logits to get the
+            probability that the example belongs to each class.
 
         y : tensor
             binary NxK tensor that encodes which of the K classes are associated.
             Multiple classes can be associated with each example.
-            Eg: a row [1, 1, 0] indicates that the example is associated with classes 1 and 2.
+            Eg: a row [1, 1, 0] indicates that the example is associated with
+            classes 1 and 2.
 
         """
-        probs = torch.sigmoid(logits)
+        probs = torch.sigmoid(logits)  # probability of a positive label
         for i in range(self.num_classes):
+            # TODO: this step is unreliable. If the logit value for the
+            # negative case (not detected)
+            # is even a little higher than 0.0, it will be considered as
+            # a positive case,
             binary_logits = torch.stack((1 - probs[:, i], probs[:, i]), dim=1)
             self.metrics[i].update(binary_logits, y[:, i])
 
@@ -310,7 +344,9 @@ class MeanAveragePrecision:
     def reset(self) -> None:
         self.ap.reset()
 
-    def update(self, output: torch.Tensor, target: torch.Tensor, weight: torch.Tensor = None) -> None:
+    def update(
+        self, output: torch.Tensor, target: torch.Tensor, weight: torch.Tensor = None
+    ) -> None:
         self.ap.update(output, target, weight)
 
     def get_metric(self) -> dict[str, float]:
