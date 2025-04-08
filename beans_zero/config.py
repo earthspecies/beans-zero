@@ -1,6 +1,7 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 TASK_TYPES = ["detection", "classification", "captioning"]
+REQUIRED_KEYS_IN_PREDICTIONS = ["prediction", "label", "dataset_name"]
 
 
 @dataclass
@@ -17,8 +18,10 @@ class EvaluationConfig:
     verbose: bool = False
     classification_score_average: str = "weighted"
 
-    tasks: list[str] = TASK_TYPES
-    required_keys_in_predictions_file: list[str] = ["prediction", "true_label", "dataset_name"]
+    tasks: list[str] = field(default_factory=lambda: TASK_TYPES)
+    required_keys_in_predictions_file: list[str] = field(
+        default_factory=lambda: REQUIRED_KEYS_IN_PREDICTIONS
+    )
 
 
 eval_cfg = EvaluationConfig()

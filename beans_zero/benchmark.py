@@ -24,12 +24,23 @@ def parse_args() -> argparse.Namespace:
         argparse.Namespace: Parsed arguments.
     """
     parser = argparse.ArgumentParser(description="Load the BEANS-Zero dataset.")
-    parser.add_argument("--streaming", action="store_true", help="Whether to stream the dataset.")
-    parser.add_argument("--batched", action="store_true", help="Whether to batch the dataset.")
-    parser.add_argument("--batch_size", type=int, default=32, help="The batch size.")
-    parser.add_argument("--as_torch", action="store_true", help="Whether to load the dataset as a torch dataset.")
     parser.add_argument(
-        "--output_path", type=str, default="metrics.json", help="Path to save the metrics output as a json file."
+        "--streaming", action="store_true", help="Whether to stream the dataset."
+    )
+    parser.add_argument(
+        "--batched", action="store_true", help="Whether to batch the dataset."
+    )
+    parser.add_argument("--batch_size", type=int, default=32, help="The batch size.")
+    parser.add_argument(
+        "--as_torch",
+        action="store_true",
+        help="Whether to load the dataset as a torch dataset.",
+    )
+    parser.add_argument(
+        "--output_path",
+        type=str,
+        default="metrics.json",
+        help="Path to save the metrics output as a json file.",
     )
     args = parser.parse_args()
 
@@ -37,15 +48,18 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
-    """Main function to load the BEANS-Zero dataset, iterate over it, perform inference with a model
-    and compute metrics.
+    """Main function to load the BEANS-Zero dataset, iterate over it,
+    perform inference with a model and compute metrics.
 
-    This function handles command line arguments, loads the dataset, and processes it in batches.
+    This function handles command line arguments, loads the dataset,
+    and processes it in batches.
     """
 
     args = parse_args()
     # Load the dataset
-    dataset = load_dataset("EarthSpeciesProject/BEANS-Zero", streaming=args.streaming, split="train")
+    dataset = load_dataset(
+        "EarthSpeciesProject/BEANS-Zero", streaming=args.streaming, split="train"
+    )
     if args.batched:
         dataset = dataset.batch(batch_size=args.batch_size)
 

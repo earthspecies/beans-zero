@@ -25,7 +25,7 @@ class EvalPostProcessor:
 
     Examples
     --------
-    >>> processor = EvalPostProcessor()
+    >>> processor = EvalPostProcessor(set(["dog", "cat", "bird"]),"classification")
     >>> predictions = ["dog", "cat", "bird"]
     >>> labels = ["dog", "cat", "bird"]
     >>> processor(predictions)
@@ -74,6 +74,12 @@ class EvalPostProcessor:
         -------
         str
             The matched label
+
+        Examples
+        --------
+        >>> processor = EvalPostProcessor(set(["dog", "cat", "bird"]),"classification")
+        >>> processor.get_nearest_label("dog")
+        'dog'
         """
         # Check for exact match first
         text = self.remove_eos_token(text)
@@ -114,8 +120,6 @@ class EvalPostProcessor:
         predictions = [
             self.get_nearest_label(prediction.strip()) for prediction in text.split(",")
         ]
-        # print(f"prediction {text} getting labels {predictions}")
-
         return ", ".join(predictions)
 
     def __call__(self, predictions: list[str]) -> list[str]:
