@@ -14,6 +14,7 @@ dependencies = [
     "torch>=2.0.0",
     "levenshtein>=0.27.1",
     "pycocoevalcap>=1.2",
+    "click>=8.1.8",
 ]
 
 [dependency-groups]
@@ -36,6 +37,11 @@ packages = ["beans_zero"]
 
 [tool.hatch.metadata]
 allow-direct-references = true
+
+[project.scripts]
+beanz-evaluate = "cli:evaluate"
+beanz-fetch = "cli:fetch_dataset"
+beanz-benchmark = "cli:benchmark"
 
 [tool.pytest.ini_options]
 pythonpath = [
@@ -79,5 +85,5 @@ skip = "*.csv"
 
 [tool.isort]
 profile = "black"
-line_length = 80
+line_length = 88
 filter_files = true

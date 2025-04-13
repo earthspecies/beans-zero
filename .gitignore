@@ -9,3 +9,5 @@ wheels/
 # Virtual environments
 .venv
 *.ipynb_checkpoints/
+*.pytest_cache/
+*.ruff_cache/
