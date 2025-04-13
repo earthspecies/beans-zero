@@ -1,3 +1,5 @@
+"""Config definitions for zero-shot model evaluation."""
+
 from dataclasses import dataclass, field
 
 TASK_TYPES = ["detection", "classification", "captioning"]
@@ -18,7 +20,7 @@ class EvaluationConfig:
     verbose: bool = False
     classification_score_average: str = "weighted"
 
-    tasks: list[str] = field(default_factory=lambda: TASK_TYPES)
+    task_types: list[str] = field(default_factory=lambda: TASK_TYPES)
     required_keys_in_predictions_file: list[str] = field(
         default_factory=lambda: REQUIRED_KEYS_IN_PREDICTIONS
     )

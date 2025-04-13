@@ -1,8 +1,10 @@
+"""Model prediction post-processing for beans-zero evaluation"""
+
 from dataclasses import dataclass
 from typing import Literal
 
 from Levenshtein import distance as levenshtein_distance
-from config import eval_cfg
+from beans_zero.config import eval_cfg
 
 
 @dataclass

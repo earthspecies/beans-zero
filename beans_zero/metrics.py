@@ -1,5 +1,16 @@
-import math
+"""Custom pytorch tensor based metrics.
 
+Examples
+--------
+>>> ap = AveragePrecision()
+>>> output = torch.tensor([[0.1, 0.9], [0.9, 0.1]])
+>>> target = torch.tensor([[0, 1], [1, 0]])
+>>> ap.update(output, target)
+>>> ap.get_metric()
+tensor([1., 1.])
+"""
+
+import math
 import numpy as np
 import torch
 from pycocoevalcap.cider.cider import Cider
