@@ -14,10 +14,29 @@ logging.basicConfig(
 
 logger = logging.getLogger("beans_zero")
 
+CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 
-@click.group()
+
+@click.group(context_settings=CONTEXT_SETTINGS)
 def cli() -> None:
-    """Command line interface for BEANS-Zero"""
+    """BEANS-Zero: Zero-shot evaluation for audio-text bioacoustics models.
+
+    \b
+    Available commands:
+      * evaluate - Evaluate predictions against ground truth
+      * benchmark - Run your model against the BEANS-Zero benchmark
+      * fetch-dataset - Download the BEANS-Zero dataset
+
+    \b
+    For detailed help on each command, run:
+      python cli.py <command> --help
+
+    \b
+    Examples:
+      beanz-evaluate predictions.csv metrics.json
+      beanz-benchmark --path-to-model-module my_model.py
+      beanz-fetch
+    """
     pass
 
 
@@ -97,11 +116,6 @@ def evaluate(predictions_file: str, output_path: str) -> None:
     "--batch-size", type=int, default=32, help="The batch size if batched=True."
 )
 @click.option(
-    "--as-torch",
-    is_flag=True,
-    help="Whether to load the dataset as a torch dataset.",
-)
-@click.option(
     "--output-path",
     default="metrics.json",
     help="Path to save the metrics output as a json file.",
@@ -112,7 +126,6 @@ def benchmark(
     streaming: bool,
     batched: bool,
     batch_size: int,
-    as_torch: bool,
     output_path: str,
 ) -> None:
     """Run benchmark on your audio-text model against the BEANS-Zero dataset."""
@@ -122,7 +135,6 @@ def benchmark(
         streaming=streaming,
         batched=batched,
         batch_size=batch_size,
-        as_torch=as_torch,
         output_path=output_path,
     )
 

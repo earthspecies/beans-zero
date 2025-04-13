@@ -48,7 +48,6 @@ beanz-benchmark \
     --path-to-dataset EarthSpeciesProject/BEANS-Zero \
     --batched \
     --batch-size 32 \
-    --as-torch \
     --output-path metrics.json
 ```
 """
@@ -74,7 +73,6 @@ def run_benchmark(
     streaming: bool,
     batched: bool,
     batch_size: int,
-    as_torch: bool,
     output_path: str,
 ) -> None:
     """Main function to load the BEANS-Zero dataset, iterate over it,
@@ -90,7 +88,6 @@ def run_benchmark(
         streaming (bool): Whether to stream the dataset.
         batched (bool): Whether to batch the dataset.
         batch_size (int): The batch size.
-        as_torch (bool): Whether to load the dataset as a torch dataset.
         output_path (str): Path to save the metrics output as a json file.
 
     Raises
@@ -106,7 +103,6 @@ def run_benchmark(
         ...     streaming=True,
         ...     batched=True,
         ...     batch_size=32,
-        ...     as_torch=True,
         ...     output_path="metrics.json",
         ... )
     """
@@ -123,10 +119,6 @@ def run_benchmark(
 
     if batched:
         dataset = dataset.batch(batch_size=batch_size)
-
-    if as_torch:
-        # Load the dataset as a torch dataset
-        dataset = dataset.with_format("torch")
 
     # Print info about the dataset
     logger.info("Dataset loaded. Info:")
