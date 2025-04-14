@@ -13,8 +13,11 @@ tensor([1., 1.])
 import math
 import numpy as np
 import torch
-from pycocoevalcap.cider.cider import Cider
-from pycocoevalcap.spice.spice import Spice
+
+# from pycocoevalcap.cider.cider import Cider
+# from pycocoevalcap.spice.spice import Spice
+from beans_zero.external.spice.spice import Spice
+from beans_zero.external.cider.cider import Cider
 
 
 class AveragePrecision:
