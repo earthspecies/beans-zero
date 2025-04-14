@@ -8,13 +8,22 @@ Create a virtual environment, we recommend "uv", but you could also use "venv" o
 ```curl -LsSf https://astral.sh/uv/install.sh | sh```
 
 ### First, install a java runtime
-The `captioning` task needs a java run-time for the evaluation code to run. If you are on
-mac visit https://www.java.com/en/download/ and install the appropriate version.
+The `captioning` task needs a java 8 run-time for the evaluation code to run. If you are on
+mac visit https://www.java.com/en/download/ and install the appropriate version (Java SE 8).
 If you are on a UNIX machine, visit https://openjdk.org/install/ and find your distribution.
+You can also do:
+```bash
+sudo apt update
+sudo apt install openjdk-8-jdk
+# if you already of more recent version of java, you can do
+sudo update-alternatives --config java
+# then select the java 8 version
+```
+
 If you are on Windows: https://www.java.com/en/download/manual.jsp
 
 
-Install with pip.
+### Install with pip.
 COMING SOON...
 
 ## From source

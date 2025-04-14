@@ -1,9 +1,21 @@
+"""SPICE metric for evaluating image captioning models
+Source: https://github.com/salaniz/pycocoevalcap
+Credit for this implementation goes to:
+
+- Xinlei Chen (CMU)
+- Hao Fang (University of Washington)
+- Tsung-Yi Lin (Cornell)
+- Ramakrishna Vedantam (Virgina Tech)
+"""
+
 from __future__ import division
+
+import json
 import os
 import subprocess
-import json
-import numpy as np
 import tempfile
+
+import numpy as np
 
 from .get_stanford_models import get_stanford_models
 
