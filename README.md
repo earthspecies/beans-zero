@@ -7,8 +7,15 @@ A zero-shot audio + text, bioacoustic benchmark dataset.
 Create a virtual environment, we recommend "uv", but you could also use "venv" or "conda".
 ```curl -LsSf https://astral.sh/uv/install.sh | sh```
 
+### First, install a java runtime
+The `captioning` task needs a java run-time for the evaluation code to run. If you are on
+mac visit https://www.java.com/en/download/ and install the appropriate version.
+If you are on a UNIX machine, visit https://openjdk.org/install/ and find your distribution.
+If you are on Windows: https://www.java.com/en/download/manual.jsp
+
+
 Install with pip.
-TODO
+COMING SOON...
 
 ## From source
 
