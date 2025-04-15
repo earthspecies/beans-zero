@@ -1,75 +1,76 @@
 r"""Benchmark your audio-text model on the BEANS-Zero dataset.
 
-This is how you use this module:
+1. Import the run_benchmark function into your model file.
+2. Your model class / prediction function must be a Callable.
+3. Call the run_benchmark function with your model class / prediction function
+as an argument.
 
-Create a file `model.py` (or any other name, this may also be an installed module).
-with a `predict` function that takes a single example
-as a dictionary and returns the model's prediction.
-
-For example, your model.py could look like this:
+Here is an example of how to use the run_benchmark function:
 ```python
-import torch
+from beans_zero.benchmark import run_benchmark
 
-class MyModel(torch.nn.Module):
-    "A simple example model."
+class MyModel():
+    "A simple example model class"
     def __init__(self):
-        super(MyModel, self).__init__()
         # Initialize your model here
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def predict(self, audio: torch.Tensor, text: str) -> torch.Tensor:
         "A simple forward pass."
         # Do something with the input tensor
         return x
 
-def predict(example: dict) -> str | list[str]:
-    # The example contains the 'audio' and "instruction_text" fields
-    # You can use your model to make a prediction.
+    def __call__(self, example: dict) -> str:
+        "A simple call method."
+        # Extract the audio and text from the example
+        audio = torch.Tensor(example["audio"])
+        instruction = self.tokenizer(example["instruction_text"])
 
-    # if batched is True, 'example' will be a dict of arrays. The 'audio'
-    # field will be a list[list[float]]
-    # and the 'instruction_text' field will be a list[str].
+        # Perform inference
+        prediction = self.predict(audio, instruction)
+        return prediction
 
-    # if batched is False, 'example' will be a dict of single elements
-    # The 'audio' field will be a list[float] and the 'instruction_text'
-    # field will be a str.
+# Create an instance of your model
+my_model = MyModel()
+path_to_dataset = "EarthSpeciesProject/BEANS-Zero"
 
-    audio = torch.Tensor(example["audio"])
-    ... # Do something with the audio and instruction_text
-    # Return the model's prediction
-    # the prediction can be a single string or a list of strings
-    # depending on the batched = False / True respectively.
-    return prediction
-```
-
-Then, you can run the benchmark like this:
-```bash
-beanz-benchmark \
-    --path-to-model-module model.py \
-    --path-to-dataset EarthSpeciesProject/BEANS-Zero \
-    --batched \
-    --batch-size 32 \
-    --output-path metrics.json
+run_benchmark(
+    model=my_model,
+    path_to_dataset=path_to_dataset,
+    streaming=True,
+    batched=False,
+    batch_size=0,
+    output_path="metrics.json",
+)
 ```
 """
 
 import json
 import logging
+from typing import Callable
 from pathlib import Path
-from importlib import import_module
 
 import pandas as pd
+from torch.utils.data import DataLoader
 from datasets import load_dataset, load_from_disk
 from tqdm import tqdm
 
 from beans_zero.evaluate import compute_metrics
-from beans_zero.utils import load_module_from_path
 
 logger = logging.getLogger("beans_zero")
 
 
+def _collate_fn(batch: list[dict]) -> dict[list]:
+    # convert to a single dict with arrays
+    # for each key in the batch
+    collated = {}
+    for key in batch[0].keys():
+        collated[key] = [d[key] for d in batch]
+    return collated
+
+
 def run_benchmark(
-    path_to_model_module: str,
-    path_to_dataset: str,
+    model: Callable,
+    path_to_dataset: str | Path,
     streaming: bool,
     batched: bool,
     batch_size: int,
@@ -83,8 +84,11 @@ def run_benchmark(
 
     Arguments
     ---------
-        path_to_model_module (str): Path to the model module.
-        path_to_dataset (str): Path to the dataset.
+        model (Callable): The model class or prediction function.
+            The model must be a callable function or class that takes
+            a dictionary as input and returns a string as output if
+            batched is False, or a list of strings if batched is True.
+        path_to_dataset (str ): Path to the dataset.
         streaming (bool): Whether to stream the dataset.
         batched (bool): Whether to batch the dataset.
         batch_size (int): The batch size.
@@ -92,24 +96,35 @@ def run_benchmark(
 
     Raises
     ------
-        ValueError: If the model function is not found in the module.
-        ImportError: If the module cannot be imported.
+        ValueError: If the model is not a callable function or class.
 
     Examples
     ---------
-        >>> run_benchmark(
-        ...     path_to_model_module="path/to/your/model.py",
-        ...     path_to_dataset="EarthSpeciesProject/BEANS-Zero",
-        ...     streaming=True,
-        ...     batched=True,
-        ...     batch_size=32,
-        ...     output_path="metrics.json",
-        ... )
+    >>> from beans_zero.benchmark import run_benchmark
+    >>> model_callable = lambda x: "my prediction"
+    >>> run_benchmark(
+    ...     model=model_callable,
+    ...     path_to_dataset="EarthSpeciesProject/BEANS-Zero",
+    ...     streaming=True,
+    ...     batched=False,
+    ...     batch_size=0,
+    ...     output_path="metrics.json",
+    ... )
     """
+    # check that the 'model' is a callable
+    if not callable(model):
+        raise ValueError("The 'model' must be a callable function or class.")
+
     # Check if the dataset path is local
     datapath = Path(path_to_dataset)
     if not datapath.exists():
         # Load the remote dataset
+        logger.warning("""=====Loading dataset from huggingface hub====
+        WARNING: This will need about 180 GB of space.
+        Please check your ~/.cache/huggingface/datasets/downloads folder
+        and remove  the downloaded cache chunks if you want to save space.
+        If you want to save space, please use the streaming option.
+        """)
         dataset = load_dataset(
             "EarthSpeciesProject/BEANS-Zero", streaming=streaming, split="test"
         )
@@ -117,49 +132,42 @@ def run_benchmark(
         # Load the local dataset
         dataset = load_from_disk(path_to_dataset)
 
-    if batched:
-        dataset = dataset.batch(batch_size=batch_size)
-
     # Print info about the dataset
     logger.info("Dataset loaded. Info:")
     logger.info(f"Dataset features: {dataset.features}")
 
-    logger.info("Loading your model prediction function...")
-    # use the path to the model module
-    try:
-        # Check if it's a file path or a module name
-        if Path(path_to_model_module).exists() and path_to_model_module.endswith(".py"):
-            model_module = load_module_from_path(path_to_model_module)
-        else:
-            # Fall back to regular import for module names
-            model_module = import_module(path_to_model_module)
-    except Exception as e:
-        raise ImportError(
-            f"Could not import the model module {path_to_model_module}"
-        ) from e
-
-    prediction_func = getattr(model_module, "predict", None)
-    if not prediction_func:
-        raise ValueError(
-            f"""Prediction function 'predict' not found
-            in the module {path_to_model_module}"""
+    if batched:
+        # If batched, use DataLoader for batching
+        dataset = DataLoader(
+            dataset,
+            batch_size=batch_size,
+            shuffle=False,
+            num_workers=4,
+            drop_last=False,
+            collate_fn=_collate_fn,
         )
 
     outputs = {"prediction": [], "label": [], "dataset_name": []}
     for _, example in tqdm(enumerate(dataset)):
         # example can either be a dict of arrays or
         # a dict of single elements depending on batched True/False
-        output = prediction_func(example)
+        prediction = model(example)
 
-        if batched and isinstance(output, list):
+        if batched and isinstance(prediction, list):
+            if not isinstance(prediction[0], str):
+                raise ValueError("The model must return a list of strings.")
+
+        if not batched and not isinstance(prediction, str):
+            raise ValueError("The model must return a string.")
+
+        if batched and isinstance(prediction, list):
             # output is a list so extend
-            outputs["prediction"].extend(output)
+            outputs["prediction"].extend(prediction)
             outputs["label"].extend(example["output"])
             outputs["dataset_name"].extend(example["dataset_name"])
-
         else:
             # append single elements
-            outputs["prediction"].append(output)
+            outputs["prediction"].append(prediction)
             outputs["label"].append(example["output"])
             outputs["dataset_name"].append(example["dataset_name"])
 

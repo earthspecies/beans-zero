@@ -55,7 +55,7 @@ def _evaluate_captioning(
     return {"spider_score": spider_score}
 
 
-def parse_detection_output(
+def _parse_detection_output(
     output: str | dict[str, float], num_labels: int, label_to_id: dict[str, int]
 ) -> torch.Tensor:
     """
@@ -181,10 +181,10 @@ def _evaluate_detection(
     # Convert target and output to tensors
     # This will produce tensors of shape (num_examples, num_labels)
     labels_tensor = torch.stack(
-        [parse_detection_output(t, num_labels, label_to_id) for t in true_labels]
+        [_parse_detection_output(t, num_labels, label_to_id) for t in true_labels]
     )
     predictions_tensor = torch.stack(
-        [parse_detection_output(o, num_labels, label_to_id) for o in predictions]
+        [_parse_detection_output(o, num_labels, label_to_id) for o in predictions]
     )
 
     # Compute Mean Average Precision (mAP)

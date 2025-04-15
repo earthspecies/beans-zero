@@ -41,7 +41,6 @@ allow-direct-references = true
 [project.scripts]
 beanz-evaluate = "cli:evaluate"
 beanz-fetch = "cli:fetch_dataset"
-beanz-benchmark = "cli:benchmark"
 
 [tool.pytest.ini_options]
 pythonpath = [

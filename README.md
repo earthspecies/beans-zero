@@ -1,13 +1,17 @@
 # BEANS-Zero
 
-A zero-shot audio + text, bioacoustic benchmark dataset.
+A zero-shot audio + text, bioacoustic benchmark dataset. This dataset is described in our companion paper
+here: [Robinson et al 2025](https://openreview.net/forum?id=hJVdwBpWjt)
 
-
+The dataset is available on [Huggingface](https://huggingface.co/datasets/EarthSpeciesProject/BEANS-Zero).
 ## Installation
-Create a virtual environment, we recommend "uv", but you could also use "venv" or "conda".
-```curl -LsSf https://astral.sh/uv/install.sh | sh```
+Create a virtual environment, we recommend *uv*, but you could also use *venv* or *conda*.
+To install uv run:
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
 
-### First, install a java runtime
+### Install a java runtime
 The `captioning` task needs a java 8 run-time for the evaluation code to run. If you are on
 mac visit https://www.java.com/en/download/ and install the appropriate version (Java SE 8).
 If you are on a UNIX machine, visit https://openjdk.org/install/ and find your distribution.
@@ -26,7 +30,7 @@ If you are on Windows: https://www.java.com/en/download/manual.jsp
 ### Install with pip.
 COMING SOON...
 
-## From source
+### Install from source
 
 1. Clone this repo.
 
@@ -53,10 +57,10 @@ beanz-fetch
 uv run beanz-fetch
 ```
 
-### Evaluate your model predictions
-You should generate a csv / jsonl (orient='records') file with the following fields:
-- `prediction`: the text output of your model
-- `label`: the expected output (just copy the `output` field from the dataset)
+### I have my predictions ready. How can I evaluate my model predictions ?
+Your predictions file should be a csv or a jsonl (json lines, oriented as 'records') file with the following fields:
+- `prediction`: the predicted string output of your model for each example
+- `label`: the expected output (just copy the `output` field from the dataset for that example)
 - `dataset_name`: the name of the dataset (e.g. 'esc50' or 'unseen-family-sci', again just copy the `dataset_name` field from the dataset)
 
 Then run:
@@ -69,63 +73,63 @@ uv run beanz-evaluate /path/to/your/predictions_file.jsonl /path/to/save/metrics
 The output metrics per dataset component (e.g. esc50 or unseen-family-sci) will be saved in the `metrics.json` file.
 Currently, the supported output file format is json.
 
-### Run your model on the dataset and get evaluation metrics
-Create a file called `model.py` (or any other name) and add your model code there.
-You may also be use an installed module in your virtual environment,  like `mymodule.classifier`.
+### How can I run my model on the BEANS-Zero dataset and get evaluation metrics directly ?
+We provide a `run_benchmark` function that you can use to run your model on the dataset and get evaluation metrics.
 
-IMPORTANT: your module or `model.py` MUST contain a function called `predict`,
-that takes a single example (or a batch of examples) from the dataset as a dictionary
-and returns the model's predictions (a string or a list of strings).
+1. Import the run_benchmark function into your model file.
+2. Make sure your model class / prediction function must be a Callable. It will
+   be called with a dictionary containing the following useful fields (amongst others):
+   - `audio`: the audio input as a list of floats
+   - `instruction_text`: the instruction text as a string
+   NOTE: If the `batched` argument in `run_benchmark` is set to True, the
+    `audio` field will be a list of lists of floats, and the `instruction_text` field
+    will be a list of strings with `len(instruction_text) == batch_size`.
+3. Call the run_benchmark function with your model class / prediction function
+as the value of the `model` argument.
 
-For example, your `model.py` could look like this:
+Here is an example of how to use the run_benchmark function:
 ```python
-import torch
+from beans_zero.benchmark import run_benchmark
 
-class MyModel(torch.nn.Module):
-    "A simple example model."
+class MyModel():
+    "A simple example model class"
     def __init__(self):
-        super(MyModel, self).__init__()
         # Initialize your model here
 
-    def forward(self, audio: torch.Tensor, text: str) -> torch.Tensor:
+    def predict(self, audio: torch.Tensor, text: str) -> torch.Tensor:
         "A simple forward pass."
         # Do something with the input tensor
         return x
 
-model = MyModel()
+    def __call__(self, example: dict) -> str:
+        "A simple call method."
+        # Extract the audio and text from the example
+        audio = torch.Tensor(example["audio"])
+        instruction = self.tokenizer(example["instruction_text"])
 
-def predict(example: dict) -> str | list[str]:
-    # The example contains the 'audio' and "instruction_text" fields
-    # You can use your model to make a prediction.
+        # Perform inference
+        prediction = self.predict(audio, instruction)
+        return prediction
 
-    # if batched is True, 'example' will be a dict of arrays. The 'audio'
-    # field will be a list[list[float]]
-    # and the 'instruction_text' field will be a list[str].
-
-    # if batched is False, 'example' will be a dict of single elements
-    # The 'audio' field will be a list[float] and the 'instruction_text'
-    # field will be a str.
-
-    audio = torch.Tensor(example["audio"])
-    text = example["instruction_text"]
-    # You can use your model to make a prediction.
-    with torch.no_grad():
-        prediction = model(audio, text)
-    # Return the model's prediction
-    # the prediction can be a single string or a list of strings
-    # depending on the batched = False / True respectively.
-    return prediction
+# Create an instance of your model
+my_model = MyModel()
+path_to_dataset = "EarthSpeciesProject/BEANS-Zero"
+# path_to_dataset can be a local folder if you've downloaded the dataset somewhere else on your machine
 ```
 
-Then run:
-```bash
-# if you have activated the virtual environment
-beanz-benchmark --path-to-model-module /mydir/mypackage/model.py \
---streaming \  # optional, if you want to stream the dataset
---batched \ # optional, if you want to process the dataset in batches
---batch-size 32 \ # the batch size to use if batched is True, default is 32
---output_path /path/to/save/metrics.json \ # optional, the path to save the metrics, default is ./metrics.json
+Now, run the benchmark.
+```python
+run_benchmark(
+    model=my_model,
+    path_to_dataset=path_to_dataset,
+    streaming=False,
+    batched=False,
+    batch_size=0,
+    output_path="metrics.json",
+)
 ```
+> NOTE: streaming=True will not download the dataset, rather every example will be downloaded on the fly
+> which is slower but saves disk space. Set batched=True if your model can handle batches of examples of size batch_size
 
 ### Dataset exploration
 If you would first like to explore the BEANS-Zero dataset [link], you can use this code snippet.
@@ -157,4 +161,17 @@ dataset_names, dataset_sample_counts = np.unique(ds["dataset_name"], return_coun
 idx = np.where(np.array(ds["dataset_name"]) == "esc50")[0]
 esc50 = ds.select(idx)
 print(esc50)
+```
+
+## Citation
+If you use this dataset in your research, please cite the following paper:
+
+```bibtex
+@inproceedings{robinson2025naturelm,
+  title     = {NatureLM-audio: an Audio-Language Foundation Model for Bioacoustics},
+  author    = {David Robinson and Marius Miron and Masato Hagiwara and Olivier Pietquin},
+  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},
+  year      = {2025},
+  url       = {https://openreview.net/forum?id=hJVdwBpWjt}
+}
 ```

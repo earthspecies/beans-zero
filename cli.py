@@ -5,7 +5,6 @@ import click
 import pandas as pd
 from datasets import load_dataset
 from beans_zero.evaluate import compute_metrics
-from beans_zero.benchmark import run_benchmark
 
 logging.basicConfig(
     level=logging.INFO,
@@ -24,7 +23,6 @@ def cli() -> None:
     \b
     Available commands:
       * evaluate - Evaluate predictions against ground truth
-      * benchmark - Run your model against the BEANS-Zero benchmark
       * fetch-dataset - Download the BEANS-Zero dataset
 
     \b
@@ -34,7 +32,6 @@ def cli() -> None:
     \b
     Examples:
       beanz-evaluate predictions.csv metrics.json
-      beanz-benchmark --path-to-model-module my_model.py
       beanz-fetch
     """
     pass
@@ -97,46 +94,6 @@ def evaluate(predictions_file: str, output_path: str) -> None:
         with open(output_path, "w") as f:
             json.dump(all_metrics, f, indent=2)
             logger.info(f"Metrics saved to {output_path}")
-
-
-@cli.command()
-@click.option(
-    "--path-to-model-module",
-    required=True,
-    help="Path to the model module. This should be a path to a Python file.",
-)
-@click.option(
-    "--path-to-dataset",
-    default="EarthSpeciesProject/BEANS-Zero",
-    help="Path to the dataset, can be a path to a local dir.",
-)
-@click.option("--streaming", is_flag=True, help="Whether to stream the dataset.")
-@click.option("--batched", is_flag=True, help="Whether to batch the dataset.")
-@click.option(
-    "--batch-size", type=int, default=32, help="The batch size if batched=True."
-)
-@click.option(
-    "--output-path",
-    default="metrics.json",
-    help="Path to save the metrics output as a json file.",
-)
-def benchmark(
-    path_to_model_module: str,
-    path_to_dataset: str,
-    streaming: bool,
-    batched: bool,
-    batch_size: int,
-    output_path: str,
-) -> None:
-    """Run benchmark on your audio-text model against the BEANS-Zero dataset."""
-    run_benchmark(
-        path_to_model_module=path_to_model_module,
-        path_to_dataset=path_to_dataset,
-        streaming=streaming,
-        batched=batched,
-        batch_size=batch_size,
-        output_path=output_path,
-    )
 
 
 if __name__ == "__main__":
