@@ -7,13 +7,11 @@ requires-python = ">=3.10"
 
 dependencies = [
     "datasets>=3.4.0",
-    "pydantic>=2.10.6",
     "pytest>=8.3.5",
     "scikit-learn>=1.1.1",
     "xgboost>=1.6.1",
     "torch>=2.0.0",
     "levenshtein>=0.27.1",
-    "pycocoevalcap>=1.2",
     "click>=8.1.8",
 ]
 

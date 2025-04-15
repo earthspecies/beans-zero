@@ -18,13 +18,15 @@ If you are on a UNIX machine, visit https://openjdk.org/install/ and find your d
 You can also do:
 ```bash
 sudo apt update
-sudo apt install openjdk-8-jdk
-# if you already of more recent version of java, you can do
-sudo update-alternatives --config java
-# then select the java 8 version
+sudo apt install openjdk-8-jre
 ```
+If you already have a more recent version of java, you can run
+```bash
+sudo update-alternatives --config java
+```
+and then select the java 8 version
 
-If you are on Windows: https://www.java.com/en/download/manual.jsp
+If you are on Windows, visit: https://www.java.com/en/download/manual.jsp and download the appropriate installer.
 
 
 ### Install with pip.
@@ -49,6 +51,11 @@ The beans-zero package offers a cli tool to:
 
 Run ```cli --help``` to see the available commands.
 
+## Task descriptions
+
+.... NEED INFO HERE ABOUT WHAT THE TASKS ARE THERE AND WHAT KINDS OF OUTPUTS ARE EXPECTED
+
+
 ### Fetch the dataset
 ```bash
 # if you have activated the virtual environment
@@ -56,7 +63,6 @@ beanz-fetch
 # or, if you are using uv, and have *not* activated the virtual environment
 uv run beanz-fetch
 ```
-
 ### I have my predictions ready. How can I evaluate my model predictions ?
 Your predictions file should be a csv or a jsonl (json lines, oriented as 'records') file with the following fields:
 - `prediction`: the predicted string output of your model for each example
@@ -92,11 +98,11 @@ Here is an example of how to use the run_benchmark function:
 from beans_zero.benchmark import run_benchmark
 
 class MyModel():
-    "A simple example model class"
+    "An example model class"
     def __init__(self):
-        # Initialize your model here
+        # Initialize your model and text tokenizer here
 
-    def predict(self, audio: torch.Tensor, text: str) -> torch.Tensor:
+    def predict(self, audio: torch.Tensor, text: torch.Tensor) -> torch.Tensor:
         "A simple forward pass."
         # Do something with the input tensor
         return x
@@ -109,6 +115,9 @@ class MyModel():
 
         # Perform inference
         prediction = self.predict(audio, instruction)
+        # Convert the prediction to a string
+        prediction = self.tokenizer.decode(prediction)
+
         return prediction
 
 # Create an instance of your model
@@ -132,7 +141,7 @@ run_benchmark(
 > which is slower but saves disk space. Set batched=True if your model can handle batches of examples of size batch_size
 
 ### Dataset exploration
-If you would first like to explore the BEANS-Zero dataset [link], you can use this code snippet.
+If you would first like to explore the BEANS-Zero dataset you can use this code snippet.
 ```python
 import numpy as np
 from datasets import load_dataset
