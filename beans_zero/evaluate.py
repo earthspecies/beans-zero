@@ -83,15 +83,15 @@ def _parse_detection_output(
     --------
     >>> import torch; num_labels = 3
     >>> label_to_id = {"cat": 0, "dog": 1, "bird": 2}
-    >>> parse_detection_output("cat, dog, mouse", num_labels, label_to_id)
+    >>> _parse_detection_output("cat, dog, mouse", num_labels, label_to_id)
     tensor([1., 1., 0.])
-    >>> out = parse_detection_output({"cat": 0.9, "dog": 0.8}, num_labels, label_to_id)
+    >>> out = _parse_detection_output({"cat": 0.9, "dog": 0.8}, num_labels, label_to_id)
     >>> torch.allclose(out, torch.tensor([0.9, 0.8, 0.]))
     True
-    >>> out = parse_detection_output("None", num_labels, label_to_id)
+    >>> out = _parse_detection_output("None", num_labels, label_to_id)
     >>> torch.allclose(out, torch.tensor([0., 0., 0.]))
     True
-    >>> out = parse_detection_output({"mouse": 0.9, "dog": 0.8},
+    >>> out = _parse_detection_output({"mouse": 0.9, "dog": 0.8},
     ... num_labels,
     ... label_to_id)
     >>> torch.allclose(out, torch.tensor([0., 0.8, 0.]))
