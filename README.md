@@ -6,11 +6,6 @@ here: [Robinson et al 2025](https://openreview.net/forum?id=hJVdwBpWjt)
 The dataset is available on [Huggingface](https://huggingface.co/datasets/EarthSpeciesProject/BEANS-Zero) where we provide a detailed description of the dataset and its components.
 
 ## Installation
-Create a virtual environment, we recommend *uv*, but you could also use *venv* or *conda*.
-To install uv run:
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
 
 ### Install a java runtime
 The `captioning` task needs a java 8 run-time for the evaluation code to run. If you are on
@@ -39,7 +34,7 @@ COMING SOON...
 
 2. ```cd beans-zero```
 
-3. ```uv sync``` (or `pip install -e .`)
+3. `pip install -e .`
 
 4. Optionally, for uv, activate the virtual environment: `source .venv/bin/activate`
 
@@ -52,8 +47,9 @@ There are three types of tasks in the BEANS-Zero dataset:
    - Your model
 3. `captioning`: in a captioning task, the label is a string that describes the content of the audio. Your model's `prediction` should be a string that is similar to the label. We use `SPICE` and `CIDer` scores to evaluate captioning
 performance.
+> NOTE: You can check what labels are expected for each dataset using the `beanz-info <dataset_name>` command (see below).
 
-#### Notes on important dataset fields / columns
+#### Important dataset fields / columns
 1. Each example in the dataset contains an `output` field which is the ground truth label(s) for that example.
 2. Each example contains the `audio` as a list of floats.
 3. And the `instruction_text` field which is the instruction text for that example.
@@ -61,22 +57,22 @@ All fields are described here
 [Huggingface](https://huggingface.co/datasets/EarthSpeciesProject/BEANS-Zero)
 
 ## What can I do with beanz-zero ?
-beanz-zero offers several tools.
+beanz-zero offers several tools:
 
 1. A cli tool to:
     - fetch the dataset from Huggingface `beanz-fetch`
-    - list all component datasets `beanz-info` or info on a particular dataset `beanz-info <dataset_name>`
-    - or just evaluate the results if you already have them in a predictions file `beanz-evaluate`
+    - list all component datasets `beanz-info` or get info on a particular dataset `beanz-info <dataset_name>`
+    - compute evaluation metrics if you already have a predictions file with `beanz-evaluate`
 2. A `run_benchmark` function to run your model on the dataset and get evaluation metrics directly.
 
-Run ```python cli.py --help``` to see the available commands.
+Run ```python cli.py --help``` to see the available commands and a description.
 
 ### Fetch the dataset
 Make sure you have installed beans-zero and have activated the virtual environment
 ```bash
 beanz-fetch
 ```
-### I have my predictions ready. How can I evaluate my model predictions ?
+### I have my model predictions ready. How can I evaluate them ?
 Your predictions file should be a csv or a jsonl (json lines, oriented as 'records') file with the following fields:
 - `prediction`: the predicted string output of your model for each example
 - `label`: the expected output (just copy the `output` field from the dataset for that example)
