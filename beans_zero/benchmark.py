@@ -97,19 +97,6 @@ def run_benchmark(
     Raises
     ------
         ValueError: If the model is not a callable function or class.
-
-    Examples
-    ---------
-    >>> from beans_zero.benchmark import run_benchmark
-    >>> model_callable = lambda x: "my prediction"
-    >>> run_benchmark(
-    ...     model=model_callable,
-    ...     path_to_dataset="EarthSpeciesProject/BEANS-Zero",
-    ...     streaming=True,
-    ...     batched=False,
-    ...     batch_size=0,
-    ...     output_path="metrics.json",
-    ... )
     """
     # check that the 'model' is a callable
     if not callable(model):
