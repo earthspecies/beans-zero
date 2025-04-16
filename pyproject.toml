@@ -13,6 +13,7 @@ dependencies = [
     "torch>=2.0.0",
     "levenshtein>=0.27.1",
     "click>=8.1.8",
+    "rich>=14.0.0",
 ]
 
 [dependency-groups]
@@ -39,6 +40,7 @@ allow-direct-references = true
 [project.scripts]
 beanz-evaluate = "cli:evaluate"
 beanz-fetch = "cli:fetch_dataset"
+beanz-info = "cli:info"
 
 [tool.pytest.ini_options]
 pythonpath = [

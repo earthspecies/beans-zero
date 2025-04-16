@@ -5,6 +5,7 @@ import click
 import pandas as pd
 from datasets import load_dataset
 from beans_zero.evaluate import compute_metrics
+from beans_zero.pretty_print_dataset import print_component, print_component_list
 
 logging.basicConfig(
     level=logging.INFO,
@@ -24,6 +25,8 @@ def cli() -> None:
     Available commands:
       * evaluate - Evaluate predictions against ground truth
       * fetch-dataset - Download the BEANS-Zero dataset
+      * info - List all component datasets or,
+        get info on a specific component of the dataset
 
     \b
     For detailed help on each command, run:
@@ -33,6 +36,7 @@ def cli() -> None:
     Examples:
       beanz-evaluate predictions.csv metrics.json
       beanz-fetch
+      beanz-info zf-indiv
     """
     pass
 
@@ -45,6 +49,22 @@ def fetch_dataset() -> None:
         split="test",
     )
     logger.info("BEANS-Zero dataset downloaded successfully.")
+
+
+@cli.command()
+@click.argument("component_name", type=str, default=None, required=False)
+def info(component_name: str) -> None:
+    """Print a specific component of the dataset.
+
+    Parameters
+    ----------
+    component_name : str
+        The name of the component to print.
+    """
+    if component_name:
+        print_component(component_name)
+    else:
+        print_component_list()
 
 
 @cli.command()

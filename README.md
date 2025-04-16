@@ -3,7 +3,8 @@
 A zero-shot audio + text, bioacoustic benchmark dataset. This dataset is described in our companion paper
 here: [Robinson et al 2025](https://openreview.net/forum?id=hJVdwBpWjt)
 
-The dataset is available on [Huggingface](https://huggingface.co/datasets/EarthSpeciesProject/BEANS-Zero).
+The dataset is available on [Huggingface](https://huggingface.co/datasets/EarthSpeciesProject/BEANS-Zero) where we provide a detailed description of the dataset and its components.
+
 ## Installation
 Create a virtual environment, we recommend *uv*, but you could also use *venv* or *conda*.
 To install uv run:
@@ -42,26 +43,38 @@ COMING SOON...
 
 4. Optionally, for uv, activate the virtual environment: `source .venv/bin/activate`
 
-## How can I evaluate my audio+text multimodal model ?
-
-The beans-zero package offers a cli tool to:
-    - fetch the dataset from Huggingface
-    - run your model on the dataset and evaluate the results
-    - or just evaluate the results if you already have in a predictions file
-
-Run ```cli --help``` to see the available commands.
-
 ## Task descriptions
 
-.... NEED INFO HERE ABOUT WHAT THE TASKS ARE THERE AND WHAT KINDS OF OUTPUTS ARE EXPECTED
+There are three types of tasks in the BEANS-Zero dataset:
+1. `classification`: in a classification task, the ground truth label is a single class label, e.g. a species name or an environmental sound (see the next section to get info on the labels). Your model's `prediction` should be a single label.
+2. `detection`: in a detection task, the label *can* be a comma-separated list of class labels or a single label.
+   - For example, the label can be "species1, species2, species3" or "species1" depending on how many species are detected in the audio.
+   - Your model
+3. `captioning`: in a captioning task, the label is a string that describes the content of the audio. Your model's `prediction` should be a string that is similar to the label. We use `SPICE` and `CIDer` scores to evaluate captioning
+performance.
 
+#### Notes on important dataset fields / columns
+1. Each example in the dataset contains an `output` field which is the ground truth label(s) for that example.
+2. Each example contains the `audio` as a list of floats.
+3. And the `instruction_text` field which is the instruction text for that example.
+All fields are described here
+[Huggingface](https://huggingface.co/datasets/EarthSpeciesProject/BEANS-Zero)
+
+## What can I do with beanz-zero ?
+beanz-zero offers several tools.
+
+1. A cli tool to:
+    - fetch the dataset from Huggingface `beanz-fetch`
+    - list all component datasets `beanz-info` or info on a particular dataset `beanz-info <dataset_name>`
+    - or just evaluate the results if you already have them in a predictions file `beanz-evaluate`
+2. A `run_benchmark` function to run your model on the dataset and get evaluation metrics directly.
+
+Run ```python cli.py --help``` to see the available commands.
 
 ### Fetch the dataset
+Make sure you have installed beans-zero and have activated the virtual environment
 ```bash
-# if you have activated the virtual environment
 beanz-fetch
-# or, if you are using uv, and have *not* activated the virtual environment
-uv run beanz-fetch
 ```
 ### I have my predictions ready. How can I evaluate my model predictions ?
 Your predictions file should be a csv or a jsonl (json lines, oriented as 'records') file with the following fields:
@@ -69,14 +82,11 @@ Your predictions file should be a csv or a jsonl (json lines, oriented as 'recor
 - `label`: the expected output (just copy the `output` field from the dataset for that example)
 - `dataset_name`: the name of the dataset (e.g. 'esc50' or 'unseen-family-sci', again just copy the `dataset_name` field from the dataset)
 
-Then run:
+Make sure you have installed beans-zero and have activated the virtual environmen, then run:
 ```bash
-# if you have activated the virtual environment
 beanz-evaluate /path/to/your/predictions_file.jsonl /path/to/save/metrics.json
-# or, if you are using uv, and have *not* activated the virtual environment
-uv run beanz-evaluate /path/to/your/predictions_file.jsonl /path/to/save/metrics.json
 ```
-The output metrics per dataset component (e.g. esc50 or unseen-family-sci) will be saved in the `metrics.json` file.
+The output metrics per dataset component will be saved in the `metrics.json` file.
 Currently, the supported output file format is json.
 
 ### How can I run my model on the BEANS-Zero dataset and get evaluation metrics directly ?

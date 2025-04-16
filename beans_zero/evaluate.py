@@ -2,16 +2,14 @@
 and returning metrics.
 """
 
-import json
 import logging
-from pathlib import Path
 from typing import Iterable
 
 import pandas as pd
 import torch
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
-from beans_zero.config import eval_cfg
+from beans_zero.config import eval_cfg, beans_cfg
 from beans_zero.metrics import (
     MeanAveragePrecision,
     MulticlassBinaryF1Score,
@@ -389,9 +387,6 @@ def compute_metrics(outputs: pd.DataFrame, verbose: bool = False) -> dict:
             f"""Model outputs dataframe must contain the following columns:
             {eval_cfg.required_keys_in_predictions_file}"""
         )
-    root_dir = Path(__file__).resolve().parent.parent
-    with open(str(root_dir / "beans_zero_dataset_config.json"), "r") as cfg_file:
-        beans_cfg = json.load(cfg_file)
 
     components = beans_cfg["metadata"]["components"]
     ds_names = [d["name"] for d in components]
