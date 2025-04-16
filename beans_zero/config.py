@@ -18,7 +18,7 @@ def load_beans_zero_dataset_config() -> dict:
         The configuration dictionary containing metadata and components.
     """
     root_dir = Path(__file__).resolve().parent.parent
-    with open(str(root_dir / "beans_zero_dataset_config.json"), "r") as cfg_file:
+    with (root_dir / "beans_zero_dataset_config.json").open("r") as cfg_file:
         beans_cfg = json.load(cfg_file)
     return beans_cfg
 
