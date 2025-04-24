@@ -1,6 +1,6 @@
 [project]
 name = "beans-zero"
-version = "0.1.0"
+version = "1.0.0"
 description = "BEANS-Zero: a package for zero-shot evaluation of audio-text bioacoustics models"
 readme = "README.md"
 requires-python = ">=3.10"
